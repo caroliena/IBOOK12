@@ -9,6 +9,7 @@ import be.devine.cp3.model.AppModel;
 
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
+import flash.events.Event;
 
 public class Misc
 {
@@ -95,6 +96,10 @@ public class Misc
             log("WARNING", message);
         }
 
+        public function addArguments(method:Function, additionalArguments:Array):Function
+        {
+            return function(event:Event):void {method.apply(null, [event].concat(additionalArguments));}
+        }
 
         public function removeChildrenOf(mc:DisplayObjectContainer):void
         {

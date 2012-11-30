@@ -14,7 +14,7 @@ import flash.net.URLRequest;
 
 public class ImageTask extends Loader implements ITask
 {
-    private var imageUrl:String;
+    public var imageUrl:String;
 
     /**
      * Save the url of an image in the ImageTask object.

@@ -14,6 +14,7 @@ import flash.display.DisplayObject;
 
 import flash.display.Sprite;
 import flash.events.Event;
+import flash.events.MouseEvent;
 
 public class Page extends Sprite{
 
@@ -70,7 +71,8 @@ public class Page extends Sprite{
 
     private function showPage():void
     {
-        misc.debug(getPageNumber());
+        misc.debug(getPageNumber()+" // "+details.title+" // "+details.paragraph+" // "+details.image);
+
         dispatchEvent(new Event(SHOW_PAGE, true));
     }
 
