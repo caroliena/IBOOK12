@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<book>
+    <page>
+        <title>This is my first page</title>
+        <paragraph>Hi, this text is just an example of the iBook we will be making.</paragraph>
+    </page>
+    <page>
+        <title>This is my second page</title>
+        <paragraph>Hi, this text is just an example of the iBook we will be making but with an image</paragraph>
+        <image>http://www.kskheist.be/sites/default/files/image.php__0.jpeg</image>
+    </page>
+    <page>
+        <title>This is my third page (only an image)</title>
+        <image>http://funny-pictures-blog.com/wp-content/uploads/2012/06/Funny-Pictures-LOL.jpg</image>
+    </page>
+</book>
