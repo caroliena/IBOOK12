@@ -16,7 +16,7 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
 
-public class Page extends Sprite{
+public class PageDetail extends Sprite{
 
     private var appModel:AppModel;
     private var misc:Misc;
@@ -28,7 +28,7 @@ public class Page extends Sprite{
     /* static const */
     public static const SHOW_PAGE:String = "showPage";
 
-    public function Page()
+    public function PageDetail()
     {
         this.appModel = AppModel.getInstance();
         this.misc = Misc.getInstance();
@@ -48,15 +48,17 @@ public class Page extends Sprite{
         this.details = details;
         this.queue = new Queue();
 
+
         if(details.image != undefined) loadImage(details.image);
         else showPage();
+
     }
 
     private function loadImage(image:String):void
     {
-        queue.add( new ImageTask(image) );
-        queue.addEventListener(Event.COMPLETE, imageLoadedHandler);
-        queue.start();
+        //queue.add( new ImageTask(image) );
+        //queue.addEventListener(Event.COMPLETE, imageLoadedHandler);
+        //queue.start();
     }
 
     private function imageLoadedHandler(event:Event):void

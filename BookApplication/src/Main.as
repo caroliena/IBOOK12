@@ -1,14 +1,18 @@
 package {
 
-import be.devine.cp3.view.IBook;
-
 import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
+import flash.events.Event;
 import flash.geom.Rectangle;
+
+import starling.core.Starling;
 
 public class Main extends Sprite
 {
+
+    private var app:Sprite;
+    private var starling:Starling;
 
     public function Main()
     {
@@ -21,11 +25,25 @@ public class Main extends Sprite
         stage.nativeWindow.height = 594;
         stage.nativeWindow.bounds = new Rectangle(stage.nativeWindow.x,stage.nativeWindow.y,420,594);
 
-        var iBook:IBook = new IBook();
-        addChild(iBook);
-        //appModel.loadXML();
+        starling = new Starling(IBook, stage);
+        starling.start();
+
+        app = new IBook();
+        addChild(app);
+
+        stage.addEventListener(Event.RESIZE, layout);
+        layout();
+
     }
 
+    private function layout(event:Event = null):void
+    {
+        if(app != null)
+        {
+            app.x = (stage.stageWidth - app.width) * 0.5;
+            app.y = 10;
+        }
+    }
 
 }
 }

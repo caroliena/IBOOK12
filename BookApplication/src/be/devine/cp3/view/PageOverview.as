@@ -9,12 +9,12 @@ import be.devine.cp3.model.AppModel;
 
 import flash.display.Sprite;
 
-public class ThumbNail extends Sprite {
+public class PageOverview extends Sprite {
 
     //Constructor
     private var appModel:AppModel;
 
-    public function ThumbNail() {
+    public function PageOverview() {
         this.appModel = AppModel.getInstance();
 
     }
