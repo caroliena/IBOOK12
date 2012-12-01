@@ -11,10 +11,9 @@ import be.devine.cp3.queue.Queue;
 import be.devine.cp3.queue.XmlTask;
 import be.devine.cp3.utils.Misc;
 
-import flash.display.DisplayObject;
-
 import flash.display.Sprite;
 import flash.events.Event;
+import flash.events.IOErrorEvent;
 import flash.events.KeyboardEvent;
 import flash.events.ProgressEvent;
 import flash.ui.Keyboard;
@@ -27,6 +26,7 @@ public class IBook extends Sprite{
     private var misc:Misc;
     private var pageContainer:Sprite;
     private var page:Page;
+    private var preloadBalk:Sprite;
 
     public function IBook()
     {
@@ -72,22 +72,63 @@ public class IBook extends Sprite{
 
         for each(var page:Object in rawXML.children())
         {
-            pageObj =
-            {
-                title: page.title,
-                paragraph: page.paragraph,
-                image: page.image
-            };
+            if(page.image != undefined) pageObj = { title: page.title, paragraph: page.paragraph, image: page.image};
+            else pageObj = { title: page.title, paragraph: page.paragraph};
 
             if(page.image != undefined) imageQueue.add( new ImageTask( page.image ));
             pageObjArr.push(pageObj);
-            //appModel.pageArray.push(pageObj);
 
         }
-        imageQueue.addEventListener(Event.COMPLETE, misc.addArguments(loadImageHandler, [pageObjArr]));
+        imageQueue.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
+        imageQueue.addEventListener(ProgressEvent.PROGRESS, imageProgressHandler);
+        imageQueue.addEventListener(Event.COMPLETE, misc.addArguments(loadImagesComplete, [pageObjArr]));
         imageQueue.start();
 
+    }
+
+    private function errorHandler(event:IOErrorEvent):void {
+        trace("error in: "+event.currentTarget);
+    }
+
+    private function imageProgressHandler(event:ProgressEvent):void {
+
+        /* preloadbar */
+        if(preloadBalk == null)
+        {
+            preloadBalk = new Sprite();
+            preloadBalk.graphics.beginFill(0x000000);
+            preloadBalk.graphics.drawRect(0,0, stage.stageWidth, 10);
+            addChild(preloadBalk);
+        }
+
+        var scale:Number = event.bytesLoaded / event.bytesTotal;
+
+        preloadBalk.y = (stage.stageHeight - preloadBalk.height) >> 1;
+        preloadBalk.scaleX = scale;
+    }
+
+    private function loadImagesComplete(event:Event, pageObjArr:Array):void
+    {
+        var allPagesArray:Array = pageObjArr;
+        var queuedImages:Array = (event.currentTarget as Queue).completedTasks;
+
+        for (var i:int = 0; i < allPagesArray.length; i++)
+        {
+            var index:int = misc.indexOf(queuedImages, function (val:*,...rest):Boolean { return val.imageUrl == allPagesArray[i].image });
+            if(index != -1)
+            {
+                misc.setSize(queuedImages[index], Main.w - 50);
+                queuedImages[index].x = (page.width - queuedImages[index].width) >> 1;
+                queuedImages[index].y = (page.height - queuedImages[index].height) >> 1;
+                allPagesArray[i].image = queuedImages[index];
+            }
+        }
+
+        if(preloadBalk) removeChild(preloadBalk);
+
+        appModel.pageArray = allPagesArray;
         appModel.currentPage = 0;
+
         addChild(pageContainer);
         pageContainer.addChild(this.page);
 
@@ -96,40 +137,12 @@ public class IBook extends Sprite{
         stage.addEventListener(KeyboardEvent.KEY_DOWN, keyBoardHandler);
     }
 
-    private function loadImageHandler(event:Event, pageObjArr:Array):void
-    {
-        var allPagesArray:Array = pageObjArr;
-
-        /*
-        for (var i:int = 0; i < pageObjArr.length; i++)
-        {
-            var convertedImage:DisplayObject = (event.currentTarget as Queue).completedTasks[i];
-            var currentPageObj:Object = pageObjArr[i];
-
-
-            if(convertedImage != null)
-            {
-                trace("convertedImage: "+(convertedImage as ImageTask).imageUrl);
-            } else {
-                trace("convertedImage: DOES NOT EXIST.");
-            }
-            trace("currentPageObj.image: "+currentPageObj.image);
-        }
-        */
-        for(var i:int = 0; i < allPagesArray.length; i++)
-        {
-            if(allPagesArray[i].image != undefined)
-            {
-
-            }
-        }
-    }
-
 
 
     private function keyBoardHandler(event:KeyboardEvent):void
     {
         var key:uint = event.keyCode;
+
         switch(key)
         {
             case Keyboard.LEFT: appModel.goToPrevPage();
@@ -143,18 +156,24 @@ public class IBook extends Sprite{
     private function currentPageChangedHandler(event:Event):void {
 
         var pageDetails:Object = appModel.pageArray[appModel.currentPage];
+
+        trace(pageDetails.image);
         misc.removeChildrenOf(page);
-        //page.setPage(pageDetails);
+        page.setPage(pageDetails);
         layout();
+
+
     }
 
     private function layout(event:Event = null):void {
 
         trace("zou moetn verandern.");
+
         if(pageContainer)
         {
             pageContainer.x = (stage.stageWidth - pageContainer.width) >> 1;
-            pageContainer.y = (stage.stageHeight - pageContainer.height) >> 1;
+            pageContainer.y = 0;
+            //pageContainer.y = (stage.stageHeight - pageContainer.height) >> 1;
         }
 
     }

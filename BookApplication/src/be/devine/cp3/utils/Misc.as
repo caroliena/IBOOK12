@@ -101,6 +101,12 @@ public class Misc
             return function(event:Event):void {method.apply(null, [event].concat(additionalArguments));}
         }
 
+        public function indexOf(source:Array, filter:Function, startPos:int = 0):int {
+            var len:int = source.length;
+            for (var i:int = startPos; i < len; i++)
+                if (filter(source[i],i,source)) return i;
+            return -1;
+        }
         public function removeChildrenOf(mc:DisplayObjectContainer):void
         {
             if(mc == null)

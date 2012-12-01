@@ -21,10 +21,6 @@ public class Page extends Sprite{
     private var appModel:AppModel;
     private var misc:Misc;
     private var details:Object;
-    private var queue:Queue;
-    /* dimensions */
-    private var w:Number = 420;
-    private var h:Number = 594;
     /* static const */
     public static const SHOW_PAGE:String = "showPage";
 
@@ -35,43 +31,31 @@ public class Page extends Sprite{
 
         this.graphics.clear();
         this.graphics.beginFill(0x2C2CC2);
-        this.graphics.drawRect(0,0,w,h);
+        this.graphics.drawRect(0,0,Main.w,Main.h);
         this.graphics.endFill();
     }
 
     public function setPage(details:Object):void
     {
-        //check if details is null, if so throw an error.
         if(details == null)
             throw new Error("details cannot be null.");
 
         this.details = details;
-        this.queue = new Queue();
-
-        if(details.image != undefined) loadImage(details.image);
-        else showPage();
-    }
-
-    private function loadImage(image:String):void
-    {
-        queue.add( new ImageTask(image) );
-        queue.addEventListener(Event.COMPLETE, imageLoadedHandler);
-        queue.start();
-    }
-
-    private function imageLoadedHandler(event:Event):void
-    {
+        trace(this.details);
         showPage();
-        for each(var img:DisplayObject in queue.completedTasks)
-        {
-            misc.setSize(img, w / (queue.completedTasks.length + 1));
-            addChild(img);
-        }
     }
 
     private function showPage():void
     {
         misc.debug(getPageNumber()+" // "+details.title+" // "+details.paragraph+" // "+details.image);
+
+        if(details.image != undefined)
+        {
+            if(details.image instanceof DisplayObject)
+            {
+                addChild(details.image);
+            }
+        }
 
         dispatchEvent(new Event(SHOW_PAGE, true));
     }
