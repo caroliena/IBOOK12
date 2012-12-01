@@ -1,5 +1,7 @@
 package {
 
+import be.devine.cp3.IBook;
+
 import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;

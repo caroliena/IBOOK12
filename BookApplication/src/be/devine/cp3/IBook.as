@@ -4,7 +4,7 @@
  * --------------------------------------
  * Created with IntelliJ IDEA.
  */
-package {
+package be.devine.cp3 {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.*;
 
