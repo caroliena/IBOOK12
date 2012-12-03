@@ -9,7 +9,11 @@ import be.devine.cp3.model.AppModel;
 
 import flash.display.Sprite;
 
-public class PageOverview extends Sprite {
+import starling.display.Sprite;
+
+
+[SWF(backgroundColor="#666666")]
+public class PageOverview extends starling.display.Sprite {
 
     //Constructor
     private var appModel:AppModel;

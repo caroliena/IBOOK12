@@ -9,12 +9,14 @@ import flash.events.Event;
 import flash.geom.Rectangle;
 
 import starling.core.Starling;
+import starling.display.Sprite;
 
-public class Main extends Sprite
+
+public class Main extends flash.display.Sprite
 {
 
-    private var app:Sprite;
     private var starling:Starling;
+
 
     public function Main()
     {
@@ -30,9 +32,6 @@ public class Main extends Sprite
         starling = new Starling(IBook, stage);
         starling.start();
 
-        app = new IBook();
-        addChild(app);
-
         stage.addEventListener(Event.RESIZE, layout);
         layout();
 
@@ -40,11 +39,13 @@ public class Main extends Sprite
 
     private function layout(event:Event = null):void
     {
+        /*
         if(app != null)
         {
             app.x = (stage.stageWidth - app.width) * 0.5;
             app.y = 10;
         }
+        */
     }
 
 }

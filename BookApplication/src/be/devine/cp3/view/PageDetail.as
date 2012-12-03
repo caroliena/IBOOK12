@@ -16,7 +16,10 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
 
-public class PageDetail extends Sprite{
+import starling.display.Sprite;
+
+[SWF(backgroundColor="#999999")]
+public class PageDetail extends starling.display.Sprite{
 
     private var appModel:AppModel;
     private var misc:Misc;
@@ -33,10 +36,12 @@ public class PageDetail extends Sprite{
         this.appModel = AppModel.getInstance();
         this.misc = Misc.getInstance();
 
-        this.graphics.clear();
+        /*
+        this.starling.display.graphics.clear();
         this.graphics.beginFill(0x2C2CC2);
         this.graphics.drawRect(0,0,w,h);
         this.graphics.endFill();
+        */
     }
 
     public function setPage(details:Object):void
@@ -67,7 +72,7 @@ public class PageDetail extends Sprite{
         for each(var img:DisplayObject in queue.completedTasks)
         {
             misc.setSize(img, w / (queue.completedTasks.length + 1));
-            addChild(img);
+            //addChild(img);
         }
     }
 
@@ -75,7 +80,7 @@ public class PageDetail extends Sprite{
     {
         misc.debug(getPageNumber()+" // "+details.title+" // "+details.paragraph+" // "+details.image);
 
-        dispatchEvent(new Event(SHOW_PAGE, true));
+        //dispatchEvent(new Event(SHOW_PAGE, true));
     }
 
     private function getPageNumber():String

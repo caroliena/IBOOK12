@@ -8,9 +8,10 @@ package be.devine.cp3 {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.*;
 
-import flash.display.Sprite;
+import starling.display.Sprite;
 
-public class IBook extends Sprite{
+
+public class IBook extends starling.display.Sprite{
 
     private var fontContainer:FontContainer = new FontContainer();
 
