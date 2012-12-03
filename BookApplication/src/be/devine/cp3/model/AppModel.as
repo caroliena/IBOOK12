@@ -5,33 +5,22 @@
  * Created with IntelliJ IDEA.
  */
 package be.devine.cp3.model {
-import be.devine.cp3.queue.Queue;
-import be.devine.cp3.queue.XmlTask;
-import be.devine.cp3.utils.Misc;
-import be.devine.cp3.view.PageDetail;
-import be.devine.cp3.vo.PageVO;
-
-import flash.display.Sprite;
-
 import flash.events.Event;
 import flash.events.EventDispatcher;
-import flash.events.ProgressEvent;
-import flash.net.URLLoader;
-import flash.net.URLRequest;
 
 public class AppModel extends EventDispatcher {
 
     private static var instance:AppModel;
 
-    private var queue:Queue;
-    private var misc:Misc;
-
-    private var _currentPage:int;
-    private var _xmlUrl:String;
-    private var _pageArray:Array;
+    private var _currentPage:Object;
+    private var _currentThumbnail:uint;             //misschien niet nodig
+    private var _showPageInfo:Boolean;
+    private var _showPageOverview:Boolean;
+    private var _pages:Array;
 
     public static const CURRENT_PAGE_CHANGED:String = "currentPageChanged";
-    public static const XML_URL_CHANGED:String = "xmlUrlChanged";
+    public static const OVERVIEW_CHANGED:String = "overviewChanged";
+    public static const PAGEINFO_CHANGED:String = "pageInfoChanged";
 
     public function AppModel(e:Enforcer)
     {
@@ -39,9 +28,8 @@ public class AppModel extends EventDispatcher {
         {
             throw new Error("AppModel is a Singleton.");
         }
-        _xmlUrl = "";
-        _currentPage = -1;
-        _pageArray = [];
+        _pages = [];
+        showPageOverview = false;
 
     }
 
@@ -58,111 +46,91 @@ public class AppModel extends EventDispatcher {
      * METHODS
      */
 
-    public function goToNextPage():void
-    {
-        currentPage++;
-    }
-
-    public function goToPrevPage():void
-    {
-        currentPage--;
-    }
-
-    //inladen van de XML
-    public function loadXML():void
-    {
-        var xmlUrl:String = "assets/xml/pages.xml";
-
-        trace(xmlUrl);
-        queue = new Queue();
-        queue.add(new XmlTask(xmlUrl));
-        queue.start();
-        //queue.addEventListener(ProgressEvent.PROGRESS, progressHandler);
-        queue.addEventListener(Event.COMPLETE, xmlCompleteHandler);
-
-    }
-
-    private function progressHandler(event:ProgressEvent):void
-    {
-        misc.debug(event.bytesLoaded+" = event.bytesLoaded");
-        misc.debug(event.bytesTotal+" = event.bytesTotal");
-    }
-
-    private function xmlCompleteHandler(event:Event):void
+    public function next():void
     {
 
-        var loadXML:XmlTask = queue.completedTasks[0];
-        var pagesXML:XML = new XML(loadXML.data);
-        var pages:Array = [];
+        trace('next');
 
-        for each(var page:Object in pagesXML.page)
+        var index:int = _pages.indexOf(_currentPage);
+        if(index > -1)
         {
-            trace(page.title);
+            index++;
+            if(index < _pages.length) currentPage = _pages[index];
+            else currentPage = _pages[0];
+        }
 
-            var pageVO:PageVO = new PageVO();
-            pageVO.thumb = "assets/thumbs/" + page.thumb;
-            pageVO.title = page.title;
-            pageVO.author = page.author;
-            pageVO.image = "assets/images/" + page.image;
-            pageVO.paragraph = page.paragraph;
-            pageVO.linktitle  =  page.link.linktitle;
-            pageVO.description = page.link.description;
-            pageVO.pageId = page.link.pageid;
-            pageVO.theme = page.theme;
-            pageVO.pageInfo = page.pageinfo;
+    }
 
-            pages.push(pageVO);
+    public function previous():void
+    {
+
+        trace('previous');
+
+        var index:int = _pages.indexOf(_currentPage);
+        if(index > -1)
+        {
+            index--;
+            if(index > -1) currentPage = _pages[index];
+            else currentPage = _pages[_pages.length - 1];
 
         }
-        //this.pages = pages;
-        //this.currentPage = pages[0];
     }
-
-
-
-
-
 
     /**
      * GETTERS/SETTERS
      */
 
-    public function get currentPage():int {
+    public function get currentPage():Object {
+
         return _currentPage;
+
     }
 
-    public function set currentPage(value:int):void
+    public function set currentPage(value:Object):void
     {
-        value = Math.min(pageArray.length -1, Math.max(0, value));
 
         if(value != _currentPage)
         {
             _currentPage = value;
-            dispatchEvent(new Event(CURRENT_PAGE_CHANGED, true));
-        }
-    }
-
-    public function get xmlUrl():String {
-        return _xmlUrl;
-    }
-
-    public function set xmlUrl(value:String):void
-    {
-        if(value != _xmlUrl)
-        {
-            _xmlUrl = value;
-            trace("@AppModel: trace in xmlUrl setter.");
-            dispatchEvent(new Event(XML_URL_CHANGED, true));
+            /*TODO: Applicatie loopt hier vast. Ik vermoed doordat de views geen dispatchEvents aanneemt flash.events */
+            dispatchEvent(new flash.events.Event(CURRENT_PAGE_CHANGED, true));
         }
 
     }
 
-    public function get pageArray():Array {
-        return _pageArray;
+
+    public function get pages():Array {
+        return _pages;
     }
 
-    public function set pageArray(value:Array):void {
-        _pageArray = value;
+    public function set pages(value:Array):void {
+        _pages = value;
+    }
+
+    public function get showPageInfo():Boolean {
+        return _showPageInfo;
+    }
+
+    public function set showPageInfo(value:Boolean):void {
+        _showPageInfo = value;
+        dispatchEvent(new flash.events.Event(PAGEINFO_CHANGED, true));
+    }
+
+    public function get showPageOverview():Boolean {
+        return _showPageOverview;
+    }
+
+    public function set showPageOverview(value:Boolean):void {
+        _showPageOverview = value;
+        dispatchEvent(new flash.events.Event(OVERVIEW_CHANGED, true));
+    }
+
+    public function get currentThumbnail():uint {
+        return _currentThumbnail;
+    }
+
+    public function set currentThumbnail(value:uint):void {
+        _currentThumbnail = value;
     }
 }
 }

@@ -6,86 +6,79 @@
  */
 package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
-import be.devine.cp3.queue.ImageTask;
-import be.devine.cp3.queue.Queue;
-import be.devine.cp3.utils.Misc;
 
-import flash.display.DisplayObject;
+import flash.display.BitmapData;
 
-import flash.display.Sprite;
 import flash.events.Event;
-import flash.events.MouseEvent;
 
+import starling.display.Button;
+import starling.events.TouchEvent;
+
+import starling.display.Quad;
 import starling.display.Sprite;
+import starling.text.TextField;
+import starling.textures.Texture;
 
-[SWF(backgroundColor="#999999")]
-public class PageDetail extends starling.display.Sprite{
+[SWF(backgroundColor="0xec9900")]
+public class PageDetail extends Sprite{
 
     private var appModel:AppModel;
-    private var misc:Misc;
-    private var details:Object;
-    private var queue:Queue;
-    /* dimensions */
-    private var w:Number = 420;
-    private var h:Number = 594;
-    /* static const */
-    public static const SHOW_PAGE:String = "showPage";
+
+    private var pageContainer:Sprite;
+    private var pageNumberField:TextField;
+    private var previousButton:starling.display.Button;
+    private var nextButton:starling.display.Button;
 
     public function PageDetail()
     {
         this.appModel = AppModel.getInstance();
-        this.misc = Misc.getInstance();
 
-        /*
-        this.starling.display.graphics.clear();
-        this.graphics.beginFill(0x2C2CC2);
-        this.graphics.drawRect(0,0,w,h);
-        this.graphics.endFill();
-        */
+        pageContainer = new Sprite();
+        addChild(pageContainer);
+
+        var quad:Quad = new Quad(768,1024,0xFF0000);
+        pageContainer.addChild(quad);
+
+        var bmpData:BitmapData = new BitmapData(25, 1024, false, 0x00ff00);
+
+        previousButton = new Button(Texture.fromBitmapData(bmpData));
+        previousButton.x = 0;
+        previousButton.addEventListener(starling.events.Event.TRIGGERED, previousClickHandler);
+        pageContainer.addChild(previousButton);
+
+        nextButton = new Button(Texture.fromBitmapData(bmpData));
+        nextButton.x = 768-25;
+        nextButton.addEventListener(starling.events.Event.TRIGGERED, nextClickHandler);
+        pageContainer.addChild(nextButton);
+
+        var text:String = appModel.currentPage.image;
+
+
+        pageNumberField = new TextField(768,50,text,'EdmondSans',40,0xffffff);
+        pageNumberField.autoScale = false;
+        addChild(pageNumberField);
+
+        appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
+
+
+
     }
 
-    public function setPage(details:Object):void
-    {
-        //check if details is null, if so throw an error.
-        if(details == null)
-            throw new Error("details cannot be null.");
+    private function previousClickHandler(event:starling.events.Event):void {
 
-        this.details = details;
-        this.queue = new Queue();
+          appModel.previous();
+    }
 
+    private function nextClickHandler(event:starling.events.Event):void {
 
-        if(details.image != undefined) loadImage(details.image);
-        else showPage();
+          appModel.next();
+    }
+
+    private function currentPageChangedHandler(event:Event):void {
+
+        trace('Nu moeten we de pagina aanpassen');
 
     }
 
-    private function loadImage(image:String):void
-    {
-        //queue.add( new ImageTask(image) );
-        //queue.addEventListener(Event.COMPLETE, imageLoadedHandler);
-        //queue.start();
-    }
-
-    private function imageLoadedHandler(event:Event):void
-    {
-        showPage();
-        for each(var img:DisplayObject in queue.completedTasks)
-        {
-            misc.setSize(img, w / (queue.completedTasks.length + 1));
-            //addChild(img);
-        }
-    }
-
-    private function showPage():void
-    {
-        misc.debug(getPageNumber()+" // "+details.title+" // "+details.paragraph+" // "+details.image);
-
-        //dispatchEvent(new Event(SHOW_PAGE, true));
-    }
-
-    private function getPageNumber():String
-    {
-        return "Page "+(appModel.currentPage + 1)+" / "+appModel.pageArray.length;
-    }
 }
 }

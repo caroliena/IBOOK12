@@ -25,28 +25,25 @@ public class Main extends flash.display.Sprite
         stage.align = StageAlign.TOP_LEFT;
 
         stage.nativeWindow.visible = true;
-        stage.nativeWindow.width = 420;
-        stage.nativeWindow.height = 594;
-        stage.nativeWindow.bounds = new Rectangle(stage.nativeWindow.x,stage.nativeWindow.y,420,594);
+        stage.nativeWindow.width = 768;
+        stage.nativeWindow.height = 1024;
+        stage.nativeWindow.bounds = new Rectangle(stage.nativeWindow.x,stage.nativeWindow.y,768,1024);
 
         starling = new Starling(IBook, stage);
         starling.start();
 
-        stage.addEventListener(Event.RESIZE, layout);
-        layout();
+        /*TODO: Pas op einde - Niet resizable maken */
+        /* aanpassen in IBook.xml
+        * <systemChrome>none</systemChrome>
+         <minimizable>false</minimizable>
+         <maximizable>false</maximizable>
+         <resizable>false</resizable>
+        *
+        * */
 
     }
 
-    private function layout(event:Event = null):void
-    {
-        /*
-        if(app != null)
-        {
-            app.x = (stage.stageWidth - app.width) * 0.5;
-            app.y = 10;
-        }
-        */
-    }
+
 
 }
 }

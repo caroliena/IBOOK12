@@ -9,6 +9,7 @@ package be.devine.cp3.vo {
 
     public class PageVO {
 
+        public var type:uint;
         public var thumb:String;
         public var title:String;
         public var author:String;
