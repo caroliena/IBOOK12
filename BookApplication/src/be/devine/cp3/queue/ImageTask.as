@@ -15,14 +15,16 @@ import flash.net.URLRequest;
 public class ImageTask extends Loader implements ITask
 {
     public var imageUrl:String;
+    public var index:uint;
 
     /**
      * Save the url of an image in the ImageTask object.
      * @param imageUrl an url to an image (String-value).
      */
-    public function ImageTask(imageUrl:String)
+    public function ImageTask(imageUrl:String, index:uint)
     {
         this.imageUrl = imageUrl;
+        this.index = index;
     }
 
     public function start():void
