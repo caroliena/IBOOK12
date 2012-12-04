@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <book>
-    <page thumb="1_thumb.jpg">
+    <page thumb="1_thumb.jpg" type="1" pageinfo="false">
         <image>1.png</image>
     </page>
-    <page thumb="2_thumb.png">
+    <page thumb="2_thumb.png" type="2" pageinfo="true">
         <title>So what is luxury travel?</title>
         <author>Paul Johnson</author>
         <image>2.png</image>
@@ -22,9 +22,8 @@
             <pageid>3</pageid>
         </link>
         <theme>inspiration</theme>
-        <pageinfo>1</pageinfo>
     </page>
-    <page thumb="3_thumb.png">
+    <page thumb="3_thumb.png" type="3" pageinfo="true">
         <title>So what is luxury travel?</title>
         <author>Paul Johnson</author>
         <image>3.png</image>
@@ -38,15 +37,13 @@
 
 <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then</p> ]]></paragraph>
         <theme>inspiration</theme>
-        <pageinfo>1</pageinfo>
     </page>
-    <page thumb="4_thumb.png">
+    <page thumb="4_thumb.png"  type="4" pageinfo="false">
         <title>So what is luxury travel?</title>
         <image>4.png</image>
         <theme>gadgets</theme>
-        <pageinfo>0</pageinfo>
     </page>
-    <page thumb="5_thumb.png">
+    <page thumb="5_thumb.png"  type="5" pageinfo="true">
         <title>So what is luxury travel?</title>
         <author>Paul Johnson</author>
         <paragraph><![CDATA[ <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
@@ -64,6 +61,5 @@
             <pageid>3</pageid>
         </link>
         <theme>travel</theme>
-        <pageinfo>1</pageinfo>
     </page>
 </book>

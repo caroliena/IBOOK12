@@ -45,7 +45,7 @@ public class Misc
      */
     public function getIdForPage(page:*):int
     {
-        var index:int = appModel.pageArray.indexOf(page);
+        var index:int = appModel.pages.indexOf(page);
 
         if(page == null) throw new Error("Object 'page' cannot be null.");
         if(index <= -1) throw new Error("Parameter 'page' is not a page!");
