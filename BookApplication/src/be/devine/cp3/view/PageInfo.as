@@ -8,6 +8,8 @@
 package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
 
+import flash.events.Event;
+
 
 import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
@@ -21,7 +23,6 @@ import starling.text.TextField;
 public class PageInfo extends starling.display.Sprite{
 
     private var appModel:AppModel;
-
     private var background:Quad;
     private var pageNumberField:TextField;
 
@@ -41,7 +42,11 @@ public class PageInfo extends starling.display.Sprite{
 
     }
 
-    private function currentPageChangedHandler(event:AppModel):void {
+    /*
+     * van Nicholas: Crash bug gefixed. binnenkomend argument in currentPageChangeHandler moet event.flash.Events zijn en niet AppModel.
+     * (AppModel word standaard als argument meegegeven als je deze functie auto genereerd. let hierop ^^)
+     */
+    private function currentPageChangedHandler(event:flash.events.Event):void {
 
         trace('hier moet de pagina ook aanpassen');
 

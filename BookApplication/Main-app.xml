@@ -63,13 +63,13 @@
         <visible>true</visible>
 
         <!-- Whether the user can minimize the window. Optional. Default true. -->
-        <!--<minimizable>false</minimizable> -->
+        <!--<minimizable></minimizable>-->
 
         <!-- Whether the user can maximize the window. Optional. Default true. -->
-        <!--<maximizable>false</maximizable>   -->
+        <!--<maximizable></maximizable>-->
 
         <!-- Whether the user can resize the window. Optional. Default true. -->
-        <!--<resizable>false</resizable>  -->
+        <!--<resizable></resizable>-->
 
         <!-- The window's initial width in pixels. Optional. -->
         <!--<width></width>-->

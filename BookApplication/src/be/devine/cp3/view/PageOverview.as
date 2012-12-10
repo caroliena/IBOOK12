@@ -8,8 +8,7 @@ package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.components.pageOverview.ThumbnailGallery;
 import be.devine.cp3.view.components.pageOverview.ThumbnailInfo;
-
-import flash.display.Sprite;
+import flash.events.Event;
 
 import starling.display.Sprite;
 
@@ -17,31 +16,27 @@ public class PageOverview extends starling.display.Sprite {
 
     //Constructor
     private var appModel:AppModel;
-
     private var pageOverviewContainer:starling.display.Sprite;
     private var thumbnailGallery:ThumbnailGallery;
     private var thumbnailInfo:ThumbnailInfo;
 
-    public function PageOverview() {
+    public function PageOverview()
+    {
         this.appModel = AppModel.getInstance();
 
         pageOverviewContainer = new Sprite();
-        addChild(pageOverviewContainer);
-
         thumbnailGallery = new ThumbnailGallery();
-        pageOverviewContainer.addChild(thumbnailGallery);
-
         thumbnailInfo = new ThumbnailInfo();
         thumbnailInfo.y = 210;
+
+        addChild(pageOverviewContainer);
+        pageOverviewContainer.addChild(thumbnailGallery);
         pageOverviewContainer.addChild(thumbnailInfo);
 
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
-
-
-
     }
 
-    private function currentPageChangedHandler(event:AppModel):void {
+    private function currentPageChangedHandler(event:flash.events.Event):void {
 
         trace("ook aanpassen");
 

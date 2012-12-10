@@ -8,38 +8,37 @@ package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
 
 import flash.display.BitmapData;
-
 import flash.events.Event;
 
+import starling.core.Starling;
 import starling.display.Button;
-import starling.events.TouchEvent;
-
 import starling.display.Quad;
 import starling.display.Sprite;
+import starling.events.TouchEvent;
 import starling.text.TextField;
 import starling.textures.Texture;
 
 [SWF(backgroundColor="0xec9900")]
+
 public class PageDetail extends Sprite{
 
     private var appModel:AppModel;
 
     private var pageContainer:Sprite;
     private var pageNumberField:TextField;
-    private var previousButton:starling.display.Button;
-    private var nextButton:starling.display.Button;
+    private var previousButton:Button;
+    private var nextButton:Button;
 
     public function PageDetail()
     {
         this.appModel = AppModel.getInstance();
 
         pageContainer = new Sprite();
-        addChild(pageContainer);
-
         var quad:Quad = new Quad(768,1024,0xFF0000);
-        pageContainer.addChild(quad);
-
         var bmpData:BitmapData = new BitmapData(25, 1024, false, 0x00ff00);
+
+        addChild(pageContainer);
+        pageContainer.addChild(quad);
 
         previousButton = new Button(Texture.fromBitmapData(bmpData));
         previousButton.x = 0;
@@ -47,20 +46,31 @@ public class PageDetail extends Sprite{
         pageContainer.addChild(previousButton);
 
         nextButton = new Button(Texture.fromBitmapData(bmpData));
-        nextButton.x = 768-25;
+        nextButton.x = Starling.current.stage.stageWidth - nextButton.width; //van Nicholas: non-hardcoded positioning added
         nextButton.addEventListener(starling.events.Event.TRIGGERED, nextClickHandler);
         pageContainer.addChild(nextButton);
 
-        var text:String = appModel.currentPage.image;
+       // var text:String = appModel.pages[appModel.currentPageIndex].image;
 
-
-        pageNumberField = new TextField(768,50,text,'EdmondSans',40,0xffffff);
-        pageNumberField.autoScale = false;
-        addChild(pageNumberField);
+        display();
 
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
+    }
 
+    private function display():void
+    {
+        trace('Nu moeten we de pagina aanpassen');
 
+        var title:String = String( appModel.pages[appModel.currentPageIndex].image );
+        if(pageNumberField == null)
+        {
+            pageNumberField = new TextField(768,50,title,'EdmondSans',40,0xffffff);
+            pageNumberField.autoScale = false;
+            addChild(pageNumberField);
+        } else {
+            pageNumberField.text = appModel.pages[appModel.currentPageIndex].image;
+
+        }
 
     }
 
@@ -76,8 +86,7 @@ public class PageDetail extends Sprite{
 
     private function currentPageChangedHandler(event:Event):void {
 
-        trace('Nu moeten we de pagina aanpassen');
-
+        display();
     }
 
 }

@@ -5,16 +5,15 @@ import be.devine.cp3.IBook;
 import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
-import flash.events.Event;
 import flash.geom.Rectangle;
 
 import starling.core.Starling;
 
-
-public class Main extends flash.display.Sprite
+public class Main extends Sprite
 {
 
     private var starling:Starling;
+
 
 
     public function Main()
@@ -31,14 +30,14 @@ public class Main extends flash.display.Sprite
         starling = new Starling(IBook, stage);
         starling.start();
 
-        /*TODO: Pas op einde - Niet resizable maken */
-        /* aanpassen in IBook.xml
-        * <systemChrome>none</systemChrome>
-         <minimizable>false</minimizable>
-         <maximizable>false</maximizable>
-         <resizable>false</resizable>
-        *
-        * */
+        /*
+            TODO: Pas op einde - Niet resizable maken
+            aanpassen in IBook.xml
+            <systemChrome>none</systemChrome>
+            <minimizable>false</minimizable>
+            <maximizable>false</maximizable>
+            <resizable>false</resizable>
+         */
 
     }
 

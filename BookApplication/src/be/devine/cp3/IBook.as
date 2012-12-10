@@ -7,9 +7,12 @@
 package be.devine.cp3 {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.service.PageService;
+import be.devine.cp3.utils.Misc;
 import be.devine.cp3.view.*;
 
 import flash.events.Event;
+
+import starling.core.Starling;
 import starling.events.KeyboardEvent;
 import flash.ui.Keyboard;
 
@@ -21,13 +24,11 @@ public class IBook extends starling.display.Sprite{
     /*private var fontContainer:FontContainer = new FontContainer();*/
 
     //aanmaken views
-    private var pageInfo:PageInfo;
-    private var pageDetail:PageDetail;
-    private var pageOverview:PageOverview;
 
     //aanmaken appModel
     private var appModel:AppModel;
     private var pageService:PageService;
+    private var misc:Misc;
 
     //Constructor
     public function IBook()
@@ -36,17 +37,18 @@ public class IBook extends starling.display.Sprite{
         appModel.addEventListener(AppModel.OVERVIEW_CHANGED, overviewChanged);
         appModel.addEventListener(AppModel.PAGEINFO_CHANGED, pageInfoChanged);
 
+        misc = Misc.getInstance();
+
         pageService = new PageService();
         pageService.addEventListener(Event.COMPLETE, pagesCompleteHandler);
         pageService.load();
 
-        /* TODO: luistert nog niet naar keyboard event*/
-        this.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+        /* van Nicholas: Starling stage aanspreken doe je zo ^^*/
+        Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+
+    }
 
 
-
-
-        }
 
     private function pageInfoChanged(event:Event):void {
 
@@ -59,49 +61,36 @@ public class IBook extends starling.display.Sprite{
 
     }
 
-    private function keyDownHandler(event:starling.events.KeyboardEvent):void {
-
-        trace('hi');
+    private function keyDownHandler(event:starling.events.KeyboardEvent):void
+    {
         var key:uint = event.keyCode;
         switch(key)
         {
-            case Keyboard.LEFT: appModel.previous();
-                break;
-
-            case Keyboard.RIGHT: appModel.next();
-                break;
+            case Keyboard.LEFT: appModel.previous(); break;
+            case Keyboard.RIGHT: appModel.next(); break;
         }
-
     }
 
-    private function pagesCompleteHandler(evt:Event):void{
+    private function pagesCompleteHandler(evt:Event):void
+    {
+        appModel.currentPage = appModel.pages[ appModel.currentPageIndex ];
+        display();
+    }
 
-        appModel.pages = pageService.pages;
-        appModel.currentPage = appModel.pages[0];
-        appModel.showPageInfo = appModel.pages[0].pageInfo;
-
-
+    private function display():void
+    {
+        appModel.showPageInfo = appModel.currentPage.pageInfo;
         //pagina's moeten eerst ingeladen zijn voordat ze getoond kunnen worden
+        var pageDetail:PageDetail = new PageDetail();
+        var pageInfo:PageInfo = new PageInfo();
+        var pageOverview:PageOverview = new PageOverview();
 
-        //pagina zelf: titel, tekst, foto, links
-        pageDetail = new PageDetail();
-        addChild(pageDetail);
-
-        //paginanummer, thema,...
-        pageInfo = new PageInfo();
-        addChild(pageInfo);
-
-        //het overzicht met de thumbnails
-        pageOverview = new PageOverview();
-        addChild(pageOverview);
-
+        addChild(pageDetail); //pagina zelf: titel, tekst, foto, links
+        addChild(pageInfo); //paginanummer, thema,...
+        addChild(pageOverview); //het overzicht met de thumbnails
+        //TODO: best niet werken met .visible voor die pageInfo. removed ze gewoon vraagt normaal gezien minder geheugen.
         pageInfo.visible = appModel.showPageInfo;
         pageOverview.visible = appModel.showPageOverview;
-
     }
-
-    //getters/setters
-
-
 }
 }

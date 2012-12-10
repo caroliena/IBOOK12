@@ -5,6 +5,8 @@
  * Created with IntelliJ IDEA.
  */
 package be.devine.cp3.model {
+import be.devine.cp3.utils.Misc;
+
 import flash.events.Event;
 import flash.events.EventDispatcher;
 
@@ -13,7 +15,7 @@ public class AppModel extends EventDispatcher {
     private static var instance:AppModel;
 
     private var _currentPage:Object;
-    private var _currentThumbnail:uint;             //misschien niet nodig
+    private var _currentPageIndex:int;
     private var _showPageInfo:Boolean;
     private var _showPageOverview:Boolean;
     private var _pages:Array;
@@ -48,32 +50,14 @@ public class AppModel extends EventDispatcher {
 
     public function next():void
     {
-
-        trace('next');
-
-        var index:int = _pages.indexOf(_currentPage);
-        if(index > -1)
-        {
-            index++;
-            if(index < _pages.length) currentPage = _pages[index];
-            else currentPage = _pages[0];
-        }
-
+        currentPageIndex++;
+        Misc.getInstance().debug("@AppModel: currentPageIndex increased. // next()");
     }
 
     public function previous():void
     {
-
-        trace('previous');
-
-        var index:int = _pages.indexOf(_currentPage);
-        if(index > -1)
-        {
-            index--;
-            if(index > -1) currentPage = _pages[index];
-            else currentPage = _pages[_pages.length - 1];
-
-        }
+        currentPageIndex--;
+        Misc.getInstance().debug("@AppModel: currentPageIndex decreased. // previous()");
     }
 
     /**
@@ -81,21 +65,16 @@ public class AppModel extends EventDispatcher {
      */
 
     public function get currentPage():Object {
-
         return _currentPage;
-
     }
 
     public function set currentPage(value:Object):void
     {
-
         if(value != _currentPage)
         {
             _currentPage = value;
-            /*TODO: Applicatie loopt hier vast. Ik vermoed doordat de views geen dispatchEvents aanneemt flash.events */
-            dispatchEvent(new flash.events.Event(CURRENT_PAGE_CHANGED, true));
+            //dispatchEvent(new flash.events.Event(CURRENT_PAGE_CHANGED, true));
         }
-
     }
 
 
@@ -125,12 +104,22 @@ public class AppModel extends EventDispatcher {
         dispatchEvent(new flash.events.Event(OVERVIEW_CHANGED, true));
     }
 
-    public function get currentThumbnail():uint {
-        return _currentThumbnail;
+    public function get currentPageIndex():int {
+        return _currentPageIndex;
     }
 
-    public function set currentThumbnail(value:uint):void {
-        _currentThumbnail = value;
+    public function set currentPageIndex(value:int):void {
+
+        value = Math.min(_pages.length -1, Math.max(0, value));
+
+        if(value != _currentPageIndex)
+        {
+            _currentPageIndex = value;
+            //currentPage = _pages[_currentPageIndex];
+            dispatchEvent(new flash.events.Event(CURRENT_PAGE_CHANGED, true));
+
+            Misc.getInstance().debug("currentPageIndex changed to ["+value+"]");
+        }
     }
 }
 }
