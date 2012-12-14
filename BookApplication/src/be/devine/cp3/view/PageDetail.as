@@ -5,6 +5,7 @@
  * Created with IntelliJ IDEA.
  */
 package be.devine.cp3.view {
+import be.devine.cp3.factory.text.TextFactory;
 import be.devine.cp3.model.AppModel;
 
 import flash.display.Bitmap;
@@ -45,7 +46,8 @@ public class PageDetail extends Sprite{
     private var previousButton:Button;
     private var nextButton:Button;
     private var bmpData:BitmapData;
-    private var container:flash.display.Sprite;
+    //private var container:flash.display.Sprite;
+    private var paragraphContainer:TextFactory;
     private var background:Quad;
 
     [Embed(source='/assets/fonts/steelfishrg.otf', embedAsCFF='false', fontName='Steelfish')]
@@ -110,7 +112,7 @@ public class PageDetail extends Sprite{
             if( touch.phase == "hover" )
             {
                 previousButton.alpha = touch.globalX <= 200 ? (1 - ( int( ((touch.globalX) / 200) *100) / 100)) : 0;
-                nextButton.alpha = touch.globalX >= Starling.current.stage.stageWidth - 25 ? 1 : 0;
+                nextButton.alpha = touch.globalX >= Starling.current.stage.stageWidth - 200 ? (1 - (Starling.current.stage.stageWidth - touch.globalX) / 200) : 0;
             }
         }
     }
@@ -148,36 +150,23 @@ public class PageDetail extends Sprite{
             pageDetail.addChild(titleField);
         }
 
-        //if(container != null)  Starling.current.nativeStage.removeChild(container);
-
-
         if(appModel.currentPage.paragraph != null)
         {
 
-            container = new flash.display.Sprite();
-            Starling.current.nativeStage.addChild(container);
-            container.x = 35;
-            container.y = 500;
+                if(paragraphContainer == null)
+                {
+                    paragraphContainer = new TextFactory();
+                    paragraphContainer.x = 35;
+                    paragraphContainer.y = 500;
+                    Starling.current.nativeStage.addChild(paragraphContainer);
+                    paragraphContainer.addParagraph();
+                    paragraphContainer.flow.addChild(paragraphContainer.paragraphElement);
 
-            var format:TextLayoutFormat = new TextLayoutFormat();
-            format.color = 0x660000;
-            format.fontFamily = "Arial, Helvetica, _sans";
-            format.fontSize = 14;
+                }
+                paragraphContainer.span.text = appModel.currentPage.paragraph;
+                paragraphContainer.flow.flowComposer.addController(new ContainerController(paragraphContainer, 570, 340));
+                paragraphContainer.flow.flowComposer.updateAllControllers();
 
-            var flow:TextFlow = new TextFlow();
-            flow.columnCount=2;
-            flow.columnGap=30;
-            flow.hostFormat = format;
-
-            var p:ParagraphElement = new ParagraphElement();
-            var span:SpanElement = new SpanElement();
-            span.text = appModel.currentPage.paragraph;
-            p.addChild(span);
-            p.format=format;
-            flow.addChild(p);
-
-            flow.flowComposer.addController(new ContainerController(container, 570, 340));
-            flow.flowComposer.updateAllControllers();
         }
         if(appModel.currentPage.linktitle != null){
 
