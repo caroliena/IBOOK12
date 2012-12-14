@@ -21,7 +21,7 @@ import starling.display.Sprite;
 
 public class IBook extends starling.display.Sprite{
 
-    private var fontContainer:FontContainer = new FontContainer();
+    //private var fontContainer:FontContainer = new FontContainer();
 
     //aanmaken views
 

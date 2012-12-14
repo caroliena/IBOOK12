@@ -91,8 +91,6 @@ public class PageDetail extends Sprite{
             var image:Loader = new Loader();
             image.load ( new URLRequest(appModel.currentPage.image));
             image.contentLoaderInfo.addEventListener ( Event.COMPLETE, display );
-
-
         }else{
 
             trace('image null');
@@ -108,30 +106,31 @@ public class PageDetail extends Sprite{
 
         var touch:Touch = event.getTouch(Starling.current.stage);
 
-        if( touch.phase == "hover" ){
+        trace(touch);
+        if(touch != null)
+        {
+            if(touch.phase == "hover")
+            {
+                if(touch.globalX <= 200)
+                {
+                    if( touch.globalX <= 25 ) previousButton.alpha = 1;
+                    //TODO: Regel van drie toepassen
+                    //else previousButton.alpha =   (touch.globalX / 200) ;
 
-            if( touch.globalX <=200 ){
+                } else {
+                    previousButton.alpha = 0;
+                }
+                if( touch.globalX >= Starling.current.stage.stageWidth - 200 )
+                {
+                    if( touch.globalX >= Starling.current.stage.stageWidth - 25 ) nextButton.alpha = 1;
+                    //else nextButton.alpha = (touch.globalX) / (Starling.current.stage.stageWidth - 25);
+                } else {
+                    nextButton.alpha = 0;
+                }
 
-                if( touch.globalX <= 25 ) previousButton.alpha = 1;
-                //TODO: Regel van drie toepassen
-                //else previousButton.alpha =   (touch.globalX / 200) ;
 
-            }else{
-                previousButton.alpha = 0;
             }
-            if( touch.globalX >= Starling.current.stage.stageWidth - 200 ){
-
-
-                if( touch.globalX >= Starling.current.stage.stageWidth - 25 ) nextButton.alpha = 1;
-                //else nextButton.alpha = (touch.globalX) / (Starling.current.stage.stageWidth - 25);
-
-            }else{
-                nextButton.alpha = 0;
-            }
-
-
         }
-
 
 
     }
@@ -163,6 +162,7 @@ public class PageDetail extends Sprite{
             pageDetail.addChild(image);
 
         }
+
         if(appModel.currentPage.title != null){
 
             var font:Font = new Steelfish();
@@ -204,13 +204,14 @@ public class PageDetail extends Sprite{
 
                 break;
             }
-            case 2:{
-
+            case 2:
+                titleField.skewY = -.25;
                 titleField.color = 0x000000;
                 break;
-            }
+
             case 3:{
 
+                titleField.skewY = -.25;
                 titleField.color = 0x000000;
                 break;
             }
@@ -220,7 +221,7 @@ public class PageDetail extends Sprite{
                 break;
             }
             case 5:{
-
+                titleField.skewY = -.25;
                 titleField.color = 0x000000;
                 break;
             }
@@ -237,14 +238,13 @@ public class PageDetail extends Sprite{
 
     }
 
-    private function previousClickHandler(event:starling.events.Event):void {
-
-
+    private function previousClickHandler(event:starling.events.Event):void
+    {
           appModel.previous();
     }
 
-    private function nextClickHandler(event:starling.events.Event):void {
-
+    private function nextClickHandler(event:starling.events.Event):void
+    {
           appModel.next();
     }
 
@@ -256,7 +256,7 @@ public class PageDetail extends Sprite{
             image.load ( new URLRequest(appModel.currentPage.image));
             image.contentLoaderInfo.addEventListener ( Event.COMPLETE, display );
 
-        }else{
+        } else {
 
             trace('image null');
             display();
