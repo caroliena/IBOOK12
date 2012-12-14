@@ -27,6 +27,8 @@ import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 import starling.text.TextField;
 import starling.textures.Texture;
+import starling.utils.HAlign;
+import starling.utils.VAlign;
 
 [SWF(backgroundColor="0xec9900")]
 
@@ -40,6 +42,8 @@ public class PageDetail extends Sprite{
     private var previousButton:Button;
     private var nextButton:Button;
     private var bmpData:BitmapData;
+
+    private var background:Quad;
 
     [Embed(source='/assets/fonts/steelfishrg.otf', embedAsCFF='false', fontName='Steelfish')]
     public static var Steelfish:Class;
@@ -61,11 +65,7 @@ public class PageDetail extends Sprite{
         pageContainer = new Sprite();
 
         bmpData = new BitmapData(25, 1024, false, appModel.currentPage.themecolor);
-
         addChild(pageContainer);
-
-
-        /* buttons */
 
         previousButton = new Button(Texture.fromBitmapData(bmpData,'<'));
         previousButton.alpha = 0;
@@ -82,7 +82,6 @@ public class PageDetail extends Sprite{
         Starling.current.stage.addEventListener(starling.events.TouchEvent.TOUCH, mouseMoveHandler);
 
 
-
        // var text:String = appModel.pages[appModel.currentPageIndex].image;
 
         if( appModel.currentPage.image != null ){
@@ -91,6 +90,8 @@ public class PageDetail extends Sprite{
             var image:Loader = new Loader();
             image.load ( new URLRequest(appModel.currentPage.image));
             image.contentLoaderInfo.addEventListener ( Event.COMPLETE, display );
+
+
         }else{
 
             trace('image null');
@@ -101,37 +102,19 @@ public class PageDetail extends Sprite{
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
     }
 
-    private function mouseMoveHandler(event:starling.events.TouchEvent):void {
-
-
+    private function mouseMoveHandler(event:starling.events.TouchEvent):void
+    {
         var touch:Touch = event.getTouch(Starling.current.stage);
 
-        trace(touch);
-        if(touch != null)
+        if( touch != null )
         {
-            if(touch.phase == "hover")
+            if( touch.phase == "hover" )
             {
-                if(touch.globalX <= 200)
-                {
-                    if( touch.globalX <= 25 ) previousButton.alpha = 1;
-                    //TODO: Regel van drie toepassen
-                    //else previousButton.alpha =   (touch.globalX / 200) ;
-
-                } else {
-                    previousButton.alpha = 0;
-                }
-                if( touch.globalX >= Starling.current.stage.stageWidth - 200 )
-                {
-                    if( touch.globalX >= Starling.current.stage.stageWidth - 25 ) nextButton.alpha = 1;
-                    //else nextButton.alpha = (touch.globalX) / (Starling.current.stage.stageWidth - 25);
-                } else {
-                    nextButton.alpha = 0;
-                }
-
-
+                previousButton.alpha = touch.globalX <= 200 ? (1 - ( int( ((touch.globalX) / 200) *100) / 100)) : 0;
+                nextButton.alpha = touch.globalX >= Starling.current.stage.stageWidth - 25 ? 1 : 0;
             }
-        }
 
+        }
 
     }
 
@@ -162,13 +145,12 @@ public class PageDetail extends Sprite{
             pageDetail.addChild(image);
 
         }
-
         if(appModel.currentPage.title != null){
 
             var font:Font = new Steelfish();
-            var titleField:TextField = new TextField(568,568,appModel.currentPage.title, font.fontName,58,0xFFFFFF,false);
-            titleField.x = 50;
-            titleField.y = 50;
+            var titleField:TextField = new TextField(768,70,appModel.currentPage.title, font.fontName,58,0xFFFFFF,false);
+            titleField.hAlign = HAlign.LEFT;
+            titleField.vAlign = VAlign.TOP;
             pageDetail.addChild(titleField);
 
         }
@@ -182,14 +164,15 @@ public class PageDetail extends Sprite{
         }
         if(appModel.currentPage.author != null){
 
-            var font:Font = new Georgia();
+            var font2:Font = new Georgia();
+
             var authorText:String = "Geschreven door " + appModel.currentPage.author;
-            var authorField:TextField = new TextField(768,30,authorText, font.fontName,60,0x000000,false);
-            authorField.x = 50;
-            authorField.y = titleField.y + titleField.height + 30;
+            var authorField:TextField = new TextField(768,30,authorText, font2.fontName,12,0x000000,false);
+            authorField.hAlign = HAlign.LEFT;
+            authorField.x = 35;
             pageDetail.addChild(authorField);
 
-            trace('authorField ' + authorField.x + ' ' + authorField.y);
+            trace('authorField ' + titleField.y + ' ' + titleField.height);
 
         }
 
@@ -197,32 +180,59 @@ public class PageDetail extends Sprite{
         var type:uint = appModel.currentPage.type;
         pageContainer.addChildAt(pageDetail,0);
 
+
+
         switch (type){
 
             case 1:{
 
+                image.x = image.y = 0;
 
                 break;
             }
-            case 2:
-                titleField.skewY = -.25;
-                titleField.color = 0x000000;
-                break;
+            case 2:{
 
+                image.x = image.y = 35;
+
+                titleField.y = image.y + image.height + 35;
+                titleField.x = 35;
+                titleField.color = 0x000000;
+
+                authorField.y = titleField.y + titleField.height + 10;
+
+                break;
+            }
             case 3:{
 
-                titleField.skewY = -.25;
                 titleField.color = 0x000000;
+
+                image.x = image.y = 35;
+
+                titleField.y = image.y + image.height + 35;
+                titleField.x = 35;
+                titleField.color = 0x000000;
+
+                authorField.y = titleField.y + titleField.height + 10;
+
                 break;
             }
             case 4:{
 
+                image.x = image.y = 0;
+                titleField.x = 45;
+                titleField.y = 200;
+                titleField.fontSize = 80;
+                titleField.height = 100;
                 titleField.color = 0xFFFFFF;
+
                 break;
             }
             case 5:{
-                titleField.skewY = -.25;
+
+                titleField.x = titleField.y = 35;
                 titleField.color = 0x000000;
+
+                authorField.y = titleField.y + titleField.height + 10;
                 break;
             }
             case 'default':{
@@ -238,13 +248,12 @@ public class PageDetail extends Sprite{
 
     }
 
-    private function previousClickHandler(event:starling.events.Event):void
-    {
+    private function previousClickHandler(event:starling.events.Event):void {
           appModel.previous();
     }
 
-    private function nextClickHandler(event:starling.events.Event):void
-    {
+    private function nextClickHandler(event:starling.events.Event):void {
+
           appModel.next();
     }
 
@@ -256,7 +265,7 @@ public class PageDetail extends Sprite{
             image.load ( new URLRequest(appModel.currentPage.image));
             image.contentLoaderInfo.addEventListener ( Event.COMPLETE, display );
 
-        } else {
+        }else{
 
             trace('image null');
             display();
