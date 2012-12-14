@@ -9,15 +9,19 @@ package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
 
 import flash.events.Event;
+import flash.text.Font;
 
 
 import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
 
+import starling.core.Starling;
+
 import starling.display.Quad;
 
 import starling.display.Sprite;
 import starling.text.TextField;
+import starling.utils.HAlign;
 
 
 public class PageInfo extends starling.display.Sprite{
@@ -25,11 +29,14 @@ public class PageInfo extends starling.display.Sprite{
     private var appModel:AppModel;
     private var background:Quad;
     private var pageNumberField:TextField;
+    private var pageThemeField:TextField;
+
+    [Embed(source='/assets/fonts/Georgia.ttf', embedAsCFF='false', fontName='Georgia')]
+    public static var Georgia:Class;
 
     public function PageInfo() {
 
         this.appModel = AppModel.getInstance();
-
 
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
 
@@ -45,11 +52,27 @@ public class PageInfo extends starling.display.Sprite{
             this.removeChild(pageNumberField);
 
         }
+        if( this.contains(pageThemeField) ){
+
+            this.removeChild(pageThemeField);
+
+        }
+
+        var font:Font = new Georgia();
 
         var textLeft:String = "iTravel I " + appModel.currentPage.theme;
+        var textRight:String = String( appModel.pages.indexOf(appModel.currentPage) );
 
-        pageNumberField = new TextField(768,30,textLeft,'EdmondSans',11,0x000000);
+        pageThemeField = new TextField(768,30,textLeft,font.fontName,11,0x000000);
+        pageThemeField.autoScale = false;
+        pageThemeField.x = 35;
+        pageThemeField.hAlign = HAlign.LEFT;
+        addChild(pageThemeField);
+
+        pageNumberField = new TextField(15,30,textRight,font.fontName,11,0x000000);
         pageNumberField.autoScale = false;
+        pageNumberField.x = 768-50;
+        pageNumberField.hAlign = HAlign.RIGHT;
         addChild(pageNumberField);
 
     }
