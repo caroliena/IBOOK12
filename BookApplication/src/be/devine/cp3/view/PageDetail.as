@@ -16,6 +16,19 @@ import flash.display.Loader;
 import flash.events.Event;
 import flash.net.URLRequest;
 import flash.text.Font;
+import flash.text.TextField;
+import flash.text.TextFieldAutoSize;
+import flash.text.TextFieldType;
+import flash.text.TextFormat;
+import flash.text.TextFormatAlign;
+
+import flashx.textLayout.container.ContainerController;
+
+import flashx.textLayout.elements.ParagraphElement;
+import flashx.textLayout.elements.SpanElement;
+
+import flashx.textLayout.elements.TextFlow;
+import flashx.textLayout.formats.TextLayoutFormat;
 
 import starling.core.Starling;
 import starling.display.Button;
@@ -38,7 +51,7 @@ public class PageDetail extends Sprite{
 
     private var pageContainer:Sprite;
     private var pageDetail:Sprite;
-    private var pageNumberField:TextField;
+    private var pageNumberField:starling.text.TextField;
     private var previousButton:Button;
     private var nextButton:Button;
     private var bmpData:BitmapData;
@@ -114,7 +127,7 @@ public class PageDetail extends Sprite{
 
                     if( touch.globalX <= 25 ) previousButton.alpha = 1;
                     //TODO: Regel van drie toepassen
-                    //else previousButton.alpha =   (touch.globalX / 200) ;
+                    else previousButton.alpha = touch.globalX / 200 ;
 
                 }else{
                     previousButton.alpha = 0;
@@ -166,13 +179,55 @@ public class PageDetail extends Sprite{
         if(appModel.currentPage.title != null){
 
             var font:Font = new Steelfish();
-            var titleField:TextField = new TextField(768,70,appModel.currentPage.title, font.fontName,58,0xFFFFFF,false);
+            var titleField:starling.text.TextField = new starling.text.TextField(768,70,appModel.currentPage.title, font.fontName,58,0xFFFFFF,false);
             titleField.hAlign = HAlign.LEFT;
             titleField.vAlign = VAlign.TOP;
             pageDetail.addChild(titleField);
 
         }
         if(appModel.currentPage.paragraph != null){
+
+            /*
+            var bodyField:flash.text.TextField = new flash.text.TextField();
+            bodyField.width = 698;
+            bodyField.wordWrap = true;
+            bodyField.multiline = true;
+            bodyField.autoSize = TextFieldAutoSize.LEFT;
+            bodyField.htmlText = appModel.currentPage.paragraph;
+            bodyField.x = 35;
+            Starling.current.nativeOverlay.addChild(bodyField);
+            */
+
+            //TODO Kleuren constant maken
+            //TODO Buttons uit PageDetail halen
+            //TODO Transities
+            //TODO Pages opsplitsen in verschillende klasses
+
+            var textFormatLayout:TextLayoutFormat = new TextLayoutFormat();
+            textFormatLayout.color = 0x000000;
+            textFormatLayout.fontFamily = "Arial";
+            textFormatLayout.fontSize = 12;
+
+            var flow:TextFlow = new TextFlow();
+            flow.columnCount = 2;
+            flow.columnGap = 35;
+            flow.columnWidth = 300;
+            flow.hostFormat = textFormatLayout;
+
+            var paragraaf:ParagraphElement = new ParagraphElement();
+            var span:SpanElement = new SpanElement();
+            span.text = appModel.currentPage.paragraph;
+            paragraaf.addChild(span);
+            paragraaf.format=textFormatLayout;
+            flow.addChild(paragraaf);
+
+            var container:flash.display.Sprite=new flash.display.Sprite();
+            container.x = 35;
+            container.y = 400;
+            Starling.current.nativeStage.addChild(container);
+
+            flow.flowComposer.addController(new ContainerController(container, 698, 900));
+
 
 
         }
@@ -185,12 +240,10 @@ public class PageDetail extends Sprite{
             var font2:Font = new Georgia();
 
             var authorText:String = "Geschreven door " + appModel.currentPage.author;
-            var authorField:TextField = new TextField(768,30,authorText, font2.fontName,12,0x000000,false);
+            var authorField:starling.text.TextField = new starling.text.TextField(768,30,authorText, font2.fontName,12,0x000000,false);
             authorField.hAlign = HAlign.LEFT;
             authorField.x = 35;
             pageDetail.addChild(authorField);
-
-            trace('authorField ' + titleField.y + ' ' + titleField.height);
 
         }
 
@@ -198,7 +251,7 @@ public class PageDetail extends Sprite{
         var type:uint = appModel.currentPage.type;
         pageContainer.addChildAt(pageDetail,0);
 
-
+        makeLayout();
 
         switch (type){
 
@@ -217,6 +270,7 @@ public class PageDetail extends Sprite{
                 titleField.color = 0x000000;
 
                 authorField.y = titleField.y + titleField.height + 10;
+                container.y = 500;
 
                 break;
             }
@@ -231,12 +285,14 @@ public class PageDetail extends Sprite{
                 titleField.color = 0x000000;
 
                 authorField.y = titleField.y + titleField.height + 10;
+                container.y = 500;
 
                 break;
             }
             case 4:{
 
                 image.x = image.y = 0;
+                titleField.skewY = -0.25;
                 titleField.x = 45;
                 titleField.y = 200;
                 titleField.fontSize = 80;
@@ -251,6 +307,7 @@ public class PageDetail extends Sprite{
                 titleField.color = 0x000000;
 
                 authorField.y = titleField.y + titleField.height + 10;
+                container.y = 500;
                 break;
             }
             case 'default':{
@@ -263,6 +320,10 @@ public class PageDetail extends Sprite{
 
         }
 
+
+    }
+
+    private function makeLayout():void {
 
     }
 
