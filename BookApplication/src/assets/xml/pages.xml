@@ -2,6 +2,7 @@
 <book>
     <page thumb="1_thumb.jpg" type="1" pageinfo="false">
         <image>1.png</image>
+        <theme kleur="0x000000">nada</theme>
     </page>
     <page thumb="2_thumb.png" type="2" pageinfo="true">
         <title>So what is luxury travel?</title>
@@ -21,7 +22,7 @@
             <description>Far far away, behind the word mountains, far from the countries Vokalia</description>
             <pageid>3</pageid>
         </link>
-        <theme>inspiration</theme>
+        <theme kleur="0xFDF74A">inspiration</theme>
     </page>
     <page thumb="3_thumb.png" type="3" pageinfo="true">
         <title>So what is luxury travel?</title>
@@ -36,12 +37,12 @@
 <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
 
 <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then</p> ]]></paragraph>
-        <theme>inspiration</theme>
+        <theme kleur="0xFDF74A">inspiration</theme>
     </page>
     <page thumb="4_thumb.png"  type="4" pageinfo="false">
         <title>So what is luxury travel?</title>
         <image>4.png</image>
-        <theme>gadgets</theme>
+        <theme kleur="0x84BDC6">gadgets</theme>
     </page>
     <page thumb="5_thumb.png"  type="5" pageinfo="true">
         <title>So what is luxury travel?</title>
@@ -60,6 +61,6 @@
             <description>Far far away, behind the word mountains, far from the countries Vokalia</description>
             <pageid>3</pageid>
         </link>
-        <theme>travel</theme>
+        <theme kleur="0x36A845">travel</theme>
     </page>
 </book>

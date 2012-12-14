@@ -30,15 +30,27 @@ public class PageInfo extends starling.display.Sprite{
 
         this.appModel = AppModel.getInstance();
 
-        background = new Quad(768,30,0x333333);
-        addChild(background);
-
-        pageNumberField = new TextField(768,30,'test','EdmondSans',11,0xffffff);
-        pageNumberField.autoScale = false;
-        addChild(pageNumberField);
 
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
 
+        display();
+
+
+    }
+
+    private function display():void {
+
+        if( this.contains(pageNumberField) ){
+
+            this.removeChild(pageNumberField);
+
+        }
+
+        var textLeft:String = "iTravel I " + appModel.currentPage.theme;
+
+        pageNumberField = new TextField(768,30,textLeft,'EdmondSans',11,0x000000);
+        pageNumberField.autoScale = false;
+        addChild(pageNumberField);
 
     }
 
@@ -48,7 +60,7 @@ public class PageInfo extends starling.display.Sprite{
      */
     private function currentPageChangedHandler(event:flash.events.Event):void {
 
-        trace('hier moet de pagina ook aanpassen');
+        display();
 
     }
 }

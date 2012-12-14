@@ -21,10 +21,9 @@ public class ImageTask extends Loader implements ITask
      * Save the url of an image in the ImageTask object.
      * @param imageUrl an url to an image (String-value).
      */
-    public function ImageTask(imageUrl:String, index:uint)
+    public function ImageTask(imageUrl:String)
     {
         this.imageUrl = imageUrl;
-        this.index = index;
     }
 
     public function start():void

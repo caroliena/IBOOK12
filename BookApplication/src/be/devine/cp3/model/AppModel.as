@@ -50,14 +50,31 @@ public class AppModel extends EventDispatcher {
 
     public function next():void
     {
-        currentPageIndex++;
-        Misc.getInstance().debug("@AppModel: currentPageIndex increased. // next()");
+        //currentPageIndex++;
+        //Misc.getInstance().debug("@AppModel: currentPageIndex increased. // next()");
+
+
+        var index:int = _pages.indexOf(_currentPage);
+        if(index < _pages.length - 1)
+        {
+            index++;
+            currentPage = _pages[index];
+        }
     }
 
     public function previous():void
     {
-        currentPageIndex--;
-        Misc.getInstance().debug("@AppModel: currentPageIndex decreased. // previous()");
+        //currentPageIndex--;
+        //Misc.getInstance().debug("@AppModel: currentPageIndex decreased. // previous()");
+
+
+        var index:int = _pages.indexOf(_currentPage);
+        if(index > 0)
+        {
+            index--;
+            currentPage = _pages[index];
+
+        }
     }
 
     /**
@@ -73,7 +90,7 @@ public class AppModel extends EventDispatcher {
         if(value != _currentPage)
         {
             _currentPage = value;
-            //dispatchEvent(new flash.events.Event(CURRENT_PAGE_CHANGED, true));
+            dispatchEvent(new flash.events.Event(CURRENT_PAGE_CHANGED, true));
         }
     }
 
@@ -121,6 +138,8 @@ public class AppModel extends EventDispatcher {
             Misc.getInstance().debug("currentPageIndex changed to ["+value+"]");
         }
     }
+
+
 }
 }
 internal class Enforcer{}

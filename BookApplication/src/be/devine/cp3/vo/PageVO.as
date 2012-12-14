@@ -19,6 +19,7 @@ package be.devine.cp3.vo {
         public var description:String;
         public var pageId:uint;
         public var theme:String;
+        public var themecolor:Number;
         public var pageInfo:Boolean;
 
         public function PageVO()
