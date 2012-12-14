@@ -6,25 +6,18 @@
  */
 package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
-import be.devine.cp3.queue.Queue;
-import be.devine.cp3.utils.Misc;
 
 import flash.display.Bitmap;
-
 import flash.display.BitmapData;
-import flash.display.DisplayObject;
 import flash.display.Loader;
 import flash.events.Event;
 import flash.net.URLRequest;
 import flash.text.Font;
 
 import flashx.textLayout.container.ContainerController;
-
 import flashx.textLayout.elements.ParagraphElement;
 import flashx.textLayout.elements.SpanElement;
-
 import flashx.textLayout.elements.TextFlow;
-
 import flashx.textLayout.formats.TextLayoutFormat;
 
 import starling.core.Starling;
@@ -89,7 +82,7 @@ public class PageDetail extends Sprite{
         nextButton.addEventListener(starling.events.Event.TRIGGERED, nextClickHandler);
         pageContainer.addChild(nextButton);
 
-        Starling.current.stage.addEventListener(starling.events.TouchEvent.TOUCH, mouseMoveHandler);
+        Starling.current.stage.addEventListener(TouchEvent.TOUCH, mouseMoveHandler);
 
 
        // var text:String = appModel.pages[appModel.currentPageIndex].image;
@@ -108,7 +101,7 @@ public class PageDetail extends Sprite{
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
     }
 
-    private function mouseMoveHandler(event:starling.events.TouchEvent):void
+    private function mouseMoveHandler(event:TouchEvent):void
     {
         var touch:Touch = event.getTouch(Starling.current.stage);
 
@@ -155,10 +148,12 @@ public class PageDetail extends Sprite{
             pageDetail.addChild(titleField);
         }
 
+        //if(container != null)  Starling.current.nativeStage.removeChild(container);
+
 
         if(appModel.currentPage.paragraph != null)
         {
-            //if(container != null)  Starling.current.nativeStage.removeChild(container);
+
             container = new flash.display.Sprite();
             Starling.current.nativeStage.addChild(container);
             container.x = 35;

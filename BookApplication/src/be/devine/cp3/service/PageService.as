@@ -10,7 +10,6 @@ import be.devine.cp3.factory.vo.PageVOFactory;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.queue.Queue;
 import be.devine.cp3.queue.XmlTask;
-import be.devine.cp3.utils.Misc;
 
 import flash.events.Event;
 import flash.events.EventDispatcher;
