@@ -198,6 +198,8 @@ public class PageDetail extends Sprite{
         var type:uint = appModel.currentPage.type;
         pageContainer.addChildAt(pageDetail,0);
 
+
+
         switch (type){
 
             case 1:{
