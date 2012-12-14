@@ -52,7 +52,7 @@ public class PageDetail extends Sprite{
     private var previousButton:Button;
     private var nextButton:Button;
     private var bmpData:BitmapData;
-
+    private var container:flash.display.Sprite;
     private var background:Quad;
 
     [Embed(source='/assets/fonts/steelfishrg.otf', embedAsCFF='false', fontName='Steelfish')]
@@ -94,19 +94,15 @@ public class PageDetail extends Sprite{
 
        // var text:String = appModel.pages[appModel.currentPageIndex].image;
 
-        if( appModel.currentPage.image != null ){
-
+        if(appModel.currentPage.image != null)
+        {
             trace('image niet null');
             var image:Loader = new Loader();
             image.load ( new URLRequest(appModel.currentPage.image));
             image.contentLoaderInfo.addEventListener ( Event.COMPLETE, display );
-
-
-        }else{
-
+        } else {
             trace('image null');
             display();
-
         }
 
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
@@ -137,40 +133,33 @@ public class PageDetail extends Sprite{
         }
         */
 
-        if( pageContainer.contains(pageDetail)){
-
-            Misc.getInstance().debug("Bevat een pagina.");
+        if( pageContainer.contains(pageDetail))
             pageContainer.removeChild(pageDetail);
 
-        }
-
-
-        trace(pageContainer.numChildren);
-
         pageDetail = new Sprite();
-        trace(pageDetail);
-
-        if(appModel.currentPage.image != null){
-
+        //TODO: Verschillende items opslitsen in verschillende klasses
+        if(appModel.currentPage.image != null)
+        {
             var loadedBitmap:Bitmap = event.currentTarget.loader.content as Bitmap;
             var texture:Texture = Texture.fromBitmap ( loadedBitmap );
             var image:Image = new Image(texture);
-
             pageDetail.addChild(image);
-
         }
-        if(appModel.currentPage.title != null){
 
+        if(appModel.currentPage.title != null)
+        {
             var font:Font = new Steelfish();
             var titleField:TextField = new TextField(768,70,appModel.currentPage.title, font.fontName,58,0xFFFFFF,false);
             titleField.hAlign = HAlign.LEFT;
             titleField.vAlign = VAlign.TOP;
             pageDetail.addChild(titleField);
-
         }
+
+
         if(appModel.currentPage.paragraph != null)
         {
-            var container:flash.display.Sprite=new flash.display.Sprite();
+            //if(container != null)  Starling.current.nativeStage.removeChild(container);
+            container = new flash.display.Sprite();
             Starling.current.nativeStage.addChild(container);
             container.x = 35;
             container.y = 500;
@@ -217,17 +206,24 @@ public class PageDetail extends Sprite{
         var type:uint = appModel.currentPage.type;
         pageContainer.addChildAt(pageDetail,0);
 
+        switch (type)
+        {
+            case 1: image.x = image.y = 0; break;
 
+            case 2:
 
-        switch (type){
+                image.x = image.y = 35;
 
-            case 1:{
+                titleField.y = image.y + image.height + 35;
+                titleField.x = 35;
+                titleField.color = 0x000000;
 
-                image.x = image.y = 0;
+                authorField.y = titleField.y + titleField.height + 10;
+            break;
 
-                break;
-            }
-            case 2:{
+            case 3:
+
+                titleField.color = 0x000000;
 
                 image.x = image.y = 35;
 
@@ -237,24 +233,9 @@ public class PageDetail extends Sprite{
 
                 authorField.y = titleField.y + titleField.height + 10;
 
-                break;
-            }
-            case 3:{
+            break;
 
-                titleField.color = 0x000000;
-
-                image.x = image.y = 35;
-
-                titleField.y = image.y + image.height + 35;
-                titleField.x = 35;
-                titleField.color = 0x000000;
-
-                authorField.y = titleField.y + titleField.height + 10;
-
-                break;
-            }
-            case 4:{
-
+            case 4:
                 image.x = image.y = 0;
                 titleField.x = 45;
                 titleField.y = 200;
@@ -263,26 +244,16 @@ public class PageDetail extends Sprite{
                 titleField.color = 0xFFFFFF;
 
                 break;
-            }
-            case 5:{
 
+            case 5:
                 titleField.x = titleField.y = 35;
                 titleField.color = 0x000000;
 
                 authorField.y = titleField.y + titleField.height + 10;
                 break;
-            }
-            case 'default':{
 
-                break;
-            }
-
-            trace(pageContainer.numChildren);
-
-
+            case 'default': break;
         }
-
-
     }
 
     private function previousClickHandler(event:starling.events.Event):void {
@@ -294,24 +265,17 @@ public class PageDetail extends Sprite{
           appModel.next();
     }
 
-    private function currentPageChangedHandler(event:Event):void {
-
-        if( appModel.currentPage.image != null ){
-
+    private function currentPageChangedHandler(event:Event):void
+    {
+        if( appModel.currentPage.image != null )
+        {
             var image:Loader = new Loader();
             image.load ( new URLRequest(appModel.currentPage.image));
             image.contentLoaderInfo.addEventListener ( Event.COMPLETE, display );
-
-        }else{
-
+        } else {
             trace('image null');
             display();
-
         }
-
     }
-
-
-
 }
 }

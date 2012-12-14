@@ -17,17 +17,12 @@ public class ThumbnailGallery extends Sprite{
 
     private var background:Quad;
 
-    public function ThumbnailGallery() {
-
+    public function ThumbnailGallery()
+    {
         this.appModel = AppModel.getInstance();
-
         background = new Quad(768,210,0xeeeeee);
         background.alpha = 0.8;
         addChild(background);
-
-
-
-
     }
 }
 }

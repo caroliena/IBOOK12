@@ -19,7 +19,6 @@ public class PageService extends EventDispatcher{
 
     private var appModel:AppModel;
     private var queue:Queue;
-    public var pages:Array;
 
     public function PageService() {
         this.appModel = AppModel.getInstance();

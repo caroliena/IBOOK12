@@ -73,7 +73,6 @@ public class IBook extends starling.display.Sprite{
 
     private function pagesCompleteHandler(evt:Event):void
     {
-        //appModel.currentPage = appModel.pages[ appModel.currentPageIndex ];
         appModel.currentPage = appModel.pages[ 0 ];
         display();
     }
@@ -89,7 +88,6 @@ public class IBook extends starling.display.Sprite{
         addChild(pageDetail); //pagina zelf: titel, tekst, foto, links
         addChild(pageInfo); //paginanummer, thema,...
         addChild(pageOverview); //het overzicht met de thumbnails
-
 
         //TODO: best niet werken met .visible voor die pageInfo. removed ze gewoon vraagt normaal gezien minder geheugen.
         pageInfo.visible = appModel.showPageInfo;
