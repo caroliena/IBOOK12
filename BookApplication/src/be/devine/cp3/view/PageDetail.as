@@ -7,6 +7,7 @@
 package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.queue.Queue;
+import be.devine.cp3.utils.Misc;
 
 import flash.display.Bitmap;
 
@@ -16,6 +17,15 @@ import flash.display.Loader;
 import flash.events.Event;
 import flash.net.URLRequest;
 import flash.text.Font;
+
+import flashx.textLayout.container.ContainerController;
+
+import flashx.textLayout.elements.ParagraphElement;
+import flashx.textLayout.elements.SpanElement;
+
+import flashx.textLayout.elements.TextFlow;
+
+import flashx.textLayout.formats.TextLayoutFormat;
 
 import starling.core.Starling;
 import starling.display.Button;
@@ -113,23 +123,27 @@ public class PageDetail extends Sprite{
                 previousButton.alpha = touch.globalX <= 200 ? (1 - ( int( ((touch.globalX) / 200) *100) / 100)) : 0;
                 nextButton.alpha = touch.globalX >= Starling.current.stage.stageWidth - 25 ? 1 : 0;
             }
-
         }
-
     }
 
 
 
     private function display(event:Event = null):void
     {
-
+        trace(pageContainer.contains(pageDetail)+" : contains?");
+        /*while(pageContainer.numChildren > 0)
+        {
+            pageContainer.removeChildAt(0);
+        }
+        */
 
         if( pageContainer.contains(pageDetail)){
 
-            trace('bevat een pagina');
+            Misc.getInstance().debug("Bevat een pagina.");
             pageContainer.removeChild(pageDetail);
 
         }
+
 
         trace(pageContainer.numChildren);
 
@@ -154,9 +168,32 @@ public class PageDetail extends Sprite{
             pageDetail.addChild(titleField);
 
         }
-        if(appModel.currentPage.paragraph != null){
+        if(appModel.currentPage.paragraph != null)
+        {
+            var container:flash.display.Sprite=new flash.display.Sprite();
+            Starling.current.nativeStage.addChild(container);
+            container.x = 35;
+            container.y = 500;
 
+            var format:TextLayoutFormat = new TextLayoutFormat();
+            format.color = 0x660000;
+            format.fontFamily = "Arial, Helvetica, _sans";
+            format.fontSize = 14;
 
+            var flow:TextFlow = new TextFlow();
+            flow.columnCount=2;
+            flow.columnGap=30;
+            flow.hostFormat = format;
+
+            var p:ParagraphElement = new ParagraphElement();
+            var span:SpanElement = new SpanElement();
+            span.text = appModel.currentPage.paragraph;
+            p.addChild(span);
+            p.format=format;
+            flow.addChild(p);
+
+            flow.flowComposer.addController(new ContainerController(container, 570, 340));
+            flow.flowComposer.updateAllControllers();
         }
         if(appModel.currentPage.linktitle != null){
 

@@ -73,7 +73,8 @@ public class IBook extends starling.display.Sprite{
 
     private function pagesCompleteHandler(evt:Event):void
     {
-        appModel.currentPage = appModel.pages[ appModel.currentPageIndex ];
+        //appModel.currentPage = appModel.pages[ appModel.currentPageIndex ];
+        appModel.currentPage = appModel.pages[ 0 ];
         display();
     }
 
