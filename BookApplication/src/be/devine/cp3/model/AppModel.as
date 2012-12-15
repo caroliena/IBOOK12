@@ -125,6 +125,7 @@ public class AppModel extends EventDispatcher {
         dispatchEvent(new flash.events.Event(OVERVIEW_CHANGED, true));
     }
 
+    /*
     public function get currentPageIndex():int {
         return _currentPageIndex;
     }
@@ -142,6 +143,7 @@ public class AppModel extends EventDispatcher {
             Misc.getInstance().debug("currentPageIndex changed to ["+value+"]");
         }
     }
+    */
 
 
     public function get thumbnails():Array {

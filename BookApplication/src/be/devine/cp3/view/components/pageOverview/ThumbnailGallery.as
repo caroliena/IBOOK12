@@ -19,10 +19,13 @@ public class ThumbnailGallery extends Sprite{
     private var appModel:AppModel;
     private var thumbnailContainer:Sprite;
 
+    private var background:Quad;
+
     public function ThumbnailGallery() {
+
         this.appModel = AppModel.getInstance();
 
-        var background:Quad = new Quad(768,200,0x000000);
+        background = new Quad(768,210,0xeeeeee);
         background.alpha = 0.8;
         addChild(background);
 

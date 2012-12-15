@@ -10,7 +10,6 @@ import be.devine.cp3.factory.vo.PageVOFactory;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.queue.Queue;
 import be.devine.cp3.queue.XmlTask;
-import be.devine.cp3.utils.Misc;
 
 import flash.events.Event;
 import flash.events.EventDispatcher;
@@ -19,7 +18,6 @@ public class PageService extends EventDispatcher{
 
     private var appModel:AppModel;
     private var queue:Queue;
-    public var pages:Array;
 
     public function PageService() {
         this.appModel = AppModel.getInstance();

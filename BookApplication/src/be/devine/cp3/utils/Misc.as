@@ -11,6 +11,9 @@ import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.events.Event;
 
+import starling.core.Starling;
+
+
 public class Misc
 {
     private var dateText:String = "";
@@ -116,6 +119,8 @@ public class Misc
                 mc.removeChildAt(0);
             }
         }
+
+
     }
 }
 internal class Enforcer{}

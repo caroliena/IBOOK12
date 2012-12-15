@@ -22,7 +22,7 @@ import starling.display.Sprite;
 
 public class IBook extends starling.display.Sprite{
 
-    private var fontContainer:FontContainer = new FontContainer();
+    //private var fontContainer:FontContainer = new FontContainer();
 
     //aanmaken views
 
@@ -84,17 +84,17 @@ public class IBook extends starling.display.Sprite{
         display();
     }
 
-    private function display():void{
+    private function display():void
+    {
         appModel.showPageInfo = appModel.currentPage.pageInfo;
 
         var pageDetail:PageDetail = new PageDetail();
         var pageInfo:PageInfo = new PageInfo();
         var pageOverview:PageOverview = new PageOverview();
 
-        addChild(pageDetail);
-        addChild(pageInfo);
-        addChild(pageOverview);
-
+        addChild(pageDetail); //pagina zelf: titel, tekst, foto, links
+        addChild(pageInfo); //paginanummer, thema,...
+        addChild(pageOverview); //het overzicht met de thumbnails
 
         //TODO: best niet werken met .visible voor die pageInfo. removed ze gewoon vraagt normaal gezien minder geheugen.
         pageInfo.visible = appModel.showPageInfo;
