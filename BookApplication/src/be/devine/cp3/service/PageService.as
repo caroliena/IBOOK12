@@ -25,7 +25,6 @@ public class PageService extends EventDispatcher{
         this.appModel = AppModel.getInstance();
     }
 
-    //inladen van de XML
     public function load():void
     {
         var xmlUrl:String = "assets/xml/pages.xml";

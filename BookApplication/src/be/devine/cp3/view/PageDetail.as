@@ -6,38 +6,26 @@
  */
 package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
-import be.devine.cp3.queue.Queue;
 
 import flash.display.Bitmap;
-
 import flash.display.BitmapData;
-import flash.display.DisplayObject;
 import flash.display.Loader;
 import flash.events.Event;
 import flash.net.URLRequest;
 import flash.text.Font;
-import flash.text.TextField;
-import flash.text.TextFieldAutoSize;
-import flash.text.TextFieldType;
-import flash.text.TextFormat;
-import flash.text.TextFormatAlign;
 
 import flashx.textLayout.container.ContainerController;
-
 import flashx.textLayout.elements.ParagraphElement;
 import flashx.textLayout.elements.SpanElement;
-
 import flashx.textLayout.elements.TextFlow;
 import flashx.textLayout.formats.TextLayoutFormat;
 
 import starling.core.Starling;
 import starling.display.Button;
 import starling.display.Image;
-import starling.display.Quad;
 import starling.display.Sprite;
 import starling.events.Touch;
 import starling.events.TouchEvent;
-import starling.events.TouchPhase;
 import starling.text.TextField;
 import starling.textures.Texture;
 import starling.utils.HAlign;
@@ -51,12 +39,8 @@ public class PageDetail extends Sprite{
 
     private var pageContainer:Sprite;
     private var pageDetail:Sprite;
-    private var pageNumberField:starling.text.TextField;
     private var previousButton:Button;
     private var nextButton:Button;
-    private var bmpData:BitmapData;
-
-    private var background:Quad;
 
     [Embed(source='/assets/fonts/steelfishrg.otf', embedAsCFF='false', fontName='Steelfish')]
     public static var Steelfish:Class;
@@ -77,7 +61,7 @@ public class PageDetail extends Sprite{
 
         pageContainer = new Sprite();
 
-        bmpData = new BitmapData(25, 1024, false, appModel.currentPage.themecolor);
+        var bmpData:BitmapData = new BitmapData(25, 1024, false, appModel.currentPage.themecolor);
         addChild(pageContainer);
 
         previousButton = new Button(Texture.fromBitmapData(bmpData,'<'));
@@ -92,7 +76,7 @@ public class PageDetail extends Sprite{
         nextButton.addEventListener(starling.events.Event.TRIGGERED, nextClickHandler);
         pageContainer.addChild(nextButton);
 
-        Starling.current.stage.addEventListener(starling.events.TouchEvent.TOUCH, mouseMoveHandler);
+        Starling.current.stage.addEventListener(TouchEvent.TOUCH, mouseMoveHandler);
 
 
        // var text:String = appModel.pages[appModel.currentPageIndex].image;
@@ -115,7 +99,7 @@ public class PageDetail extends Sprite{
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
     }
 
-    private function mouseMoveHandler(event:starling.events.TouchEvent):void {
+    private function mouseMoveHandler(event:TouchEvent):void {
 
 
         var touch:Touch = event.getTouch(Starling.current.stage);
@@ -179,7 +163,7 @@ public class PageDetail extends Sprite{
         if(appModel.currentPage.title != null){
 
             var font:Font = new Steelfish();
-            var titleField:starling.text.TextField = new starling.text.TextField(768,70,appModel.currentPage.title, font.fontName,58,0xFFFFFF,false);
+            var titleField:TextField = new TextField(768,70,appModel.currentPage.title, font.fontName,58,0xFFFFFF,false);
             titleField.hAlign = HAlign.LEFT;
             titleField.vAlign = VAlign.TOP;
             pageDetail.addChild(titleField);
@@ -240,7 +224,7 @@ public class PageDetail extends Sprite{
             var font2:Font = new Georgia();
 
             var authorText:String = "Geschreven door " + appModel.currentPage.author;
-            var authorField:starling.text.TextField = new starling.text.TextField(768,30,authorText, font2.fontName,12,0x000000,false);
+            var authorField:TextField = new TextField(768,30,authorText, font2.fontName,12,0x000000,false);
             authorField.hAlign = HAlign.LEFT;
             authorField.x = 35;
             pageDetail.addChild(authorField);
@@ -328,13 +312,10 @@ public class PageDetail extends Sprite{
     }
 
     private function previousClickHandler(event:starling.events.Event):void {
-
-
-          appModel.previous();
+        appModel.previous();
     }
 
     private function nextClickHandler(event:starling.events.Event):void {
-
           appModel.next();
     }
 

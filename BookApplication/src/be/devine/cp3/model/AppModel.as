@@ -19,8 +19,11 @@ public class AppModel extends EventDispatcher {
     private var _showPageInfo:Boolean;
     private var _showPageOverview:Boolean;
     private var _pages:Array;
+    private var _thumbnails:Array;
+    private var _currentThumbnailIndex:int;
 
     public static const CURRENT_PAGE_CHANGED:String = "currentPageChanged";
+    public static const CURRENT_THUMBNAIL_CHANGED:String = "currentThumbnailChanged";
     public static const OVERVIEW_CHANGED:String = "overviewChanged";
     public static const PAGEINFO_CHANGED:String = "pageInfoChanged";
 
@@ -31,6 +34,7 @@ public class AppModel extends EventDispatcher {
             throw new Error("AppModel is a Singleton.");
         }
         _pages = [];
+        _thumbnails = [];
         showPageOverview = false;
 
     }
@@ -140,6 +144,27 @@ public class AppModel extends EventDispatcher {
     }
 
 
+    public function get thumbnails():Array {
+        return _thumbnails;
+    }
+
+    public function set thumbnails(value:Array):void {
+        _thumbnails = value;
+    }
+
+    public function get currentThumbnailIndex():int {
+        return _currentThumbnailIndex;
+    }
+
+    public function set currentThumbnailIndex(value:int):void {
+
+        if(value != _currentThumbnailIndex)
+        {
+            _currentThumbnailIndex = value;
+            dispatchEvent(new flash.events.Event(CURRENT_THUMBNAIL_CHANGED, true));
+        }
+
+    }
 }
 }
 internal class Enforcer{}

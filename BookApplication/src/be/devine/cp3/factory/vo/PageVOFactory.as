@@ -21,7 +21,7 @@ public class PageVOFactory {
         //Thumbs en pageinfo zijn altijd aanwezig
         //Types = om de verschillende opmaak te kunnen voorzien in de views
 
-        pageVO.thumb = "assets/thumbs/" + pageXML.thumb;
+        pageVO.thumb = "assets/thumbs/" + pageXML.@thumb;
         pageVO.pageInfo = pageXML.@pageinfo;
         pageVO.type = pageXML.@type;
         pageVO.theme = pageXML.theme;

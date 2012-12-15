@@ -7,6 +7,7 @@
 package be.devine.cp3 {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.service.PageService;
+import be.devine.cp3.service.ThumbnailService;
 import be.devine.cp3.utils.Misc;
 import be.devine.cp3.view.*;
 
@@ -28,6 +29,7 @@ public class IBook extends starling.display.Sprite{
     //aanmaken appModel
     private var appModel:AppModel;
     private var pageService:PageService;
+    private var thumbnailService:ThumbnailService;
     private var misc:Misc;
 
     //Constructor
@@ -71,28 +73,32 @@ public class IBook extends starling.display.Sprite{
         }
     }
 
-    private function pagesCompleteHandler(evt:Event):void
-    {
-        appModel.currentPage = appModel.pages[ appModel.currentPageIndex ];
+    private function pagesCompleteHandler(evt:Event):void{
+        thumbnailService = new ThumbnailService();
+        thumbnailService.addEventListener(Event.COMPLETE, thumbnailsCompleteHandler);
+        thumbnailService.load();
+    }
+
+    private function thumbnailsCompleteHandler(event:Event):void {
+        appModel.currentPage = appModel.currentThumbnailIndex = appModel.pages[0];
         display();
     }
 
-    private function display():void
-    {
+    private function display():void{
         appModel.showPageInfo = appModel.currentPage.pageInfo;
-        //pagina's moeten eerst ingeladen zijn voordat ze getoond kunnen worden
+
         var pageDetail:PageDetail = new PageDetail();
         var pageInfo:PageInfo = new PageInfo();
         var pageOverview:PageOverview = new PageOverview();
 
-        addChild(pageDetail); //pagina zelf: titel, tekst, foto, links
-        addChild(pageInfo); //paginanummer, thema,...
-        addChild(pageOverview); //het overzicht met de thumbnails
+        addChild(pageDetail);
+        addChild(pageInfo);
+        addChild(pageOverview);
 
 
         //TODO: best niet werken met .visible voor die pageInfo. removed ze gewoon vraagt normaal gezien minder geheugen.
         pageInfo.visible = appModel.showPageInfo;
-        pageOverview.visible = appModel.showPageOverview;
+        //pageOverview.visible = appModel.showPageOverview;
     }
 }
 }

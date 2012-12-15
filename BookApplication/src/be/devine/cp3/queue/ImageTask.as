@@ -8,6 +8,7 @@
 package be.devine.cp3.queue
 {
 import flash.display.Loader;
+
 import flash.events.Event;
 import flash.events.IOErrorEvent;
 import flash.net.URLRequest;

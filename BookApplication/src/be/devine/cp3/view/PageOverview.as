@@ -27,7 +27,7 @@ public class PageOverview extends starling.display.Sprite {
         pageOverviewContainer = new Sprite();
         thumbnailGallery = new ThumbnailGallery();
         thumbnailInfo = new ThumbnailInfo();
-        thumbnailInfo.y = 210;
+        thumbnailInfo.y = 200;
 
         addChild(pageOverviewContainer);
         pageOverviewContainer.addChild(thumbnailGallery);
