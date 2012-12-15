@@ -34,7 +34,6 @@ public class ThumbnailGallery extends Sprite{
         var i:uint = 0;
         for each( var thumbnail:Image in appModel.thumbnails ){
             thumbnail.x = i * (thumbnail.width + 20);
-            trace('x: ' + thumbnail.x);
             thumbnail.y = 35;
             thumbnail.addEventListener(TouchEvent.TOUCH, mouseHoverHandler);
             thumbnailContainer.addChild(thumbnail);

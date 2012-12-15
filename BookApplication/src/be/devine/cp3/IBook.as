@@ -88,17 +88,19 @@ public class IBook extends starling.display.Sprite{
     {
         appModel.showPageInfo = appModel.currentPage.pageInfo;
 
-        var pageDetail:PageDetail = new PageDetail();
+        var page:Page = new Page();
+        var readingControls = new ReadingControls();
         var pageInfo:PageInfo = new PageInfo();
         var pageOverview:PageOverview = new PageOverview();
 
-        addChild(pageDetail); //pagina zelf: titel, tekst, foto, links
-        addChild(pageInfo); //paginanummer, thema,...
-        addChild(pageOverview); //het overzicht met de thumbnails
+        addChild(page);
+        addChild(pageInfo);
+        addChild(pageOverview);
+        addChild(readingControls);
 
         //TODO: best niet werken met .visible voor die pageInfo. removed ze gewoon vraagt normaal gezien minder geheugen.
         pageInfo.visible = appModel.showPageInfo;
-        //pageOverview.visible = appModel.showPageOverview;
+        pageOverview.visible = appModel.showPageOverview;
     }
 }
 }
