@@ -25,7 +25,7 @@ public class PageService extends EventDispatcher{
 
     public function load():void
     {
-        var xmlUrl:String = "assets/xml/pages.xml";
+        var xmlUrl:String = "assets/xml/pages2.xml";
         queue = new Queue();
         queue.add(new XmlTask(xmlUrl));
         queue.start();

@@ -22,17 +22,11 @@ import starling.display.Sprite;
 
 public class IBook extends starling.display.Sprite{
 
-    //private var fontContainer:FontContainer = new FontContainer();
-
-    //aanmaken views
-
-    //aanmaken appModel
     private var appModel:AppModel;
     private var pageService:PageService;
     private var thumbnailService:ThumbnailService;
     private var misc:Misc;
 
-    //Constructor
     public function IBook()
     {
         appModel = AppModel.getInstance();
@@ -45,22 +39,20 @@ public class IBook extends starling.display.Sprite{
         pageService.addEventListener(Event.COMPLETE, pagesCompleteHandler);
         pageService.load();
 
-        /* van Nicholas: Starling stage aanspreken doe je zo ^^*/
         Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+    }
+
+    private function pagesCompleteHandler(evt:Event):void{
+
+        thumbnailService = new ThumbnailService();
+        thumbnailService.addEventListener(Event.COMPLETE, thumbnailsCompleteHandler);
+        thumbnailService.load();
 
     }
 
-
-
-    private function pageInfoChanged(event:Event):void {
-
-        //zichtbaar zetten pageInfo
-    }
-
-    private function overviewChanged(event:Event):void {
-
-        //zichtbaar zetten overview
-
+    private function thumbnailsCompleteHandler(event:Event):void {
+        appModel.currentPage = appModel.currentThumbnailIndex = appModel.pages[0];
+        display();
     }
 
     private function keyDownHandler(event:starling.events.KeyboardEvent):void
@@ -73,21 +65,8 @@ public class IBook extends starling.display.Sprite{
         }
     }
 
-    private function pagesCompleteHandler(evt:Event):void{
-        thumbnailService = new ThumbnailService();
-        thumbnailService.addEventListener(Event.COMPLETE, thumbnailsCompleteHandler);
-        thumbnailService.load();
-    }
-
-    private function thumbnailsCompleteHandler(event:Event):void {
-        appModel.currentPage = appModel.currentThumbnailIndex = appModel.pages[0];
-        display();
-    }
-
     private function display():void
     {
-        appModel.showPageInfo = appModel.currentPage.pageInfo;
-
         var page:Page = new Page();
         var readingControls = new ReadingControls();
         var pageInfo:PageInfo = new PageInfo();
@@ -101,6 +80,17 @@ public class IBook extends starling.display.Sprite{
         //TODO: best niet werken met .visible voor die pageInfo. removed ze gewoon vraagt normaal gezien minder geheugen.
         pageInfo.visible = appModel.showPageInfo;
         pageOverview.visible = appModel.showPageOverview;
+    }
+
+    private function pageInfoChanged(event:Event):void {
+
+        //zichtbaar zetten pageInfo
+    }
+
+    private function overviewChanged(event:Event):void {
+
+        //zichtbaar zetten overview
+
     }
 }
 }

@@ -29,7 +29,8 @@ public class Button extends starling.display.Button{
 
         super(upState, text, downState);
 
-        background = new Quad(25,1024,appModel.currentPage.themecolor);
+        //TODO Afstemmen op themecolor
+        background = new Quad(25,1024,0x000000);
         addChild(background);
 
     }

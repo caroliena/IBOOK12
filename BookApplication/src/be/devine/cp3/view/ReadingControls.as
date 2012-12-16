@@ -30,11 +30,9 @@ public class ReadingControls extends Sprite{
         previousButton.x = 0;
         addChild(previousButton);
 
-
         nextButton = new NextButton();
         nextButton.x = (Starling.current.stage.stageWidth - nextButton.width);
         addChild(nextButton);
-
 
         previousButton.addEventListener(starling.events.Event.TRIGGERED, previousClickHandler);
         nextButton.addEventListener(starling.events.Event.TRIGGERED, nextClickHandler);

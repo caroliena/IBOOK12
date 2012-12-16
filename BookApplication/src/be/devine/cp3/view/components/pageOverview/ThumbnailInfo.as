@@ -27,7 +27,8 @@ public class ThumbnailInfo extends Sprite {
         this.appModel = AppModel.getInstance();
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
         appModel.addEventListener(AppModel.CURRENT_THUMBNAIL_CHANGED, currentThumbnailChangedHandler);
-        background = new Quad(768,50,appModel.currentPage.themecolor);
+        //TODO Afstemmen op themekleur appModel.currentPage.themecolor
+        background = new Quad(768,50,0x000000);
         addChild(background);
     }
 
@@ -36,6 +37,9 @@ public class ThumbnailInfo extends Sprite {
     }
 
     private function display():void {
+
+
+        /*
         var pageNumberText:String = "Pagina " + (appModel.currentThumbnailIndex + 1);
 
         if( this.contains(pageNumberField) ){
@@ -63,12 +67,13 @@ public class ThumbnailInfo extends Sprite {
             addChild(titleField);
 
         }
+        */
 
 
     }
 
     private function currentPageChangedHandler(event:Event):void {
-        background.color = appModel.currentPage.themecolor;
+        //background.color = appModel.currentPage.themecolor;
         display();
 
     }
