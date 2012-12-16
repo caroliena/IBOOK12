@@ -31,7 +31,6 @@ public class IBook extends starling.display.Sprite{
     {
         appModel = AppModel.getInstance();
         appModel.addEventListener(AppModel.OVERVIEW_CHANGED, overviewChanged);
-        appModel.addEventListener(AppModel.PAGEINFO_CHANGED, pageInfoChanged);
 
         misc = Misc.getInstance();
 
@@ -68,8 +67,8 @@ public class IBook extends starling.display.Sprite{
     private function display():void
     {
         var page:Page = new Page();
-        var readingControls = new ReadingControls();
         var pageInfo:PageInfo = new PageInfo();
+        var readingControls = new ReadingControls();
         var pageOverview:PageOverview = new PageOverview();
 
         addChild(page);
@@ -77,19 +76,10 @@ public class IBook extends starling.display.Sprite{
         addChild(pageOverview);
         addChild(readingControls);
 
-        //TODO: best niet werken met .visible voor die pageInfo. removed ze gewoon vraagt normaal gezien minder geheugen.
-        pageInfo.visible = appModel.showPageInfo;
         pageOverview.visible = appModel.showPageOverview;
     }
 
-    private function pageInfoChanged(event:Event):void {
-
-        //zichtbaar zetten pageInfo
-    }
-
     private function overviewChanged(event:Event):void {
-
-        //zichtbaar zetten overview
 
     }
 }

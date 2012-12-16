@@ -101,6 +101,9 @@ public class TextFactory
             case 'linkPage':
                 textField = new TextField(698,650,config.text, "GeorgiaBold", 14, 0x000000,false);
                 break;
+            case 'pageInfo':
+                textField = new TextField(698,650,config.text, "EdmondSansRegular", 14, 0x000000,false);
+                break;
         }
         textField.hAlign = HAlign.LEFT;
         textContainer.addChild(textField);

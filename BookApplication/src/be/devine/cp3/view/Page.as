@@ -46,15 +46,15 @@ public class Page extends Sprite{
         for each(var elementVO:ElementVO in appModel.currentPage.elements) {
             var element:Element;
             switch(elementVO.type){
-                case 'image':
-                    element = createImage(elementVO as ImageElementVO);
+                case 'link':
+                    element = createLink(elementVO as LinkElementVO);
+                    element.addEventListener(starling.events.Event.TRIGGERED, clickHandler);
                     break;
                 case 'text':
                     element = createText(elementVO as TextElementVO);
                     break;
-                case 'link':
-                    element = createLink(elementVO as LinkElementVO);
-                    element.addEventListener(starling.events.Event.TRIGGERED, clickHandler);
+                case 'image':
+                    element = createImage(elementVO as ImageElementVO);
                     break;
             }
             addChildAt(element,0);
