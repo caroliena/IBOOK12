@@ -12,12 +12,15 @@ import be.devine.cp3.utils.Misc;
 import be.devine.cp3.view.*;
 
 import flash.events.Event;
+import flash.geom.Point;
 
 import starling.core.Starling;
 import starling.events.KeyboardEvent;
 import flash.ui.Keyboard;
 
 import starling.display.Sprite;
+import starling.events.Touch;
+import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 
 
@@ -34,6 +37,8 @@ public class IBook extends starling.display.Sprite{
         pageService = new PageService();
         pageService.addEventListener(Event.COMPLETE, pagesCompleteHandler);
         pageService.load();
+
+        this.addEventListener(TouchEvent.TOUCH, mousePositionHandler);
 
         Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
     }
@@ -62,15 +67,26 @@ public class IBook extends starling.display.Sprite{
         }
     }
 
+    private function mousePositionHandler(event:TouchEvent):void {
+
+        var touch:Touch = event.getTouch(Starling.current.stage);
+        if( touch != null ){
+            var point:Point = new Point(touch.globalX,touch.globalY);
+            appModel.mouseCoords = point;
+        }
+    }
+
     private function display():void
     {
         var page:Page = new Page();
         var pageInfo:PageInfo = new PageInfo();
-        var readingControls = new ReadingControls();
+        var readingControls:ReadingControls = new ReadingControls(); //TODO 3 seconden laten staan en dan laten wegfaden
+        var pageOverview:PageOverview = new PageOverview();
 
         addChild(page);
         addChild(pageInfo);
         addChild(readingControls);
+        addChild(pageOverview);
 
     }
 

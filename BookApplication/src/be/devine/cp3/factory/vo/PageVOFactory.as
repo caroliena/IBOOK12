@@ -19,6 +19,9 @@ public class PageVOFactory {
 
         for each(var elementXML:XML in pageXML.element){
             pageVO.elements.push(ElementVOFactory.createFromXML(elementXML));
+            if(elementXML.@type == 'text' && elementXML.@textLayout == 'title'){
+                pageVO.title = elementXML.text();
+            }
         }
 
         return pageVO;

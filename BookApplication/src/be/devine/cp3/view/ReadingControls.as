@@ -9,16 +9,10 @@ package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.components.buttons.NextButton;
 import be.devine.cp3.view.components.buttons.PreviousButton;
-
-import starling.animation.Transitions;
-
-import starling.animation.Tween;
-
+import flash.events.Event;
 import starling.core.Starling;
-
 import starling.display.Sprite;
 import starling.events.Touch;
-import starling.events.TouchEvent;
 
 public class ReadingControls extends Sprite{
 
@@ -26,8 +20,6 @@ public class ReadingControls extends Sprite{
 
     private var previousButton:PreviousButton;
     private var nextButton:NextButton;
-    private var pageOverview:PageOverview;
-    private var overviewFlag:Boolean = false;
 
     public function ReadingControls() {
         this.appModel = AppModel.getInstance();
@@ -40,31 +32,27 @@ public class ReadingControls extends Sprite{
         nextButton.x = (Starling.current.stage.stageWidth - nextButton.width);
         addChild(nextButton);
 
-        //pageOverview = new PageOverview();
-        //pageOverview.addEventListener(pageOverview.OVERVIEW_CLICKED,overviewClickHandler);
-        //addChild(pageOverview);
-
         previousButton.addEventListener(starling.events.Event.TRIGGERED, previousClickHandler);
         nextButton.addEventListener(starling.events.Event.TRIGGERED, nextClickHandler);
-        Starling.current.stage.addEventListener(TouchEvent.TOUCH, mouseMoveHandler);
+        appModel.addEventListener(AppModel.MOUSE_POSITION_CHANGED,mouseMoveHandler);
+        appModel.addEventListener(AppModel.OVERVIEW_CLICKED,overviewClickHandler);
     }
 
     private function overviewClickHandler(event:starling.events.Event):void {
 
-        if(overviewFlag){
-            overviewFlag=false;
-
-            previousButton.addEventListener(starling.events.Event.TRIGGERED, previousClickHandler);
-            nextButton.addEventListener(starling.events.Event.TRIGGERED, nextClickHandler);
-        }else{
-            overviewFlag=true;
-
+        //TODO Kan Mousecursor ook weggehaald worden?
+        if(appModel.overviewFlag){
             previousButton.removeEventListener(starling.events.Event.TRIGGERED, previousClickHandler);
             nextButton.removeEventListener(starling.events.Event.TRIGGERED, nextClickHandler);
-
+            appModel.removeEventListener(AppModel.MOUSE_POSITION_CHANGED,mouseMoveHandler);
             previousButton.alpha = nextButton.alpha = 0;
-            pageOverview.alpha = 1;
+        }else{
+            previousButton.addEventListener(starling.events.Event.TRIGGERED, previousClickHandler);
+            nextButton.addEventListener(starling.events.Event.TRIGGERED, nextClickHandler);
+            appModel.addEventListener(AppModel.MOUSE_POSITION_CHANGED,mouseMoveHandler);
         }
+
+
     }
 
     private function previousClickHandler(event:starling.events.Event):void {
@@ -75,19 +63,10 @@ public class ReadingControls extends Sprite{
         appModel.next();
     }
 
-    private function mouseMoveHandler(event:TouchEvent):void
+    private function mouseMoveHandler(event:Event):void
     {
-        var touch:Touch = event.getTouch(Starling.current.stage);
-
-        if( touch != null )
-        {
-            if( touch.phase == "hover" )
-            {
-                //pageOverview.alpha = touch.globalY <= 150 ? (1 - ( int( ((touch.globalY) / 150) *100) / 100)) : 0;
-                previousButton.alpha = touch.globalX <= 200 ? (1 - ( int( ((touch.globalX) / 200) *100) / 100)) : 0;
-                nextButton.alpha = touch.globalX >= Starling.current.stage.stageWidth - 200 ? (1 - (Starling.current.stage.stageWidth - touch.globalX) / 200) : 0;
-            }
-        }
+        previousButton.alpha = appModel.mouseCoords.x <= 200 ? (1 - ( int( ((appModel.mouseCoords.x) / 200) *100) / 100)) : 0;
+        nextButton.alpha = appModel.mouseCoords.x >= Starling.current.stage.stageWidth - 200 ? (1 - (Starling.current.stage.stageWidth - appModel.mouseCoords.x) / 200) : 0;
     }
 }
 }

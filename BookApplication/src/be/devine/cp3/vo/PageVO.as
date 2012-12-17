@@ -11,6 +11,7 @@ package be.devine.cp3.vo {
 
         public var type:uint;
         public var thumbnail:String;
+        public var title:String;
         public var theme:String;
         public var elements:Vector.<ElementVO>;
 

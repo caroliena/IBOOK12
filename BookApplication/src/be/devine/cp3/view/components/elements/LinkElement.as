@@ -58,6 +58,7 @@ public class LinkElement extends Element{
             link.addChild(textElement);
         }
 
+        //TODO Lijn wordt onder imagevlak geplaatst
         var line:Quad = new Quad(700,5,appModel.themeColor);
         line.x = 0;
         line.y = 0;

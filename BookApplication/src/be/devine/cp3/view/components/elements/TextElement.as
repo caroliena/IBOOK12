@@ -36,6 +36,11 @@ public class TextElement extends Element{
             textField.x = 35;
             addChild(textField);
         }else{
+            //TODO Paragraaf wordt nog niet weergegeven
+            //Eventueel opsplitsen in twee xml-elementen
+            //Moet dmv bitmapdata aan sprite gekoppeld worden
+            //http://forums.adobe.com/message/3338933?tstart=0#3338933
+            //http://www.flashandmath.com/flashcs5/textcols/index.html
             var paragraaf:TextFlow = TextFactory.addParagraph(textElementVO.text);
 
             var bmpData:BitmapData = new BitmapData(698,600,true,0xFFFFFF);

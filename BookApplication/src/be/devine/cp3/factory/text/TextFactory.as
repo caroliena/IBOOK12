@@ -25,8 +25,6 @@ import starling.utils.VAlign;
 
 public class TextFactory extends flash.display.Sprite
 {
-    var config:Object = {};
-
     [Embed(source='/assets/fonts/steelfishrg.otf', embedAsCFF='false', fontName='Steelfish')]
     public static var Steelfish:Class;
 
@@ -83,31 +81,37 @@ public class TextFactory extends flash.display.Sprite
         var textContainer:starling.display.Sprite = new starling.display.Sprite();
         var textField:TextField;
         var color:Number;
+        var text:String = config.text;
         switch (config.textLayout){
             case 'title':
-                var text:String = config.text;
-                    text = text.toUpperCase();
-                textField = new TextField(698,200,text, "Steelfish", 70, 0x000000,false);
+                text = text.toUpperCase();
+                textField = new TextField(698,200,text, "Steelfish", 70, color,false);
                 break;
             case 'author':
-                var text:String = 'Written by ' + config.text;
-                textField = new TextField(698,50,text, "GeorgiaBold", 12, 0x000000,false);
+                text = 'Written by ' + config.text;
+                textField = new TextField(698,50,text, "GeorgiaBold", 12, color,false);
                 break;
             case 'linkTitle':
                 color = config.color;
-                var text:String = config.text;
                 text = text.toUpperCase();
-                textField = new TextField(698,30,config.text, "EdmondSansMedium", 17, color,false);
+                textField = new TextField(698,30,text, "EdmondSansMedium", 17, color,false);
                 break;
             case 'linkDescription':
-                textField = new TextField(698,60,config.text, "Georgia", 14, 0x000000,false);
+                textField = new TextField(698,60,text, "Georgia", 14, color,false);
                 break;
             case 'linkPage':
                 color = config.color;
-                textField = new TextField(698,30,config.text, "GeorgiaBold", 14, color,false);
+                textField = new TextField(698,30,text, "GeorgiaBold", 14, color,false);
                 break;
             case 'pageInfo':
-                textField = new TextField(698,35,config.text, "EdmondSansMedium", 13, 0x000000,false);
+                textField = new TextField(698,35,text, "EdmondSansMedium", 14, color,false);
+                break;
+            case 'thmbPageTitle':
+                textField = new TextField(698,35,text, "GeorgiaBold", 17, color,false);
+                break;
+            case 'thmbPageNumber':
+                text = text.toUpperCase();
+                textField = new TextField(698,35,text, "EdmondSansMedium", 13, color,false);
                 break;
         }
             textField.hAlign = HAlign.LEFT;

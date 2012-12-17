@@ -5,10 +5,9 @@
  * Created with IntelliJ IDEA.
  */
 package be.devine.cp3.model {
-import be.devine.cp3.utils.Misc;
-
 import flash.events.Event;
 import flash.events.EventDispatcher;
+import flash.geom.Point;
 
 public class AppModel extends EventDispatcher {
 
@@ -19,11 +18,15 @@ public class AppModel extends EventDispatcher {
     private var _thumbnails:Array;
     private var _currentThumbnailIndex:int;
     private var _theme:String;
+    private var _mouseCoords:Point;
+    private var _overviewFlag:Boolean = false;
     public var themeColor:Number;
 
     public static const CURRENT_PAGE_CHANGED:String = "currentPageChanged";
     public static const CURRENT_THUMBNAIL_CHANGED:String = "currentThumbnailChanged";
     public static const THEMECOLOR_CHANGED:String = "themeColorChanged";
+    public static const MOUSE_POSITION_CHANGED:String = "mousePositionChanged";
+    public static const OVERVIEW_CLICKED:String = "overviewClicked";
 
     public function AppModel(e:Enforcer)
     {
@@ -33,7 +36,8 @@ public class AppModel extends EventDispatcher {
         }
         _pages = [];
         _thumbnails = [];
-
+        _overviewFlag = false;
+        mouseCoords = new Point();
     }
 
     public static function getInstance():AppModel
@@ -49,12 +53,9 @@ public class AppModel extends EventDispatcher {
      * METHODS
      */
 
+
     public function next():void
     {
-        //currentPageIndex++;
-        //Misc.getInstance().debug("@AppModel: currentPageIndex increased. // next()");
-
-
         var index:int = _pages.indexOf(_currentPage);
         if(index < _pages.length - 1)
         {
@@ -65,16 +66,11 @@ public class AppModel extends EventDispatcher {
 
     public function previous():void
     {
-        //currentPageIndex--;
-        //Misc.getInstance().debug("@AppModel: currentPageIndex decreased. // previous()");
-
-
         var index:int = _pages.indexOf(_currentPage);
         if(index > 0)
         {
             index--;
             currentPage = _pages[index];
-
         }
     }
 
@@ -92,7 +88,7 @@ public class AppModel extends EventDispatcher {
         {
             _currentPage = value;
             theme = currentPage.theme;
-            dispatchEvent(new flash.events.Event(CURRENT_PAGE_CHANGED, true));
+            dispatchEvent(new Event(CURRENT_PAGE_CHANGED, true));
         }
     }
 
@@ -121,7 +117,7 @@ public class AppModel extends EventDispatcher {
         if(value != _currentThumbnailIndex)
         {
             _currentThumbnailIndex = value;
-            dispatchEvent(new flash.events.Event(CURRENT_THUMBNAIL_CHANGED, true));
+            dispatchEvent(new Event(CURRENT_THUMBNAIL_CHANGED, true));
         }
     }
 
@@ -139,7 +135,32 @@ public class AppModel extends EventDispatcher {
                 case 'hotels': themeColor=0x84bdc6; break;
                 case 'inspiration': themeColor=0xfdf74a; break;
             }
-            dispatchEvent(new flash.events.Event(THEMECOLOR_CHANGED, true));
+            dispatchEvent(new Event(THEMECOLOR_CHANGED, true));
+        }
+    }
+
+
+    public function get mouseCoords():Point {
+        return _mouseCoords;
+    }
+
+    public function set mouseCoords(value:Point):void {
+        if(value != mouseCoords)
+        {
+            _mouseCoords = value;
+            dispatchEvent(new Event(MOUSE_POSITION_CHANGED, true));
+        }
+    }
+
+    public function get overviewFlag():Boolean {
+        return _overviewFlag;
+    }
+
+    public function set overviewFlag(value:Boolean):void {
+        if(value != overviewFlag)
+        {
+            _overviewFlag = value;
+            dispatchEvent(new Event(OVERVIEW_CLICKED, true));
         }
     }
 }

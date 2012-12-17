@@ -28,8 +28,6 @@ public class PageOverview extends starling.display.Sprite {
     private var pageOverviewContainer:starling.display.Sprite;
     private var thumbnailGallery:ThumbnailGallery;
     private var thumbnailInfo:ThumbnailInfo;
-    private var overviewFlag:Boolean = false;
-    public static const OVERVIEW_CLICKED:String = "overviewClicked";
 
     public function PageOverview()
     {
@@ -40,7 +38,7 @@ public class PageOverview extends starling.display.Sprite {
 
         thumbnailGallery = new ThumbnailGallery();
         thumbnailGallery.height = 200;
-        thumbnailInfo = new ThumbnailInfo(texture);
+        thumbnailInfo = new ThumbnailInfo(texture,'',texture); //downstate toevoegen zorgt dat de button ni verkleint
         thumbnailInfo.height = 50;
         thumbnailInfo.y = 200;
 
@@ -53,31 +51,32 @@ public class PageOverview extends starling.display.Sprite {
 
         thumbnailInfo.addEventListener(starling.events.Event.TRIGGERED, overviewClickHandler);
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
+        appModel.addEventListener(AppModel.MOUSE_POSITION_CHANGED, mouseMoveHandler);
+    }
+
+    private function mouseMoveHandler(event:flash.events.Event):void {
+        thumbnailInfo.alpha = appModel.mouseCoords.y <= 150 ? (1 - ( int( ((appModel.mouseCoords.y) / 150) *100) / 100)) : 0;
     }
 
     private function overviewClickHandler(event:starling.events.Event):void {
 
-        dispatchEvent(new starling.events.Event(OVERVIEW_CLICKED, true));
-
-        if(overviewFlag){
-            overviewFlag=false;
-
-            //Starling.current.stage.addEventListener(TouchEvent.TOUCH, mouseMoveHandler);
-
-            var tweenClose:Tween = new Tween(pageOverviewContainer, 1.0, Transitions.EASE_IN_OUT);
-            tweenClose.animate("y", pageOverviewContainer.y - 200);
-            Starling.juggler.add(tweenClose);
-        }else{
-            overviewFlag=true;
-
-            //Starling.current.stage.removeEventListener(TouchEvent.TOUCH, mouseMoveHandler);
+        if(!appModel.overviewFlag){
+            //appModel.overviewFlag=true;
+            appModel.removeEventListener(AppModel.MOUSE_POSITION_CHANGED, mouseMoveHandler);
+            thumbnailInfo.alpha = 1;
 
             var tweenOpen:Tween = new Tween(pageOverviewContainer, 1.0, Transitions.EASE_IN_OUT);
             tweenOpen.animate("y", pageOverviewContainer.y + 200);
             Starling.juggler.add(tweenOpen);
+
+        }else{
+            //appModel.overviewFlag=false; //TODO Flipt hierop flash event naar starling event
+            appModel.addEventListener(AppModel.MOUSE_POSITION_CHANGED, mouseMoveHandler);
+
+            var tweenClose:Tween = new Tween(pageOverviewContainer, 1.0, Transitions.EASE_IN_OUT);
+            tweenClose.animate("y", pageOverviewContainer.y - 200);
+            Starling.juggler.add(tweenClose);
         }
-
-
     }
 
     private function currentPageChangedHandler(event:flash.events.Event):void {

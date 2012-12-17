@@ -9,42 +9,43 @@ package be.devine.cp3.view.components.pageOverview {
 import be.devine.cp3.factory.text.TextFactory;
 import be.devine.cp3.model.AppModel;
 
-import flash.display.BitmapData;
-
 import flash.events.Event;
 
+import starling.display.Button;
 import starling.display.Quad;
 import starling.display.Sprite;
-import starling.events.Event;
-import starling.text.TextField;
 import starling.textures.Texture;
-import starling.utils.HAlign;
 
-public class ThumbnailInfo extends starling.display.Button{
+public class ThumbnailInfo extends Button{
 
     private var appModel:AppModel;
 
     private var background:Quad;
+    private var pageTitleField:Sprite;
+    private var pageNumberField:Sprite;
 
     public function ThumbnailInfo(upState:Texture, text:String="", downState:Texture=null) {
         this.appModel = AppModel.getInstance();
-
+        //TODO: Duidelijk maken dat deze knop is om overview te openen
         super(upState, text, downState);
 
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
         appModel.addEventListener(AppModel.CURRENT_THUMBNAIL_CHANGED, currentThumbnailChangedHandler);
 
-        //TODO Afstemmen op themekleur appModel.currentPage.themecolor
-        //background = new Quad(768,50,0x000000);
-        //addChild(background);
+        background = new Quad(768,50,appModel.themeColor);
+        addChild(background);
+
+        display();
     }
 
 
-    private function currentThumbnailChangedHandler(event:flash.events.Event):void {
+    private function currentThumbnailChangedHandler(event:Event):void {
         display();
     }
 
     private function display():void {
+
+        background.color = appModel.themeColor;
 
         if(contains(pageTitleField)){
             removeChild(pageTitleField);
@@ -52,30 +53,28 @@ public class ThumbnailInfo extends starling.display.Button{
         if(contains(pageNumberField)){
             removeChild(pageNumberField);
         }
-        var pageTitleField:Sprite = TextFactory.createTextField({
-            text:'appModel.currentPage.elements',
-            textLayout:'pageInfo'
+        pageTitleField = TextFactory.createTextField({
+            text:appModel.pages[appModel.currentThumbnailIndex].title,
+            textLayout:'thmbPageTitle'
         });
 
-        var pageNumberField:Sprite = TextFactory.createTextField({
-            text:"Pagina " + (appModel.currentThumbnailIndex + 1),
-            textLayout:'pageInfo'
+        pageNumberField = TextFactory.createTextField({
+            text:"Page " + (appModel.currentThumbnailIndex + 1)+" of " + appModel.pages.length,
+            textLayout:'thmbPageNumber'
         });
 
-        pageTitleField.x = 100;
-        pageTitleField.y = -300;
+        pageTitleField.x = 110;
+        pageTitleField.y = 11;
         addChild(pageTitleField);
 
-        pageNumberField.x = 35;
-        pageNumberField.y = -300;
+        pageNumberField.x = 15;
+        pageNumberField.y = 15;
+        pageNumberField.alpha = 0.7;
         addChild(pageNumberField);
     }
 
-    private function currentPageChangedHandler(event:flash.events.Event):void {
-        //TODO: Aanpassen aan de kleur;
-        //background.color = appModel.currentPage.themecolor;
+    private function currentPageChangedHandler(event:Event):void {
         display();
-
     }
 }
 }

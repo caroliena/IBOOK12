@@ -27,9 +27,6 @@ public class Page extends Sprite{
 
     private var appModel:AppModel;
 
-    private var pageContainer:Sprite;
-    private var paragraphContainer:TextFactory;
-
     public function Page()
     {
         this.appModel = AppModel.getInstance();
@@ -61,7 +58,6 @@ public class Page extends Sprite{
             }
             addChildAt(element,0);
         }
-
     }
 
     private function createText(textElementVO:TextElementVO):Element {
@@ -80,8 +76,8 @@ public class Page extends Sprite{
     }
 
     private function clickHandler(event:starling.events.Event):void {
-        var linkElement = event.currentTarget as LinkElement;
-        var pageNumber:uint = (linkElement.pageNumber - 1)
+        var linkElement:LinkElement = event.currentTarget as LinkElement;
+        var pageNumber:uint = (linkElement.pageNumber - 1);
         appModel.currentPage = appModel.currentThumbnailIndex = appModel.pages[pageNumber];
     }
 
