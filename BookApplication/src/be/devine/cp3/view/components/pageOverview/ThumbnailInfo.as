@@ -6,73 +6,73 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.view.components.pageOverview {
+import be.devine.cp3.factory.text.TextFactory;
 import be.devine.cp3.model.AppModel;
+
+import flash.display.BitmapData;
 
 import flash.events.Event;
 
 import starling.display.Quad;
 import starling.display.Sprite;
+import starling.events.Event;
 import starling.text.TextField;
+import starling.textures.Texture;
 import starling.utils.HAlign;
 
-public class ThumbnailInfo extends Sprite {
+public class ThumbnailInfo extends starling.display.Button{
 
     private var appModel:AppModel;
 
     private var background:Quad;
-    private var pageNumberField:starling.text.TextField;
-    private var titleField:starling.text.TextField;
 
-    public function ThumbnailInfo() {
+    public function ThumbnailInfo(upState:Texture, text:String="", downState:Texture=null) {
         this.appModel = AppModel.getInstance();
+
+        super(upState, text, downState);
+
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
         appModel.addEventListener(AppModel.CURRENT_THUMBNAIL_CHANGED, currentThumbnailChangedHandler);
+
         //TODO Afstemmen op themekleur appModel.currentPage.themecolor
-        background = new Quad(768,50,0x000000);
-        addChild(background);
+        //background = new Quad(768,50,0x000000);
+        //addChild(background);
     }
 
-    private function currentThumbnailChangedHandler(event:Event):void {
+
+    private function currentThumbnailChangedHandler(event:flash.events.Event):void {
         display();
     }
 
     private function display():void {
 
-
-        /*
-        var pageNumberText:String = "Pagina " + (appModel.currentThumbnailIndex + 1);
-
-        if( this.contains(pageNumberField) ){
-            this.removeChild(pageNumberField);
+        if(contains(pageTitleField)){
+            removeChild(pageTitleField);
         }
-        if( this.contains(titleField) ){
-            this.removeChild(titleField);
+        if(contains(pageNumberField)){
+            removeChild(pageNumberField);
         }
+        var pageTitleField:Sprite = TextFactory.createTextField({
+            text:'appModel.currentPage.elements',
+            textLayout:'pageInfo'
+        });
 
-        pageNumberField = new starling.text.TextField(100,30,pageNumberText.toUpperCase(),"Arial",11,0xffffff);
-        pageNumberField.autoScale = false;
+        var pageNumberField:Sprite = TextFactory.createTextField({
+            text:"Pagina " + (appModel.currentThumbnailIndex + 1),
+            textLayout:'pageInfo'
+        });
+
+        pageTitleField.x = 100;
+        pageTitleField.y = -300;
+        addChild(pageTitleField);
+
         pageNumberField.x = 35;
-        pageNumberField.y = 10;
-        pageNumberField.hAlign = HAlign.LEFT;
+        pageNumberField.y = -300;
         addChild(pageNumberField);
-
-        if(appModel.pages[appModel.currentThumbnailIndex].title != null){
-
-            var titleText:String = appModel.pages[appModel.currentThumbnailIndex].title;
-            titleField = new starling.text.TextField(600,30,titleText.toUpperCase(),"Arial",11,0xffffff);
-            titleField.autoScale = false;
-            titleField.x = 135;
-            titleField.y = 10;
-            titleField.hAlign = HAlign.LEFT;
-            addChild(titleField);
-
-        }
-        */
-
-
     }
 
-    private function currentPageChangedHandler(event:Event):void {
+    private function currentPageChangedHandler(event:flash.events.Event):void {
+        //TODO: Aanpassen aan de kleur;
         //background.color = appModel.currentPage.themecolor;
         display();
 

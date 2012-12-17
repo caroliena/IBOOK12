@@ -12,9 +12,8 @@ import be.devine.cp3.model.AppModel;
 import flash.events.Event;
 
 import starling.display.Sprite;
-import starling.text.TextField;
-import starling.utils.HAlign;
 
+[SWF(backgroundColor="#000000")]
 public class PageInfo extends Sprite{
 
     private var appModel:AppModel;
@@ -24,27 +23,26 @@ public class PageInfo extends Sprite{
         this.appModel = AppModel.getInstance();
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
         currentPageChangedHandler();
-
     }
 
     private function display():void
     {
         var pageThemeField:Sprite = TextFactory.createTextField({
-            text:"iTravel | " + appModel.currentPage.theme,
+            text:"iTRAVEL | " + appModel.currentPage.theme,
             textLayout:'pageInfo'
         });
 
         var pageNumberField:Sprite = TextFactory.createTextField({
-            text:String( (appModel.pages.indexOf(appModel.currentPage) + 1) ),
+            text:'P' +  (appModel.pages.indexOf(appModel.currentPage) + 1) ,
             textLayout:'pageInfo'
         });
 
         pageThemeField.x = 35;
-        pageThemeField.y = -300;
+        pageThemeField.y = 10;
         addChild(pageThemeField);
 
-        pageNumberField.x = 600;
-        pageNumberField.y = -300;
+        pageNumberField.x = 710;
+        pageNumberField.y = 10;
         addChild(pageNumberField);
     }
 

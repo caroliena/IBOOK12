@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.view.components.elements {
+import be.devine.cp3.model.AppModel;
 import be.devine.cp3.vo.LinkElementVO;
 import be.devine.cp3.vo.TextElementVO;
 
@@ -15,18 +16,26 @@ import flash.events.Event;
 import flash.net.URLRequest;
 
 import starling.display.Button;
+import starling.display.Quad;
 import starling.textures.Texture;
 
 public class LinkElement extends Element{
+    private var appModel:AppModel;
     private var type:uint;
+    private var themeColor:Number;
     private var linkElementVO:LinkElementVO;
     private var link:Button;
     public var pageNumber:uint = 1;
 
     public function LinkElement(linkElementVO:LinkElementVO,type:uint) {
+
+        appModel = AppModel.getInstance();
+
         super(linkElementVO);
         this.linkElementVO = linkElementVO;
         this.type = type;
+
+        themeColor = appModel.themeColor;
 
         var loader:Loader = new Loader();
         loader.load(new URLRequest("assets/ui/link.png"));
@@ -40,14 +49,20 @@ public class LinkElement extends Element{
 
         link = new Button(texture);
         link.x = 410;
-        link.y = 750;
+        link.y = 650;
         addChild(link);
 
         for each(var textElementVO:TextElementVO in linkElementVO.linkElements) {
-            var textElement:TextElement = new TextElement(textElementVO,type);
+            var textElement:TextElement = new TextElement(textElementVO,type,themeColor);
             if(textElementVO.textLayout == "linkPage") pageNumber = uint(textElementVO.text);
             link.addChild(textElement);
         }
+
+        var line:Quad = new Quad(700,5,appModel.themeColor);
+        line.x = 0;
+        line.y = 0;
+        link.addChildAt(line,numChildren-1);
+
     }
 
 

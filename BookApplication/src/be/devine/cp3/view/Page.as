@@ -18,6 +18,8 @@ import be.devine.cp3.vo.TextElementVO;
 
 import flash.events.Event;
 
+import starling.display.DisplayObject;
+
 import starling.display.Sprite;
 import starling.events.Event;
 

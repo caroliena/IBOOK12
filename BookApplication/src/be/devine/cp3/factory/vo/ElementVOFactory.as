@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 package be.devine.cp3.factory.vo {
+import be.devine.cp3.model.AppModel;
 import be.devine.cp3.vo.ElementVO;
 import be.devine.cp3.vo.ImageElementVO;
 import be.devine.cp3.vo.LinkElementVO;

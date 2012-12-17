@@ -9,6 +9,7 @@ package be.devine.cp3.view.components.buttons {
 import be.devine.cp3.model.AppModel;
 
 import flash.display.BitmapData;
+import flash.events.Event;
 
 import starling.display.Button;
 import starling.display.Quad;
@@ -24,15 +25,20 @@ public class Button extends starling.display.Button{
         this.appModel = AppModel.getInstance();
 
         var bmpData:BitmapData = new BitmapData(25, 1024, false, 0xFFFFFF);
-        var texture:Texture = Texture.fromBitmapData(bmpData);
+        var texture:Texture = Texture.fromBitmapData(bmpData,'',bmpData);
         upState = texture;
 
         super(upState, text, downState);
 
-        //TODO Afstemmen op themecolor
-        background = new Quad(25,1024,0x000000);
+        background = new Quad(25,1024,appModel.themeColor);
         addChild(background);
 
+        appModel.addEventListener(AppModel.THEMECOLOR_CHANGED, themeColorChangedHandler);
+
+    }
+
+    private function themeColorChangedHandler(event:Event):void {
+        background.color = appModel.themeColor;
     }
 
 

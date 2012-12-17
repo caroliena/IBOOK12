@@ -15,17 +15,15 @@ public class AppModel extends EventDispatcher {
     private static var instance:AppModel;
 
     private var _currentPage:Object;
-    private var _currentPageIndex:int;
-    private var _showPageInfo:Boolean;
-    private var _showPageOverview:Boolean;
     private var _pages:Array;
     private var _thumbnails:Array;
     private var _currentThumbnailIndex:int;
+    private var _theme:String;
+    public var themeColor:Number;
 
     public static const CURRENT_PAGE_CHANGED:String = "currentPageChanged";
     public static const CURRENT_THUMBNAIL_CHANGED:String = "currentThumbnailChanged";
-    public static const OVERVIEW_CHANGED:String = "overviewChanged";
-    public static const PAGEINFO_CHANGED:String = "pageInfoChanged";
+    public static const THEMECOLOR_CHANGED:String = "themeColorChanged";
 
     public function AppModel(e:Enforcer)
     {
@@ -35,7 +33,6 @@ public class AppModel extends EventDispatcher {
         }
         _pages = [];
         _thumbnails = [];
-        showPageOverview = false;
 
     }
 
@@ -94,10 +91,10 @@ public class AppModel extends EventDispatcher {
         if(value != _currentPage)
         {
             _currentPage = value;
+            theme = currentPage.theme;
             dispatchEvent(new flash.events.Event(CURRENT_PAGE_CHANGED, true));
         }
     }
-
 
     public function get pages():Array {
         return _pages;
@@ -106,45 +103,6 @@ public class AppModel extends EventDispatcher {
     public function set pages(value:Array):void {
         _pages = value;
     }
-
-    public function get showPageInfo():Boolean {
-        return _showPageInfo;
-    }
-
-    public function set showPageInfo(value:Boolean):void {
-        _showPageInfo = value;
-        dispatchEvent(new flash.events.Event(PAGEINFO_CHANGED, true));
-    }
-
-    public function get showPageOverview():Boolean {
-        return _showPageOverview;
-    }
-
-    public function set showPageOverview(value:Boolean):void {
-        _showPageOverview = value;
-        dispatchEvent(new flash.events.Event(OVERVIEW_CHANGED, true));
-    }
-
-    /*
-    public function get currentPageIndex():int {
-        return _currentPageIndex;
-    }
-
-    public function set currentPageIndex(value:int):void {
-
-        value = Math.min(_pages.length -1, Math.max(0, value));
-
-        if(value != _currentPageIndex)
-        {
-            _currentPageIndex = value;
-            //currentPage = _pages[_currentPageIndex];
-            dispatchEvent(new flash.events.Event(CURRENT_PAGE_CHANGED, true));
-
-            Misc.getInstance().debug("currentPageIndex changed to ["+value+"]");
-        }
-    }
-    */
-
 
     public function get thumbnails():Array {
         return _thumbnails;
@@ -165,7 +123,24 @@ public class AppModel extends EventDispatcher {
             _currentThumbnailIndex = value;
             dispatchEvent(new flash.events.Event(CURRENT_THUMBNAIL_CHANGED, true));
         }
+    }
 
+    public function get theme():String {
+        return _theme;
+    }
+
+    public function set theme(value:String):void {
+
+        if(value != theme)
+        {
+            _theme = value;
+            switch(theme){
+                case 'travel gadgets': themeColor=0x36a845; break;
+                case 'hotels': themeColor=0x84bdc6; break;
+                case 'inspiration': themeColor=0xfdf74a; break;
+            }
+            dispatchEvent(new flash.events.Event(THEMECOLOR_CHANGED, true));
+        }
     }
 }
 }
