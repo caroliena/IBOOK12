@@ -16,10 +16,6 @@ import flash.net.URLRequest;
 import flash.text.Font;
 
 import flashx.textLayout.container.ContainerController;
-import flashx.textLayout.elements.ParagraphElement;
-import flashx.textLayout.elements.SpanElement;
-import flashx.textLayout.elements.TextFlow;
-import flashx.textLayout.formats.TextLayoutFormat;
 
 import starling.core.Starling;
 import starling.display.Button;
@@ -28,7 +24,6 @@ import starling.display.Quad;
 import starling.display.Sprite;
 import starling.events.Touch;
 import starling.events.TouchEvent;
-import starling.events.TouchPhase;
 import starling.text.TextField;
 import starling.textures.Texture;
 import starling.utils.HAlign;
@@ -42,13 +37,10 @@ public class PageDetail extends Sprite{
 
     private var pageContainer:Sprite;
     private var pageDetail:Sprite;
-    private var pageNumberField:TextField;
     private var previousButton:Button;
     private var nextButton:Button;
     private var bmpData:BitmapData;
-    //private var container:flash.display.Sprite;
     private var paragraphContainer:TextFactory;
-    private var background:Quad;
 
     [Embed(source='/assets/fonts/steelfishrg.otf', embedAsCFF='false', fontName='Steelfish')]
     public static var Steelfish:Class;
@@ -122,11 +114,6 @@ public class PageDetail extends Sprite{
     private function display(event:Event = null):void
     {
         trace(pageContainer.contains(pageDetail)+" : contains?");
-        /*while(pageContainer.numChildren > 0)
-        {
-            pageContainer.removeChildAt(0);
-        }
-        */
 
         if( pageContainer.contains(pageDetail))
             pageContainer.removeChild(pageDetail);
