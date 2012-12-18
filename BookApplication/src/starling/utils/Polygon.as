@@ -82,7 +82,7 @@ import starling.events.Event;
         }
         
         /** Creates the required vertex- and index data and uploads it to the GPU. */ 
-        private function setupVertices():void
+        public function setupVertices():void
         {
             var i:int;
             

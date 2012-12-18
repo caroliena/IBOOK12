@@ -9,9 +9,8 @@ package be.devine.cp3.view {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.components.buttons.NextButton;
 import be.devine.cp3.view.components.buttons.PreviousButton;
+
 import flash.events.Event;
-import flash.ui.Mouse;
-import flash.ui.MouseCursor;
 
 import starling.core.Starling;
 import starling.display.Sprite;
@@ -34,32 +33,17 @@ public class ReadingControls extends Sprite{
         nextButton = new NextButton();
         nextButton.x = (Starling.current.stage.stageWidth - nextButton.width);
         addChild(nextButton);
+        display();
 
         previousButton.addEventListener(starling.events.Event.TRIGGERED, previousClickHandler);
         nextButton.addEventListener(starling.events.Event.TRIGGERED, nextClickHandler);
         appModel.addEventListener(AppModel.MOUSE_POSITION_CHANGED,mouseMoveHandler);
-        appModel.addEventListener(AppModel.OVERVIEW_CLICKED,overviewClickHandler);
+        appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED,display);
     }
-    //event:starling.events.Event
-    private function overviewClickHandler(event:flash.events.Event):void {
 
-        if(appModel.overviewFlag){
-
-            previousButton.removeEventListener(starling.events.Event.TRIGGERED, previousClickHandler);
-            nextButton.removeEventListener(starling.events.Event.TRIGGERED, nextClickHandler);
-            appModel.removeEventListener(AppModel.MOUSE_POSITION_CHANGED,mouseMoveHandler);
-            previousButton.alpha = nextButton.alpha = 0;
-            previousButton.useHandCursor = nextButton.useHandCursor = false;
-
-        }else{
-
-            previousButton.useHandCursor = nextButton.useHandCursor = true;
-            previousButton.addEventListener(starling.events.Event.TRIGGERED, previousClickHandler);
-            nextButton.addEventListener(starling.events.Event.TRIGGERED, nextClickHandler);
-            appModel.addEventListener(AppModel.MOUSE_POSITION_CHANGED,mouseMoveHandler);
-        }
-
-
+    private function display(event:Event=null):void {
+        previousButton.visible= appModel.pages.indexOf(appModel.currentPage)==0 ? false:true;
+        nextButton.visible= appModel.pages.indexOf(appModel.currentPage)==(appModel.pages.length-1) ? false:true;
     }
 
     private function previousClickHandler(event:starling.events.Event):void {

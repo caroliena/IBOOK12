@@ -49,7 +49,6 @@ public class TextElement extends Element{
             //Starling.current.nativeStage.addChild(paragraaf);
         }
 
-
         switch (type){
 
             case 2:
@@ -58,8 +57,8 @@ public class TextElement extends Element{
                 if (textElementVO.textLayout == 'author') textField.y = 470;
                 //if (textElementVO.textLayout == 'paragraph') paragraaf.y = 300;
                 if (textElementVO.textLayout == 'linkTitle') textField.y = 30;
-                if (textElementVO.textLayout == 'linkDescription') textField.y = 70;
-                if (textElementVO.textLayout == 'linkPage') textField.y = 90;
+                if (textElementVO.textLayout == 'linkDescription') textField.y = 60;
+                if (textElementVO.textLayout == 'linkPage') textField.y = 115;
                 break;
             case 4:
                 textField.x = 60;
@@ -71,8 +70,8 @@ public class TextElement extends Element{
                 if (textElementVO.textLayout == 'author') textField.y = 250;
                 //if (textElementVO.textLayout == 'paragraph') paragraaf.y = 150;
                 if (textElementVO.textLayout == 'linkTitle') textField.y = 30;
-                if (textElementVO.textLayout == 'linkDescription') textField.y = 50;
-                if (textElementVO.textLayout == 'linkPage') textField.y = 70;
+                if (textElementVO.textLayout == 'linkDescription') textField.y = 60;
+                if (textElementVO.textLayout == 'linkPage') textField.y = 115;
                 break;
         }
 

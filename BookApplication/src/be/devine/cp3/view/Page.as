@@ -76,6 +76,7 @@ public class Page extends Sprite{
     }
 
     private function clickHandler(event:starling.events.Event):void {
+        //TODO Linkelement is nog klikbaar als thumbnailGallery openstaat
         var linkElement:LinkElement = event.currentTarget as LinkElement;
         var pageNumber:uint = (linkElement.pageNumber - 1);
         appModel.currentPage = appModel.currentThumbnailIndex = appModel.pages[pageNumber];

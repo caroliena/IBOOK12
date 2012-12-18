@@ -85,7 +85,7 @@ public class TextFactory extends flash.display.Sprite
         switch (config.textLayout){
             case 'title':
                 text = text.toUpperCase();
-                textField = new TextField(698,200,text, "Steelfish", 70, color,false);
+                textField = new TextField(600,200,text, "Steelfish", 70, color,false);
                 break;
             case 'author':
                 text = 'Written by ' + config.text;
@@ -100,6 +100,7 @@ public class TextFactory extends flash.display.Sprite
                 textField = new TextField(698,60,text, "Georgia", 14, color,false);
                 break;
             case 'linkPage':
+                text = 'page ' + config.text;
                 color = config.color;
                 textField = new TextField(698,30,text, "GeorgiaBold", 14, color,false);
                 break;

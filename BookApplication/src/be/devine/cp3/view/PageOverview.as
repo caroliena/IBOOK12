@@ -38,8 +38,8 @@ public class PageOverview extends Sprite {
 
         thumbnailGallery = new ThumbnailGallery();
         thumbnailGallery.height = 200;
-        thumbnailInfo = new ThumbnailInfo(texture,'',texture); //downstate toevoegen zorgt dat de button ni verkleint
 
+        thumbnailInfo = new ThumbnailInfo(texture,'',texture); //downstate toevoegen zorgt dat de button ni verkleint
         thumbnailInfo.height = 50;
         thumbnailInfo.y = 200;
 
@@ -51,14 +51,11 @@ public class PageOverview extends Sprite {
         addChild(pageOverviewContainer);
 
         thumbnailInfo.addEventListener(starling.events.Event.TRIGGERED, overviewClickHandler);
-        appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
         appModel.addEventListener(AppModel.MOUSE_POSITION_CHANGED, mouseMoveHandler);
     }
 
-
-
     private function mouseMoveHandler(event:flash.events.Event):void {
-        thumbnailInfo.alpha = appModel.mouseCoords.y <= 150 ? (1 - ( int( ((appModel.mouseCoords.y) / 150) *100) / 100)) : 0;
+        thumbnailInfo.alpha = appModel.mouseCoords.y <= 150 ? (1 - ((appModel.mouseCoords.y - 50)/150)) : 0;
     }
 
     private function overviewClickHandler(event:starling.events.Event):void {
@@ -66,21 +63,18 @@ public class PageOverview extends Sprite {
         //FIXED
         appModel.overviewFlag = !appModel.overviewFlag; //inverteren van boolean waarde.
 
-        //dit via een onComplete doen zodat je de alpha kan twenen ofzo :)
-        if(appModel.overviewFlag) appModel.removeEventListener(AppModel.MOUSE_POSITION_CHANGED, mouseMoveHandler);
-        else appModel.addEventListener(AppModel.MOUSE_POSITION_CHANGED, mouseMoveHandler);
-
-        thumbnailInfo.alpha = 1;
-
-        var tweenOpen:Tween = new Tween(pageOverviewContainer, 1.0, Transitions.EASE_IN_OUT);
-        tweenOpen.animate("y", (appModel.overviewFlag ? +0 : -200));
-        //tweenOpen.onComplete()
-        Starling.juggler.add(tweenOpen);
-    }
-
-    private function currentPageChangedHandler(event:flash.events.Event):void {
+        var alphaTween:Tween = new Tween(thumbnailInfo,1.0,Transitions.EASE_IN_OUT);
+        alphaTween.animate('alpha',(appModel.overviewFlag ? 1 : 0));
+        alphaTween.onComplete = function():void{
+            appModel.overviewFlag ? appModel.removeEventListener(AppModel.MOUSE_POSITION_CHANGED, mouseMoveHandler):appModel.addEventListener(AppModel.MOUSE_POSITION_CHANGED, mouseMoveHandler);
+            var tweenOpen:Tween = new Tween(pageOverviewContainer, 1.0, Transitions.EASE_IN_OUT);
+            tweenOpen.animate("y", (appModel.overviewFlag ? +0 : -200));
+            Starling.juggler.add(tweenOpen);
+        }
+        Starling.juggler.add(alphaTween);
 
     }
+
 
 }
 }

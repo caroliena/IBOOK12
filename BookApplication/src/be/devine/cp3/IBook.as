@@ -25,6 +25,7 @@ public class IBook extends Sprite{
     private var appModel:AppModel;
     private var pageService:PageService;
     private var thumbnailService:ThumbnailService;
+    private var readingControls:ReadingControls;
 
     public function IBook()
     {
@@ -76,7 +77,7 @@ public class IBook extends Sprite{
     {
         var page:Page = new Page();
         var pageInfo:PageInfo = new PageInfo();
-        var readingControls:ReadingControls = new ReadingControls(); //TODO 3 seconden laten staan en dan laten wegfaden
+        readingControls = new ReadingControls();
         var pageOverview:PageOverview = new PageOverview();
 
         addChild(page);
@@ -84,6 +85,11 @@ public class IBook extends Sprite{
         addChild(readingControls);
         addChild(pageOverview);
 
+        appModel.addEventListener(AppModel.OVERVIEW_CLICKED,overviewClickHandler);
+    }
+
+    private function overviewClickHandler(event:Event):void {
+        readingControls.visible= appModel.overviewFlag ? false:true;
     }
 
 }
