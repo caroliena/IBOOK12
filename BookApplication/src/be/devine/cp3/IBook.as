@@ -7,61 +7,53 @@
 package be.devine.cp3 {
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.service.PageService;
-import be.devine.cp3.utils.Misc;
+import be.devine.cp3.service.ThumbnailService;
 import be.devine.cp3.view.*;
 
 import flash.events.Event;
-
-import starling.core.Starling;
-import starling.events.KeyboardEvent;
+import flash.geom.Point;
 import flash.ui.Keyboard;
 
+import starling.core.Starling;
 import starling.display.Sprite;
+import starling.events.KeyboardEvent;
+import starling.events.Touch;
+import starling.events.TouchEvent;
 
+public class IBook extends Sprite{
 
-public class IBook extends starling.display.Sprite{
-
-    //private var fontContainer:FontContainer = new FontContainer();
-
-    //aanmaken views
-
-    //aanmaken appModel
     private var appModel:AppModel;
     private var pageService:PageService;
-    private var misc:Misc;
+    private var thumbnailService:ThumbnailService;
 
-    //Constructor
     public function IBook()
     {
         appModel = AppModel.getInstance();
-        appModel.addEventListener(AppModel.OVERVIEW_CHANGED, overviewChanged);
-        appModel.addEventListener(AppModel.PAGEINFO_CHANGED, pageInfoChanged);
-
-        misc = Misc.getInstance();
 
         pageService = new PageService();
         pageService.addEventListener(Event.COMPLETE, pagesCompleteHandler);
         pageService.load();
 
-        /* van Nicholas: Starling stage aanspreken doe je zo ^^*/
+        this.addEventListener(TouchEvent.TOUCH, mousePositionHandler);
+
         Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+    }
+
+    private function pagesCompleteHandler(evt:Event):void{
+
+        thumbnailService = new ThumbnailService();
+        thumbnailService.addEventListener(Event.COMPLETE, thumbnailsCompleteHandler);
+        thumbnailService.load();
 
     }
 
-
-
-    private function pageInfoChanged(event:Event):void {
-
-        //zichtbaar zetten pageInfo
+    private function thumbnailsCompleteHandler(event:Event):void {
+        appModel.currentPage = appModel.currentThumbnailIndex = appModel.pages[0];
+        appModel.theme = appModel.currentPage.theme;
+        display();
     }
 
-    private function overviewChanged(event:Event):void {
-
-        //zichtbaar zetten overview
-
-    }
-
-    private function keyDownHandler(event:starling.events.KeyboardEvent):void
+    private function keyDownHandler(event:KeyboardEvent):void
     {
         var key:uint = event.keyCode;
         switch(key)
@@ -71,27 +63,28 @@ public class IBook extends starling.display.Sprite{
         }
     }
 
-    private function pagesCompleteHandler(evt:Event):void
-    {
-        appModel.currentPage = appModel.pages[ 0 ];
-        display();
+    private function mousePositionHandler(event:TouchEvent):void {
+
+        var touch:Touch = event.getTouch(Starling.current.stage);
+        if( touch != null ){
+            var point:Point = new Point(touch.globalX,touch.globalY);
+            appModel.mouseCoords = point;
+        }
     }
 
     private function display():void
     {
-        appModel.showPageInfo = appModel.currentPage.pageInfo;
-        //pagina's moeten eerst ingeladen zijn voordat ze getoond kunnen worden
-        var pageDetail:PageDetail = new PageDetail();
+        var page:Page = new Page();
         var pageInfo:PageInfo = new PageInfo();
+        var readingControls:ReadingControls = new ReadingControls(); //TODO 3 seconden laten staan en dan laten wegfaden
         var pageOverview:PageOverview = new PageOverview();
 
-        addChild(pageDetail); //pagina zelf: titel, tekst, foto, links
-        addChild(pageInfo); //paginanummer, thema,...
-        addChild(pageOverview); //het overzicht met de thumbnails
+        addChild(page);
+        addChild(pageInfo);
+        addChild(readingControls);
+        addChild(pageOverview);
 
-        //TODO: best niet werken met .visible voor die pageInfo. removed ze gewoon vraagt normaal gezien minder geheugen.
-        pageInfo.visible = appModel.showPageInfo;
-        pageOverview.visible = appModel.showPageOverview;
     }
+
 }
 }

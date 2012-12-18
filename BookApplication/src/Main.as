@@ -9,12 +9,11 @@ import flash.geom.Rectangle;
 
 import starling.core.Starling;
 
+[SWF(width="1024", height="768", frameRate="60", backgroundColor="#ffffff")]
+
 public class Main extends Sprite
 {
-
     private var starling:Starling;
-
-
 
     public function Main()
     {
@@ -32,6 +31,11 @@ public class Main extends Sprite
 
         /*
             TODO: Pas op einde - Niet resizable maken
+            TODO: TouchEvent wordt niet continu uitgezonden, probleem voor muispositie
+            TODO: ATF images
+            TODO: Testen snelheid met programmatje??
+            TODO: Optimaliseren voor presentatie&screencast xml: kleuren goedzetten & thumbnails maken
+            TODO: Transities aanmaken
             aanpassen in IBook.xml
             <systemChrome>none</systemChrome>
             <minimizable>false</minimizable>
