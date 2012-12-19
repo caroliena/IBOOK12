@@ -20,6 +20,8 @@ public class AppModel extends EventDispatcher {
     private var _theme:String;
     private var _mouseCoords:Point;
     private var _overviewFlag:Boolean;
+    private var _direction:String;
+    private var _animating:Boolean;
     public var themeColor:Number;
 
     public static const CURRENT_PAGE_CHANGED:String = "currentPageChanged";
@@ -37,6 +39,8 @@ public class AppModel extends EventDispatcher {
         _pages = [];
         _thumbnails = [];
         _overviewFlag = false;
+        _direction = 'left';
+        _animating = false;
         mouseCoords = new Point();
     }
 
@@ -60,6 +64,7 @@ public class AppModel extends EventDispatcher {
         if(index < _pages.length - 1)
         {
             index++;
+            direction = "left";
             currentPage = _pages[index];
         }
     }
@@ -70,6 +75,7 @@ public class AppModel extends EventDispatcher {
         if(index > 0)
         {
             index--;
+            direction = "right";
             currentPage = _pages[index];
         }
     }
@@ -84,7 +90,7 @@ public class AppModel extends EventDispatcher {
 
     public function set currentPage(value:Object):void
     {
-        if(value != _currentPage)
+        if(value != _currentPage && !animating)
         {
             _currentPage = value;
             theme = currentPage.theme;
@@ -162,6 +168,28 @@ public class AppModel extends EventDispatcher {
         {
             _overviewFlag = value;
             dispatchEvent(new Event(OVERVIEW_CLICKED, true));
+        }
+    }
+
+    public function get direction():String {
+        return _direction;
+    }
+
+    public function set direction(value:String):void {
+        if(value != overviewFlag)
+        {
+            _direction = value;
+        }
+    }
+
+    public function get animating():Boolean {
+        return _animating;
+    }
+
+    public function set animating(value:Boolean):void {
+        if(value != _animating)
+        {
+            _animating = value;
         }
     }
 }

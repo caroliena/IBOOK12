@@ -23,27 +23,29 @@ public class ThumbnailInfo extends Button{
     private var background:Quad;
     private var pageTitleField:Sprite;
     private var pageNumberField:Sprite;
+    private var index:int;
 
     public function ThumbnailInfo(upState:Texture, text:String="", downState:Texture=null) {
         this.appModel = AppModel.getInstance();
-        //TODO: Duidelijk maken dat deze knop is om overview te openen
         super(upState, text, downState);
 
         appModel.addEventListener(AppModel.CURRENT_PAGE_CHANGED, currentPageChangedHandler);
         appModel.addEventListener(AppModel.CURRENT_THUMBNAIL_CHANGED, currentThumbnailChangedHandler);
 
         background = new Quad(768,50,appModel.themeColor);
-        addChild(background);
+        addChildAt(background,0);
 
-        display();
+        index = appModel.pages.indexOf(appModel.currentPage);
+        display(index);
     }
 
 
     private function currentThumbnailChangedHandler(event:Event):void {
-        display();
+        index = appModel.currentThumbnailIndex;
+        display(index);
     }
 
-    private function display():void {
+    private function display(index:int):void {
 
         background.color = appModel.themeColor;
 
@@ -54,12 +56,12 @@ public class ThumbnailInfo extends Button{
             removeChild(pageNumberField);
         }
         pageTitleField = TextFactory.createTextField({
-            text:appModel.pages[appModel.currentThumbnailIndex].title,
+            text:appModel.pages[index].title,
             textLayout:'thmbPageTitle'
         });
 
         pageNumberField = TextFactory.createTextField({
-            text:"Page " + (appModel.currentThumbnailIndex + 1)+" of " + appModel.pages.length,
+            text:"Page " + (index + 1)+" of " + appModel.pages.length,
             textLayout:'thmbPageNumber'
         });
 
@@ -74,7 +76,8 @@ public class ThumbnailInfo extends Button{
     }
 
     private function currentPageChangedHandler(event:Event):void {
-        display();
+        index = appModel.pages.indexOf(appModel.currentPage);
+        display(index);
     }
 }
 }

@@ -27,6 +27,7 @@ public class Main extends Sprite
         stage.nativeWindow.bounds = new Rectangle(stage.nativeWindow.x,stage.nativeWindow.y,768,1024);
 
         starling = new Starling(IBook, stage);
+        starling.antiAliasing = 2;
         starling.start();
 
         /*
@@ -34,7 +35,10 @@ public class Main extends Sprite
             TODO: ATF images
             TODO: Testen snelheid met programmatje??
             TODO: Optimaliseren voor presentatie&screencast xml: kleuren goedzetten & thumbnails maken
-            TODO: Transities aanmaken
+            TODO: Preloader nodig?
+            TODO: Graphics: next, previous, link background over/hover, overview over/hover, punt voor thumbnailgallery
+            TODO: Code optimaliseren
+            TODO: Pointer kleur aanpassen lukt niet met color - nog oplossing bedenken
             aanpassen in IBook.xml
             <systemChrome>none</systemChrome>
             <minimizable>false</minimizable>

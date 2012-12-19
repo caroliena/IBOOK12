@@ -35,14 +35,12 @@ public class ThumbnailService extends EventDispatcher{
 
     public function load():void
     {
-        //TODO Formaat aanpassen naar ATF
         queue = new Queue();
         for each( var page:PageVO in appModel.pages ){
             queue.add(new ImageTask(page.thumbnail));
         }
         queue.start();
         queue.addEventListener(Event.COMPLETE, imagesCompleteHandler);
-
     }
 
     private function imagesCompleteHandler(event:Event):void {

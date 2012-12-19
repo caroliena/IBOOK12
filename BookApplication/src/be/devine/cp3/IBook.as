@@ -56,11 +56,13 @@ public class IBook extends Sprite{
 
     private function keyDownHandler(event:KeyboardEvent):void
     {
-        var key:uint = event.keyCode;
-        switch(key)
-        {
-            case Keyboard.LEFT: appModel.previous(); break;
-            case Keyboard.RIGHT: appModel.next(); break;
+        if(!appModel.overviewFlag){
+            var key:uint = event.keyCode;
+            switch(key)
+            {
+                case Keyboard.LEFT: appModel.previous(); break;
+                case Keyboard.RIGHT: appModel.next(); break;
+            }
         }
     }
 

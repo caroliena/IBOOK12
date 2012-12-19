@@ -9,6 +9,8 @@ import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.components.pageOverview.ThumbnailGallery;
 import be.devine.cp3.view.components.pageOverview.ThumbnailInfo;
 
+import flash.display.Bitmap;
+
 import flash.display.BitmapData;
 import flash.events.Event;
 
@@ -17,6 +19,7 @@ import starling.animation.Transitions;
 import starling.animation.Tween;
 
 import starling.core.Starling;
+import starling.display.Image;
 
 import starling.display.Sprite;
 import starling.events.Event;
@@ -29,17 +32,28 @@ public class PageOverview extends Sprite {
     private var thumbnailGallery:ThumbnailGallery;
     private var thumbnailInfo:ThumbnailInfo;
 
+    [Embed(source = "/assets/ui/button_overview.png")]
+    //[Embed(source = "/assets/ui/button_overviewdown.png")]
+    private static const Sausage:Class;
+
     public function PageOverview()
     {
         this.appModel = AppModel.getInstance();
 
-        var bmpData:BitmapData = new BitmapData(768, 50, false, 0xFF0000);
-        var texture:Texture = Texture.fromBitmapData(bmpData);
+        var sausageBitmap:Bitmap = new Sausage();
+        var upstate:Texture = Texture.fromBitmap(sausageBitmap);
+
+        //var thumbnailBitmap:Bitmap = task.content as Bitmap;
+        //var thumbnail:Image = new Image(Texture.fromBitmap(thumbnailBitmap));
+        //var bmpData:BitmapData = new BitmapData(768, 50, false, 0xFF0000);
+        //var texture:Texture = Texture.fromBitmapData(bmpData);
+
+        //var upstate:Texture = Texture.fromBitmap ( new embeddedBitmap() );
 
         thumbnailGallery = new ThumbnailGallery();
         thumbnailGallery.height = 200;
 
-        thumbnailInfo = new ThumbnailInfo(texture,'',texture); //downstate toevoegen zorgt dat de button ni verkleint
+        thumbnailInfo = new ThumbnailInfo(upstate,'',upstate); //downstate toevoegen zorgt dat de button ni verkleint
         thumbnailInfo.height = 50;
         thumbnailInfo.y = 200;
 
@@ -60,7 +74,6 @@ public class PageOverview extends Sprite {
 
     private function overviewClickHandler(event:starling.events.Event):void {
 
-        //FIXED
         appModel.overviewFlag = !appModel.overviewFlag; //inverteren van boolean waarde.
 
         var alphaTween:Tween = new Tween(thumbnailInfo,1.0,Transitions.EASE_IN_OUT);

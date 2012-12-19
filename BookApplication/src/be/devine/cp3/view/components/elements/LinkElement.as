@@ -47,9 +47,9 @@ public class LinkElement extends Element{
         var loadedBitmap:Bitmap = event.currentTarget.loader.content as Bitmap;
         var texture:Texture = Texture.fromBitmap(loadedBitmap);
 
-        link = new Button(texture);
+        link = new Button(texture,'',texture);
         link.x = 410;
-        link.y = 650;
+        link.y = 710;
         addChild(link);
 
         for each(var textElementVO:TextElementVO in linkElementVO.linkElements) {

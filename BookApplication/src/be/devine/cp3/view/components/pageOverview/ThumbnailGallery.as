@@ -59,7 +59,6 @@ public class ThumbnailGallery extends Sprite{
             i++
         }
         thumbnailContainer.x = ((768/2) - (thumbnail.width/2) - appModel.thumbnails[0].x);
-        trace(thumbnailContainer.x);
 
         pointer = new Polygon(20,3,appModel.themeColor);
         pointer.x = appModel.thumbnails[appModel.currentThumbnailIndex].x + (thumbnail.width/2);
@@ -93,17 +92,21 @@ public class ThumbnailGallery extends Sprite{
 
             if(event.getTouch(thumbnail, TouchPhase.ENDED)){
 
-                appModel.currentPage = appModel.pages[appModel.currentThumbnailIndex];
+                if(!appModel.animating){
+                    appModel.direction = appModel.thumbnails.indexOf(thumbnail) < appModel.pages.indexOf(appModel.currentPage) ? 'right':'left';
+                    trace(appModel.direction);
+                    appModel.currentPage = appModel.pages[appModel.currentThumbnailIndex];
 
-                var tweenMoveContainer:Tween = new Tween( thumbnailContainer, 0.5, Transitions.EASE_IN);
-                tweenMoveContainer.animate("x", ((768/2) - (thumbnail.width/2) - thumbnail.x));
-                Starling.juggler.add(tweenMoveContainer);
+                    var tweenMoveContainer:Tween = new Tween( thumbnailContainer, 0.5, Transitions.EASE_IN);
+                    tweenMoveContainer.animate("x", ((768/2) - (thumbnail.width/2) - thumbnail.x));
+                    Starling.juggler.add(tweenMoveContainer);
 
-                //TODO Pointer kleur aanpassen lukt niet met color - nog oplossing bedenken
+                    pointer.color = appModel.themeColor;
 
-                var tweenMoveArrow:Tween = new Tween( pointer, 0.5, Transitions.EASE_IN);
-                tweenMoveArrow.animate("x", appModel.thumbnails[appModel.currentThumbnailIndex].x + (thumbnail.width/2));
-                Starling.juggler.add(tweenMoveArrow);
+                    var tweenMoveArrow:Tween = new Tween( pointer, 0.5, Transitions.EASE_IN);
+                    tweenMoveArrow.animate("x", appModel.thumbnails[appModel.currentThumbnailIndex].x + (thumbnail.width/2));
+                    Starling.juggler.add(tweenMoveArrow);
+                }
             }
 
     }

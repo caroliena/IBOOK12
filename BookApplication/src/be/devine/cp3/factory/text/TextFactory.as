@@ -41,42 +41,6 @@ public class TextFactory extends flash.display.Sprite
     {
     }
 
-    //Functions
-    public static function addParagraph(text:String):flashx.textLayout.elements.TextFlow
-    {
-        var container:flash.display.Sprite = new flash.display.Sprite();
-        container.width = 768;
-        container.height = 600;
-
-        //format parameters
-        var format:TextLayoutFormat = new TextLayoutFormat();
-        format.color = 0x000000;
-        format.fontFamily = 'Georgia';
-        format.fontSize = 12;
-
-        //flow parameters
-        var flow:TextFlow = new TextFlow();
-        flow.columnCount = 2;
-        flow.columnGap = 35;
-        flow.hostFormat = format;
-
-        //span parameters
-        var spanElement:SpanElement= new SpanElement();
-        spanElement.text = text;
-
-        //paragraph parameters
-        var paragraphElement:ParagraphElement= new ParagraphElement();
-        paragraphElement.addChild(spanElement);
-        paragraphElement.format = format;
-
-        flow.addChild(paragraphElement);
-        flow.flowComposer.addController(new ContainerController(container, 570, 340));
-        flow.flowComposer.updateAllControllers();
-
-        return flow;
-
-    }
-
     public static function createTextField(config:Object):starling.display.Sprite {
         var textContainer:starling.display.Sprite = new starling.display.Sprite();
         var textField:TextField;
