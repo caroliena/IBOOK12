@@ -63,24 +63,27 @@ public class TextElement extends Element{
             case 2:
             case 3:
                 if (textElementVO.textLayout == 'title') textField.y = 385;
-                if (textElementVO.textLayout == 'author') textField.y = 470;
+                if (textElementVO.textLayout == 'author') textField.y = 480;
                 if (textElementVO.textLayout == 'paragraph') textField.y = 540;
-                if (textElementVO.textLayout == 'linkTitle') textField.y = 30;
-                if (textElementVO.textLayout == 'linkDescription') textField.y = 60;
-                if (textElementVO.textLayout == 'linkPage') textField.y = 115;
+                if (textElementVO.textLayout == 'linkTitle') textField.y = 20;
+                if (textElementVO.textLayout == 'linkDescription') textField.y = 50;
+                if (textElementVO.textLayout == 'linkPage') textField.y = 120;
                 break;
             case 4:
-                textField.x = 60;
+                textField.x = 80;
                 textField.y = 250;
                 textField.skewY = -0.25;
                 break;
             case 5:
                 if (textElementVO.textLayout == 'title') textField.y = 100;
-                if (textElementVO.textLayout == 'author') textField.y = 190;
+                if (textElementVO.textLayout == 'author') textField.y = 200;
                 if (textElementVO.textLayout == 'paragraph') textField.y = 300;
-                if (textElementVO.textLayout == 'linkTitle') textField.y = 30;
-                if (textElementVO.textLayout == 'linkDescription') textField.y = 60;
-                if (textElementVO.textLayout == 'linkPage') textField.y = 115;
+                if (textElementVO.textLayout == 'linkTitle') textField.y = 20;
+                if (textElementVO.textLayout == 'linkDescription') textField.y = 50;
+                if (textElementVO.textLayout == 'linkPage') textField.y = 120;
+                break;
+            case 6:
+                if (textElementVO.textLayout == 'paragraph') textField.y = 100;
                 break;
         }
 
@@ -94,7 +97,7 @@ public class TextElement extends Element{
         var format:TextLayoutFormat = new TextLayoutFormat();
         format.color = 0x000000;
         format.fontFamily = "Georgia";
-        format.fontSize = 14;
+        format.fontSize = 16;
         format.paragraphSpaceBefore=0;
         format.paragraphSpaceAfter=20;
 
@@ -110,12 +113,13 @@ public class TextElement extends Element{
         paragraaf.format=format;
         flow.addChild(paragraaf);
 
-        if(type == 2 || type == 3) flow.flowComposer.addController(new ContainerController(container, 698, 350));
-        if(type == 5) flow.flowComposer.addController(new ContainerController(container, 698, 500));
+        if(type == 2 || type == 3) flow.flowComposer.addController(new ContainerController(container, 698, 430));
+        if(type == 5) flow.flowComposer.addController(new ContainerController(container, 698, 680));
+        if(type == 6) flow.flowComposer.addController(new ContainerController(container, 698, 820));
 
         flow.flowComposer.updateAllControllers();
 
-        var bmpData : BitmapData = new BitmapData(698,350, true, 0xFFFFFF);
+        var bmpData : BitmapData = new BitmapData(698,820, true, 0xFFFFFF);
         bmpData.draw(container);
 
         var texture:Texture = Texture.fromBitmapData(bmpData);

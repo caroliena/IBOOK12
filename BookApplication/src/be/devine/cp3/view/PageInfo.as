@@ -13,7 +13,6 @@ import flash.events.Event;
 
 import starling.display.Sprite;
 
-[SWF(backgroundColor="#000000")]
 public class PageInfo extends Sprite{
 
     private var appModel:AppModel;
@@ -57,6 +56,7 @@ public class PageInfo extends Sprite{
             case 2:
             case 3:
             case 5:
+            case 6:
                 display();
                 break;
             case 1:

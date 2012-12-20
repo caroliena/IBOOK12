@@ -48,8 +48,8 @@ public class LinkElement extends Element{
         var texture:Texture = Texture.fromBitmap(loadedBitmap);
 
         link = new Button(texture,'',texture);
-        link.x = 410;
-        link.y = 710;
+        link.x = 404;
+        link.y = 770;
         addChild(link);
 
         for each(var textElementVO:TextElementVO in linkElementVO.linkElements) {
@@ -58,9 +58,9 @@ public class LinkElement extends Element{
             link.addChild(textElement);
         }
 
-        var line:Quad = new Quad(250,1,appModel.themeColor);
+        var line:Quad = new Quad(260,1,appModel.themeColor);
         line.x = 35;
-        line.y = 110;
+        line.y = 120;
         link.addChildAt(line,link.numChildren-1);
 
     }

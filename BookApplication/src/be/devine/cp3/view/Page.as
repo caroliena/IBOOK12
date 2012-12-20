@@ -5,7 +5,6 @@
  * Created with IntelliJ IDEA.
  */
 package be.devine.cp3.view {
-import be.devine.cp3.factory.text.TextFactory;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.components.elements.Element;
 import be.devine.cp3.view.components.elements.ImageElement;
@@ -18,16 +17,10 @@ import be.devine.cp3.vo.TextElementVO;
 
 import flash.events.Event;
 
-import flash.events.Event;
-
 import starling.animation.Transitions;
-
 import starling.animation.Tween;
-
 import starling.core.Starling;
-
 import starling.display.DisplayObject;
-
 import starling.display.Sprite;
 import starling.events.Event;
 
@@ -61,14 +54,20 @@ public class Page extends Sprite{
         return linkElement;
     }
 
-    private function overviewClickedHandler(event:flash.events.Event=null):void {
-        //TODO UseHandCursor werkt ni
-        if(appModel.overviewFlag){
-            element.useHandCursor = false;
-            element.removeEventListener(starling.events.Event.TRIGGERED, clickHandler);
-        }else{
-            element.addEventListener(starling.events.Event.TRIGGERED, clickHandler);
-            element.useHandCursor = true;
+    private function overviewClickedHandler(event:flash.events.Event):void {
+
+        for(var i:int=0;i< this.numChildren ;i++){
+            var element:DisplayObject = getChildAt(i);
+            trace(element);
+            if(element is LinkElement && appModel.overviewFlag){
+                element.useHandCursor = false;
+                element.removeEventListener(starling.events.Event.TRIGGERED, clickHandler);
+            }else if(element is LinkElement && !appModel.overviewFlag){
+                element.addEventListener(starling.events.Event.TRIGGERED, clickHandler);
+                element.useHandCursor = true;
+            }else{
+                //doNothing
+            }
         }
     }
 
@@ -95,16 +94,19 @@ public class Page extends Sprite{
             switch(elementVO.type){
                 case 'link':
                     element = createLink(elementVO as LinkElementVO);
-                    overviewClickedHandler();
+                    if(!appModel.overviewFlag) element.addEventListener(starling.events.Event.TRIGGERED, clickHandler);
+                    pageContainer.addChildAt(element,numChildren);
                     break;
                 case 'text':
                     element = createText(elementVO as TextElementVO);
+                    pageContainer.addChildAt(element,0);
                     break;
                 case 'image':
                     element = createImage(elementVO as ImageElementVO);
+                    pageContainer.addChildAt(element,0);
                     break;
             }
-            pageContainer.addChildAt(element,0);
+
         }
 
         for(var i:uint = pagesArray.length; i > 0; i--){

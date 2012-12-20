@@ -10,17 +10,11 @@ import be.devine.cp3.view.components.pageOverview.ThumbnailGallery;
 import be.devine.cp3.view.components.pageOverview.ThumbnailInfo;
 
 import flash.display.Bitmap;
-
-import flash.display.BitmapData;
 import flash.events.Event;
 
 import starling.animation.Transitions;
-
 import starling.animation.Tween;
-
 import starling.core.Starling;
-import starling.display.Image;
-
 import starling.display.Sprite;
 import starling.events.Event;
 import starling.textures.Texture;
@@ -33,22 +27,14 @@ public class PageOverview extends Sprite {
     private var thumbnailInfo:ThumbnailInfo;
 
     [Embed(source = "/assets/ui/button_overview.png")]
-    //[Embed(source = "/assets/ui/button_overviewdown.png")]
-    private static const Sausage:Class;
+    private static const Upstate:Class;
 
     public function PageOverview()
     {
         this.appModel = AppModel.getInstance();
 
-        var sausageBitmap:Bitmap = new Sausage();
-        var upstate:Texture = Texture.fromBitmap(sausageBitmap);
-
-        //var thumbnailBitmap:Bitmap = task.content as Bitmap;
-        //var thumbnail:Image = new Image(Texture.fromBitmap(thumbnailBitmap));
-        //var bmpData:BitmapData = new BitmapData(768, 50, false, 0xFF0000);
-        //var texture:Texture = Texture.fromBitmapData(bmpData);
-
-        //var upstate:Texture = Texture.fromBitmap ( new embeddedBitmap() );
+        var upstateBitmap:Bitmap = new Upstate();
+        var upstate:Texture = Texture.fromBitmap(upstateBitmap);
 
         thumbnailGallery = new ThumbnailGallery();
         thumbnailGallery.height = 200;

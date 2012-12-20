@@ -1,35 +1,62 @@
 <?xml version="1.0"?>
 <book>
-    <page thumb="1_thumb.png" theme="travel gadgets" type="1" >
+    <page thumb="1_thumb.png" theme="road trips" type="1" >
         <element type="image">1.png</element>
          
     </page>
-    <page thumb="2_thumb.png" theme="inspiration" type="2" >
-        <element type="text" textLayout="title">So what is luxury travel?</element>
+    <page thumb="2_thumb.png" theme="budget travel" type="2" >
+        <element type="text" textLayout="title">When the going gets tough</element>
         <element type="text" textLayout="author">Paul Johnson</element>
         <element type="image">2.png</element>
-        <element type="text" textLayout="paragraph"><![CDATA[ Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean
+        <element type="text" textLayout="paragraph">What are the toughest adventures on the planet? Which extreme exploits push willing participants to their mental and physical limits? Depends what you mean by tough, travel and adventure. It's an open question with no wrong answers, but here are a few feats of endurance, endeavour and, dare we say lunacy, fit to stir the most jaded adrenalin junkie.
 
-A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+Tasmania is an earthly paradise for lovers of adventure, and rafting the fearsome Franklin River is one of the Apple Isle's ultimate thrills.
 
-Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+The trip down the Franklin, starting at Collingwood River and ending at Sir John Falls, takes between eight and 14 days depending on the state of the river. A 100km journey that begins in the beautiful Irenabyss Gorge ends with the fury of the 5km-long Great Ravine, a stretch of white water which boils with dangerous rapids with giveaway names such as the Cauldron, Thunderush and the Churn.
 
-The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.
-
-When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then ]]></element>
+Experienced rafters can tackle the Franklin independently if they're fully equipped and prepared, but for everyone else (and that's 90% of all those people brave enough to attempt it), there are tour companies offering complete wilderness rafting packages, including World Expeditions, Rafting Tasmania, and Water By Nature.></element>
         <element type="link">
-            <element type="text" textLayout="linkTitle">Hippe hotels in Londen</element>
-            <element type="text" textLayout="linkDescription">Far far away behind the word mountains</element>
-            <element type="text" textLayout="linkPage">3</element>
+            <element type="text" textLayout="linkTitle">Rafting the Franklin River</element>
+            <element type="text" textLayout="linkDescription">Rafting the fearsome Franklin River is one of the Apple Isle's ultimate thrills.</element>
+            <element type="text" textLayout="linkPage">6</element>
         </element>
              
          
     </page>
-    <page thumb="3_thumb.png" theme="hotels" type="3" >
+    <page thumb="3_thumb.png" theme="budget travel" type="6" >
+        <element type="text" textLayout="paragraph">Istanbul has a foot on two continents, making it an ideal launch pad for the Middle East. This route works its way down through Turkey and into Syria, with an evocative bazaar at Aleppo and the spectacular city of Damascus. Head down to Jordan, pausing to admire the ruins of Petra and to float in the Dead Sea. Regardless of your faith, detouring to Jerusalem makes for a religious experience, then chill out with some Red Sea snorkelling. You'll need the relaxation to prepare for crowded Cairo, where a trip out to the pyramids is a requirement.
+
+Many backpackers kick this trip off in Sydney, with its glammed up beaches and iconic bridge drawing their attention. Some might meander as far south as Melbourne, the so-called Paris of the Southern Hemisphere, with its cosmopolitan culture and European weather (its grey winter is infamous). But the more beaten-track trips north of Sydney, through hippy haven Byron Bay, which has awesome surf breaks. If you're collecting capitals stop off at Brisbane, but most continue to tropical Cairns, a jumping-off point for cruising the Great Barrier Reef, the coral-jewelled necklace that makes the most stunning adornment to this coast.
+
+Most Southeast Asia trips start in Bangkok's backpacker epicentre, Khao Sanh Rd, but hordes wander to the beaches of Ko Pha-Ngan or up-market Phuket. Many young travellers head to Cambodia's Siem Reap to gape at the ancient civilisations of Angkor Wat, before heading to Ho Chi Minh City and working their way north along Vietnam's coast to the majestic rock formations of Halong Bay. To get off the trail a little more head inland to Laos' capital, Vientiane, or elephant trek in Khao Yai National Park. Bangkok and Singapore are both hubs for airlines so there are often cheap flights out of these cities to many other places in Asia.
+
+The trail begins in Auckland, where plenty of backpackers enjoy the party life, then heads down to Rotorua for the volcanic sights and hangi (traditional Maori feasting and performance). The route winds on through Lake Taupo, a good spot for skydiving and water sports. Then make for windy Wellington with its cafe culture and kooky Beehive (national parliament). From here you can hop across to the South Island for whale-watching in Kaikoura before heading for Queenstown, the base for exploring spectacular Franz Josef and Fox Glaciers, or tearing up the scenic waterways in a jet-boat.
+
+Once the route of the tsars, this 9289km stretch of track is becoming a backpacker must-do. The classic route starts on the coast in Vladivostok, rattling along to Moscow by way of the world's deepest lake, Baikal, or stopping at Yekaterinburg, where the Romanov line of tsars came to a bloody end. The railway ends at magnificent Moscow with its gold-domed churches and austere Red Square, though it's possible to go on to St Petersburg. For an alternative route, take the Trans-Mongolian from Beijing and explore the steppes of Mongolia before meeting the mainline just near Lake Baikal - in fact many Western travellers use this route given the awkwardness of reaching Vladivostok from most points. Or, if you're looking for a slightly quieter route to Beijing, there's the Trans-Manchurian line, which turns south east of Mongolia.</element>
+
+    </page>
+    <page thumb="4_thumb.png" theme="world food" type="4" >
+        <element type="text" textLayout="title">Elmen, a little taste of paradise on earth</element>
+        <element type="image">4.png</element>
+
+    </page>
+    <page thumb="5_thumb.png" theme="world food" type="6" >
+        <element type="text" textLayout="paragraph">Istanbul has a foot on two continents, making it an ideal launch pad for the Middle East. This route works its way down through Turkey and into Syria, with an evocative bazaar at Aleppo and the spectacular city of Damascus. Head down to Jordan, pausing to admire the ruins of Petra and to float in the Dead Sea. Regardless of your faith, detouring to Jerusalem makes for a religious experience, then chill out with some Red Sea snorkelling. You'll need the relaxation to prepare for crowded Cairo, where a trip out to the pyramids is a requirement.
+
+Many backpackers kick this trip off in Sydney, with its glammed up beaches and iconic bridge drawing their attention. Some might meander as far south as Melbourne, the so-called Paris of the Southern Hemisphere, with its cosmopolitan culture and European weather (its grey winter is infamous). But the more beaten-track trips north of Sydney, through hippy haven Byron Bay, which has awesome surf breaks. If you're collecting capitals stop off at Brisbane, but most continue to tropical Cairns, a jumping-off point for cruising the Great Barrier Reef, the coral-jewelled necklace that makes the most stunning adornment to this coast.
+
+Most Southeast Asia trips start in Bangkok's backpacker epicentre, Khao Sanh Rd, but hordes wander to the beaches of Ko Pha-Ngan or up-market Phuket. Many young travellers head to Cambodia's Siem Reap to gape at the ancient civilisations of Angkor Wat, before heading to Ho Chi Minh City and working their way north along Vietnam's coast to the majestic rock formations of Halong Bay. To get off the trail a little more head inland to Laos' capital, Vientiane, or elephant trek in Khao Yai National Park. Bangkok and Singapore are both hubs for airlines so there are often cheap flights out of these cities to many other places in Asia.
+
+The trail begins in Auckland, where plenty of backpackers enjoy the party life, then heads down to Rotorua for the volcanic sights and hangi (traditional Maori feasting and performance). The route winds on through Lake Taupo, a good spot for skydiving and water sports. Then make for windy Wellington with its cafe culture and kooky Beehive (national parliament). From here you can hop across to the South Island for whale-watching in Kaikoura before heading for Queenstown, the base for exploring spectacular Franz Josef and Fox Glaciers, or tearing up the scenic waterways in a jet-boat.
+
+Once the route of the tsars, this 9289km stretch of track is becoming a backpacker must-do. The classic route starts on the coast in Vladivostok, rattling along to Moscow by way of the world's deepest lake, Baikal, or stopping at Yekaterinburg, where the Romanov line of tsars came to a bloody end. The railway ends at magnificent Moscow with its gold-domed churches and austere Red Square, though it's possible to go on to St Petersburg. For an alternative route, take the Trans-Mongolian from Beijing and explore the steppes of Mongolia before meeting the mainline just near Lake Baikal - in fact many Western travellers use this route given the awkwardness of reaching Vladivostok from most points. Or, if you're looking for a slightly quieter route to Beijing, there's the Trans-Manchurian line, which turns south east of Mongolia.</element>
+
+    </page>
+    <page thumb="6_thumb.png" theme="adventure travel" type="3" >
         <element type="text" textLayout="title">So what is luxury travel?</element>
         <element type="text" textLayout="author">Paul Johnson</element>
         <element type="image">3.png</element>
-        <element type="text" textLayout="paragraph"><![CDATA[ Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+        <element type="text" textLayout="paragraph">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
 
 A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
 
@@ -37,33 +64,166 @@ Even the all-powerful Pointing has no control about the blind texts it is an alm
 
 The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.
 
-When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then ]]></element>
-         
+When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then
+
+Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+
+The Big Oxmox advised her not to do so, because there were thousands of bad Commas.</element>
     </page>
-    <page thumb="4_thumb.png" theme="hotels" type="4" >
-        <element type="text" textLayout="title">Elmen, a little taste of paradise on earth</element>
-        <element type="image">4.png</element>
-         
+    <page thumb="7_thumb.png" theme="adventure travel" type="6" >
+        <element type="text" textLayout="paragraph">Istanbul has a foot on two continents, making it an ideal launch pad for the Middle East. This route works its way down through Turkey and into Syria, with an evocative bazaar at Aleppo and the spectacular city of Damascus. Head down to Jordan, pausing to admire the ruins of Petra and to float in the Dead Sea. Regardless of your faith, detouring to Jerusalem makes for a religious experience, then chill out with some Red Sea snorkelling. You'll need the relaxation to prepare for crowded Cairo, where a trip out to the pyramids is a requirement.
+
+Many backpackers kick this trip off in Sydney, with its glammed up beaches and iconic bridge drawing their attention. Some might meander as far south as Melbourne, the so-called Paris of the Southern Hemisphere, with its cosmopolitan culture and European weather (its grey winter is infamous). But the more beaten-track trips north of Sydney, through hippy haven Byron Bay, which has awesome surf breaks. If you're collecting capitals stop off at Brisbane, but most continue to tropical Cairns, a jumping-off point for cruising the Great Barrier Reef, the coral-jewelled necklace that makes the most stunning adornment to this coast.
+
+Most Southeast Asia trips start in Bangkok's backpacker epicentre, Khao Sanh Rd, but hordes wander to the beaches of Ko Pha-Ngan or up-market Phuket. Many young travellers head to Cambodia's Siem Reap to gape at the ancient civilisations of Angkor Wat, before heading to Ho Chi Minh City and working their way north along Vietnam's coast to the majestic rock formations of Halong Bay. To get off the trail a little more head inland to Laos' capital, Vientiane, or elephant trek in Khao Yai National Park. Bangkok and Singapore are both hubs for airlines so there are often cheap flights out of these cities to many other places in Asia.
+
+The trail begins in Auckland, where plenty of backpackers enjoy the party life, then heads down to Rotorua for the volcanic sights and hangi (traditional Maori feasting and performance). The route winds on through Lake Taupo, a good spot for skydiving and water sports. Then make for windy Wellington with its cafe culture and kooky Beehive (national parliament). From here you can hop across to the South Island for whale-watching in Kaikoura before heading for Queenstown, the base for exploring spectacular Franz Josef and Fox Glaciers, or tearing up the scenic waterways in a jet-boat.
+
+Once the route of the tsars, this 9289km stretch of track is becoming a backpacker must-do. The classic route starts on the coast in Vladivostok, rattling along to Moscow by way of the world's deepest lake, Baikal, or stopping at Yekaterinburg, where the Romanov line of tsars came to a bloody end. The railway ends at magnificent Moscow with its gold-domed churches and austere Red Square, though it's possible to go on to St Petersburg. For an alternative route, take the Trans-Mongolian from Beijing and explore the steppes of Mongolia before meeting the mainline just near Lake Baikal - in fact many Western travellers use this route given the awkwardness of reaching Vladivostok from most points. Or, if you're looking for a slightly quieter route to Beijing, there's the Trans-Manchurian line, which turns south east of Mongolia.</element>
+
     </page>
-    <page thumb="5_thumb.png" theme="travel gadgets" type="5" >
-        <element type="text" textLayout="title">So what is luxury travel?</element>
+
+    <page thumb="8_thumb.png" theme="world food" type="5" >
+        <element type="text" textLayout="title">The Siberian Railway</element>
         <element type="text" textLayout="author">Paul Johnson</element>
-        <element type="text" textLayout="paragraph"><![CDATA[ Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+        <element type="text" textLayout="paragraph">Istanbul has a foot on two continents, making it an ideal launch pad for the Middle East. This route works its way down through Turkey and into Syria, with an evocative bazaar at Aleppo and the spectacular city of Damascus. Head down to Jordan, pausing to admire the ruins of Petra and to float in the Dead Sea. Regardless of your faith, detouring to Jerusalem makes for a religious experience, then chill out with some Red Sea snorkelling. You'll need the relaxation to prepare for crowded Cairo, where a trip out to the pyramids is a requirement.
 
-A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+Many backpackers kick this trip off in Sydney, with its glammed up beaches and iconic bridge drawing their attention. Some might meander as far south as Melbourne, the so-called Paris of the Southern Hemisphere, with its cosmopolitan culture and European weather (its grey winter is infamous). But the more beaten-track trips north of Sydney, through hippy haven Byron Bay, which has awesome surf breaks. If you're collecting capitals stop off at Brisbane, but most continue to tropical Cairns, a jumping-off point for cruising the Great Barrier Reef, the coral-jewelled necklace that makes the most stunning adornment to this coast.
 
-Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+Most Southeast Asia trips start in Bangkok's backpacker epicentre, Khao Sanh Rd, but hordes wander to the beaches of Ko Pha-Ngan or up-market Phuket. Many young travellers head to Cambodia's Siem Reap to gape at the ancient civilisations of Angkor Wat, before heading to Ho Chi Minh City and working their way north along Vietnam's coast to the majestic rock formations of Halong Bay. To get off the trail a little more head inland to Laos' capital, Vientiane, or elephant trek in Khao Yai National Park. Bangkok and Singapore are both hubs for airlines so there are often cheap flights out of these cities to many other places in Asia.
 
-The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.
-
-When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then ]]></element>
+The trail begins in Auckland, where plenty of backpackers enjoy the party life, then heads down to Rotorua for the volcanic sights and hangi (traditional Maori feasting and performance). The route winds on through Lake Taupo, a good spot for skydiving and water sports. Then make for windy Wellington with its cafe culture and kooky Beehive (national parliament). From here you can hop across to the South Island for whale-watching in Kaikoura before heading for Queenstown, the base for exploring spectacular Franz Josef.</element>
         <element type="link">
-            <element type="text" textLayout="linkTitle">Hippe hotels in Londen</element>
+            <element type="text" textLayout="linkTitle">Too ambitious for a novice</element>
             <element type="text" textLayout="linkDescription">Far far away behind the word mountains</element>
-            <element type="text" textLayout="linkPage">3</element>
+            <element type="text" textLayout="linkPage">10</element>
         </element>
              
          
+    </page>
+    <page thumb="9_thumb.png" theme="world food" type="6" >
+        <element type="text" textLayout="paragraph">Istanbul has a foot on two continents, making it an ideal launch pad for the Middle East. This route works its way down through Turkey and into Syria, with an evocative bazaar at Aleppo and the spectacular city of Damascus. Head down to Jordan, pausing to admire the ruins of Petra and to float in the Dead Sea. Regardless of your faith, detouring to Jerusalem makes for a religious experience, then chill out with some Red Sea snorkelling. You'll need the relaxation to prepare for crowded Cairo, where a trip out to the pyramids is a requirement.
+
+Many backpackers kick this trip off in Sydney, with its glammed up beaches and iconic bridge drawing their attention. Some might meander as far south as Melbourne, the so-called Paris of the Southern Hemisphere, with its cosmopolitan culture and European weather (its grey winter is infamous). But the more beaten-track trips north of Sydney, through hippy haven Byron Bay, which has awesome surf breaks. If you're collecting capitals stop off at Brisbane, but most continue to tropical Cairns, a jumping-off point for cruising the Great Barrier Reef, the coral-jewelled necklace that makes the most stunning adornment to this coast.
+
+Most Southeast Asia trips start in Bangkok's backpacker epicentre, Khao Sanh Rd, but hordes wander to the beaches of Ko Pha-Ngan or up-market Phuket. Many young travellers head to Cambodia's Siem Reap to gape at the ancient civilisations of Angkor Wat, before heading to Ho Chi Minh City and working their way north along Vietnam's coast to the majestic rock formations of Halong Bay. To get off the trail a little more head inland to Laos' capital, Vientiane, or elephant trek in Khao Yai National Park. Bangkok and Singapore are both hubs for airlines so there are often cheap flights out of these cities to many other places in Asia.
+
+The trail begins in Auckland, where plenty of backpackers enjoy the party life, then heads down to Rotorua for the volcanic sights and hangi (traditional Maori feasting and performance). The route winds on through Lake Taupo, a good spot for skydiving and water sports. Then make for windy Wellington with its cafe culture and kooky Beehive (national parliament). From here you can hop across to the South Island for whale-watching in Kaikoura before heading for Queenstown, the base for exploring spectacular Franz Josef and Fox Glaciers, or tearing up the scenic waterways in a jet-boat.
+
+Once the route of the tsars, this 9289km stretch of track is becoming a backpacker must-do. The classic route starts on the coast in Vladivostok, rattling along to Moscow by way of the world's deepest lake, Baikal, or stopping at Yekaterinburg, where the Romanov line of tsars came to a bloody end. The railway ends at magnificent Moscow with its gold-domed churches and austere Red Square, though it's possible to go on to St Petersburg. For an alternative route, take the Trans-Mongolian from Beijing and explore the steppes of Mongolia before meeting the mainline just near Lake Baikal - in fact many Western travellers use this route given the awkwardness of reaching Vladivostok from most points. Or, if you're looking for a slightly quieter route to Beijing, there's the Trans-Manchurian line, which turns south east of Mongolia.</element>
+
+    </page>
+
+
+
+    <page thumb="10_thumb.png" theme="road trips" type="2" >
+        <element type="text" textLayout="title">The wild side of Malaysia</element>
+        <element type="text" textLayout="author">Paul Johnson</element>
+        <element type="image">6.png</element>
+        <element type="text" textLayout="paragraph">What are the toughest adventures on the planet? Which extreme exploits push willing participants to their mental and physical limits? Depends what you mean by tough, travel and adventure. It's an open question with no wrong answers, but here are a few feats of endurance, endeavour and, dare we say lunacy, fit to stir the most jaded adrenalin junkie.
+
+Tasmania is an earthly paradise for lovers of adventure, and rafting the fearsome Franklin River is one of the Apple Isle's ultimate thrills.
+
+The trip down the Franklin, starting at Collingwood River and ending at Sir John Falls, takes between eight and 14 days depending on the state of the river. A 100km journey that begins in the beautiful Irenabyss Gorge ends with the fury of the 5km-long Great Ravine, a stretch of white water which boils with dangerous rapids with giveaway names such as the Cauldron, Thunderush and the Churn.
+
+Experienced rafters can tackle the Franklin independently if they're fully equipped and prepared, but for everyone else (and that's 90% of all those people brave enough to attempt it), there are tour companies offering complete wilderness rafting packages, including World Expeditions, Rafting Tasmania, and Water By Nature.></element>
+        <element type="link">
+            <element type="text" textLayout="linkTitle">Go batty in the caves</element>
+            <element type="text" textLayout="linkDescription">Rafting the fearsome Franklin River is one of the Apple Isle's ultimate thrills.</element>
+            <element type="text" textLayout="linkPage">6</element>
+        </element>
+
+
+    </page>
+    <page thumb="11_thumb.png" theme="road trips" type="6" >
+        <element type="text" textLayout="paragraph">Istanbul has a foot on two continents, making it an ideal launch pad for the Middle East. This route works its way down through Turkey and into Syria, with an evocative bazaar at Aleppo and the spectacular city of Damascus. Head down to Jordan, pausing to admire the ruins of Petra and to float in the Dead Sea. Regardless of your faith, detouring to Jerusalem makes for a religious experience, then chill out with some Red Sea snorkelling. You'll need the relaxation to prepare for crowded Cairo, where a trip out to the pyramids is a requirement.
+
+Many backpackers kick this trip off in Sydney, with its glammed up beaches and iconic bridge drawing their attention. Some might meander as far south as Melbourne, the so-called Paris of the Southern Hemisphere, with its cosmopolitan culture and European weather (its grey winter is infamous). But the more beaten-track trips north of Sydney, through hippy haven Byron Bay, which has awesome surf breaks. If you're collecting capitals stop off at Brisbane, but most continue to tropical Cairns, a jumping-off point for cruising the Great Barrier Reef, the coral-jewelled necklace that makes the most stunning adornment to this coast.
+
+Most Southeast Asia trips start in Bangkok's backpacker epicentre, Khao Sanh Rd, but hordes wander to the beaches of Ko Pha-Ngan or up-market Phuket. Many young travellers head to Cambodia's Siem Reap to gape at the ancient civilisations of Angkor Wat, before heading to Ho Chi Minh City and working their way north along Vietnam's coast to the majestic rock formations of Halong Bay. To get off the trail a little more head inland to Laos' capital, Vientiane, or elephant trek in Khao Yai National Park. Bangkok and Singapore are both hubs for airlines so there are often cheap flights out of these cities to many other places in Asia.
+
+The trail begins in Auckland, where plenty of backpackers enjoy the party life, then heads down to Rotorua for the volcanic sights and hangi (traditional Maori feasting and performance). The route winds on through Lake Taupo, a good spot for skydiving and water sports. Then make for windy Wellington with its cafe culture and kooky Beehive (national parliament). From here you can hop across to the South Island for whale-watching in Kaikoura before heading for Queenstown, the base for exploring spectacular Franz Josef and Fox Glaciers, or tearing up the scenic waterways in a jet-boat.
+
+Once the route of the tsars, this 9289km stretch of track is becoming a backpacker must-do. The classic route starts on the coast in Vladivostok, rattling along to Moscow by way of the world's deepest lake, Baikal, or stopping at Yekaterinburg, where the Romanov line of tsars came to a bloody end. The railway ends at magnificent Moscow with its gold-domed churches and austere Red Square, though it's possible to go on to St Petersburg. For an alternative route, take the Trans-Mongolian from Beijing and explore the steppes of Mongolia before meeting the mainline just near Lake Baikal - in fact many Western travellers use this route given the awkwardness of reaching Vladivostok from most points. Or, if you're looking for a slightly quieter route to Beijing, there's the Trans-Manchurian line, which turns south east of Mongolia.</element>
+
+    </page>
+    <page thumb="12_thumb.png" theme="budget travel" type="4" >
+        <element type="text" textLayout="title">The planet's most spellbinding sights</element>
+        <element type="image">8.png</element>
+
+    </page>
+    <page thumb="13_thumb.png" theme="budget travel" type="6" >
+        <element type="text" textLayout="paragraph">Istanbul has a foot on two continents, making it an ideal launch pad for the Middle East. This route works its way down through Turkey and into Syria, with an evocative bazaar at Aleppo and the spectacular city of Damascus. Head down to Jordan, pausing to admire the ruins of Petra and to float in the Dead Sea. Regardless of your faith, detouring to Jerusalem makes for a religious experience, then chill out with some Red Sea snorkelling. You'll need the relaxation to prepare for crowded Cairo, where a trip out to the pyramids is a requirement.
+
+Many backpackers kick this trip off in Sydney, with its glammed up beaches and iconic bridge drawing their attention. Some might meander as far south as Melbourne, the so-called Paris of the Southern Hemisphere, with its cosmopolitan culture and European weather (its grey winter is infamous). But the more beaten-track trips north of Sydney, through hippy haven Byron Bay, which has awesome surf breaks. If you're collecting capitals stop off at Brisbane, but most continue to tropical Cairns, a jumping-off point for cruising the Great Barrier Reef, the coral-jewelled necklace that makes the most stunning adornment to this coast.
+
+Most Southeast Asia trips start in Bangkok's backpacker epicentre, Khao Sanh Rd, but hordes wander to the beaches of Ko Pha-Ngan or up-market Phuket. Many young travellers head to Cambodia's Siem Reap to gape at the ancient civilisations of Angkor Wat, before heading to Ho Chi Minh City and working their way north along Vietnam's coast to the majestic rock formations of Halong Bay. To get off the trail a little more head inland to Laos' capital, Vientiane, or elephant trek in Khao Yai National Park. Bangkok and Singapore are both hubs for airlines so there are often cheap flights out of these cities to many other places in Asia.
+
+The trail begins in Auckland, where plenty of backpackers enjoy the party life, then heads down to Rotorua for the volcanic sights and hangi (traditional Maori feasting and performance). The route winds on through Lake Taupo, a good spot for skydiving and water sports. Then make for windy Wellington with its cafe culture and kooky Beehive (national parliament). From here you can hop across to the South Island for whale-watching in Kaikoura before heading for Queenstown, the base for exploring spectacular Franz Josef and Fox Glaciers, or tearing up the scenic waterways in a jet-boat.
+
+Once the route of the tsars, this 9289km stretch of track is becoming a backpacker must-do. The classic route starts on the coast in Vladivostok, rattling along to Moscow by way of the world's deepest lake, Baikal, or stopping at Yekaterinburg, where the Romanov line of tsars came to a bloody end. The railway ends at magnificent Moscow with its gold-domed churches and austere Red Square, though it's possible to go on to St Petersburg. For an alternative route, take the Trans-Mongolian from Beijing and explore the steppes of Mongolia before meeting the mainline just near Lake Baikal - in fact many Western travellers use this route given the awkwardness of reaching Vladivostok from most points. Or, if you're looking for a slightly quieter route to Beijing, there's the Trans-Manchurian line, which turns south east of Mongolia.</element>
+
+    </page>
+    <page thumb="14_thumb.png" theme="budget travel" type="3" >
+        <element type="text" textLayout="title">Dive into the big blue</element>
+        <element type="text" textLayout="author">Paul Johnson</element>
+        <element type="image">7.png</element>
+        <element type="text" textLayout="paragraph">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+
+A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+
+Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+
+The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.
+
+When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then
+
+Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+
+The Big Oxmox advised her not to do so, because there were thousands of bad Commas.</element>
+    </page>
+    <page thumb="15_thumb.png" theme="budget travel" type="6" >
+        <element type="text" textLayout="paragraph">Istanbul has a foot on two continents, making it an ideal launch pad for the Middle East. This route works its way down through Turkey and into Syria, with an evocative bazaar at Aleppo and the spectacular city of Damascus. Head down to Jordan, pausing to admire the ruins of Petra and to float in the Dead Sea. Regardless of your faith, detouring to Jerusalem makes for a religious experience, then chill out with some Red Sea snorkelling. You'll need the relaxation to prepare for crowded Cairo, where a trip out to the pyramids is a requirement.
+
+Many backpackers kick this trip off in Sydney, with its glammed up beaches and iconic bridge drawing their attention. Some might meander as far south as Melbourne, the so-called Paris of the Southern Hemisphere, with its cosmopolitan culture and European weather (its grey winter is infamous). But the more beaten-track trips north of Sydney, through hippy haven Byron Bay, which has awesome surf breaks. If you're collecting capitals stop off at Brisbane, but most continue to tropical Cairns, a jumping-off point for cruising the Great Barrier Reef, the coral-jewelled necklace that makes the most stunning adornment to this coast.
+
+Most Southeast Asia trips start in Bangkok's backpacker epicentre, Khao Sanh Rd, but hordes wander to the beaches of Ko Pha-Ngan or up-market Phuket. Many young travellers head to Cambodia's Siem Reap to gape at the ancient civilisations of Angkor Wat, before heading to Ho Chi Minh City and working their way north along Vietnam's coast to the majestic rock formations of Halong Bay. To get off the trail a little more head inland to Laos' capital, Vientiane, or elephant trek in Khao Yai National Park. Bangkok and Singapore are both hubs for airlines so there are often cheap flights out of these cities to many other places in Asia.
+
+The trail begins in Auckland, where plenty of backpackers enjoy the party life, then heads down to Rotorua for the volcanic sights and hangi (traditional Maori feasting and performance). The route winds on through Lake Taupo, a good spot for skydiving and water sports. Then make for windy Wellington with its cafe culture and kooky Beehive (national parliament). From here you can hop across to the South Island for whale-watching in Kaikoura before heading for Queenstown, the base for exploring spectacular Franz Josef and Fox Glaciers, or tearing up the scenic waterways in a jet-boat.
+
+Once the route of the tsars, this 9289km stretch of track is becoming a backpacker must-do. The classic route starts on the coast in Vladivostok, rattling along to Moscow by way of the world's deepest lake, Baikal, or stopping at Yekaterinburg, where the Romanov line of tsars came to a bloody end. The railway ends at magnificent Moscow with its gold-domed churches and austere Red Square, though it's possible to go on to St Petersburg. For an alternative route, take the Trans-Mongolian from Beijing and explore the steppes of Mongolia before meeting the mainline just near Lake Baikal - in fact many Western travellers use this route given the awkwardness of reaching Vladivostok from most points. Or, if you're looking for a slightly quieter route to Beijing, there's the Trans-Manchurian line, which turns south east of Mongolia.</element>
+
+    </page>
+
+    <page thumb="16_thumb.png" theme="road trip" type="5" >
+        <element type="text" textLayout="title">Masterpieces of the world</element>
+        <element type="text" textLayout="author">Paul Johnson</element>
+        <element type="text" textLayout="paragraph">Istanbul has a foot on two continents, making it an ideal launch pad for the Middle East. This route works its way down through Turkey and into Syria, with an evocative bazaar at Aleppo and the spectacular city of Damascus. Head down to Jordan, pausing to admire the ruins of Petra and to float in the Dead Sea. Regardless of your faith, detouring to Jerusalem makes for a religious experience, then chill out with some Red Sea snorkelling. You'll need the relaxation to prepare for crowded Cairo, where a trip out to the pyramids is a requirement.
+
+Many backpackers kick this trip off in Sydney, with its glammed up beaches and iconic bridge drawing their attention. Some might meander as far south as Melbourne, the so-called Paris of the Southern Hemisphere, with its cosmopolitan culture and European weather (its grey winter is infamous). But the more beaten-track trips north of Sydney, through hippy haven Byron Bay, which has awesome surf breaks. If you're collecting capitals stop off at Brisbane, but most continue to tropical Cairns, a jumping-off point for cruising the Great Barrier Reef, the coral-jewelled necklace that makes the most stunning adornment to this coast.
+
+Most Southeast Asia trips start in Bangkok's backpacker epicentre, Khao Sanh Rd, but hordes wander to the beaches of Ko Pha-Ngan or up-market Phuket. Many young travellers head to Cambodia's Siem Reap to gape at the ancient civilisations of Angkor Wat, before heading to Ho Chi Minh City and working their way north along Vietnam's coast to the majestic rock formations of Halong Bay. To get off the trail a little more head inland to Laos' capital, Vientiane, or elephant trek in Khao Yai National Park. Bangkok and Singapore are both hubs for airlines so there are often cheap flights out of these cities to many other places in Asia.
+
+The trail begins in Auckland, where plenty of backpackers enjoy the party life, then heads down to Rotorua for the volcanic sights and hangi (traditional Maori feasting and performance). The route winds on through Lake Taupo, a good spot for skydiving and water sports. Then make for windy Wellington with its cafe culture and kooky Beehive (national parliament). From here you can hop across to the South Island for whale-watching in Kaikoura before heading for Queenstown, the base for exploring spectacular Franz Josef.</element>
+        <element type="link">
+            <element type="text" textLayout="linkTitle">Don't leave home without it</element>
+            <element type="text" textLayout="linkDescription">Far far away behind the word mountains</element>
+            <element type="text" textLayout="linkPage">4</element>
+        </element>
+
+
+    </page>
+    <page thumb="17_thumb.png" theme="road trip" type="6" >
+        <element type="text" textLayout="paragraph">Istanbul has a foot on two continents, making it an ideal launch pad for the Middle East. This route works its way down through Turkey and into Syria, with an evocative bazaar at Aleppo and the spectacular city of Damascus. Head down to Jordan, pausing to admire the ruins of Petra and to float in the Dead Sea. Regardless of your faith, detouring to Jerusalem makes for a religious experience, then chill out with some Red Sea snorkelling. You'll need the relaxation to prepare for crowded Cairo, where a trip out to the pyramids is a requirement.
+
+Many backpackers kick this trip off in Sydney, with its glammed up beaches and iconic bridge drawing their attention. Some might meander as far south as Melbourne, the so-called Paris of the Southern Hemisphere, with its cosmopolitan culture and European weather (its grey winter is infamous). But the more beaten-track trips north of Sydney, through hippy haven Byron Bay, which has awesome surf breaks. If you're collecting capitals stop off at Brisbane, but most continue to tropical Cairns, a jumping-off point for cruising the Great Barrier Reef, the coral-jewelled necklace that makes the most stunning adornment to this coast.
+
+Most Southeast Asia trips start in Bangkok's backpacker epicentre, Khao Sanh Rd, but hordes wander to the beaches of Ko Pha-Ngan or up-market Phuket. Many young travellers head to Cambodia's Siem Reap to gape at the ancient civilisations of Angkor Wat, before heading to Ho Chi Minh City and working their way north along Vietnam's coast to the majestic rock formations of Halong Bay. To get off the trail a little more head inland to Laos' capital, Vientiane, or elephant trek in Khao Yai National Park. Bangkok and Singapore are both hubs for airlines so there are often cheap flights out of these cities to many other places in Asia.
+
+The trail begins in Auckland, where plenty of backpackers enjoy the party life, then heads down to Rotorua for the volcanic sights and hangi (traditional Maori feasting and performance). The route winds on through Lake Taupo, a good spot for skydiving and water sports. Then make for windy Wellington with its cafe culture and kooky Beehive (national parliament). From here you can hop across to the South Island for whale-watching in Kaikoura before heading for Queenstown, the base for exploring spectacular Franz Josef and Fox Glaciers, or tearing up the scenic waterways in a jet-boat.
+
+Once the route of the tsars, this 9289km stretch of track is becoming a backpacker must-do. The classic route starts on the coast in Vladivostok, rattling along to Moscow by way of the world's deepest lake, Baikal, or stopping at Yekaterinburg, where the Romanov line of tsars came to a bloody end. The railway ends at magnificent Moscow with its gold-domed churches and austere Red Square, though it's possible to go on to St Petersburg. For an alternative route, take the Trans-Mongolian from Beijing and explore the steppes of Mongolia before meeting the mainline just near Lake Baikal - in fact many Western travellers use this route given the awkwardness of reaching Vladivostok from most points. Or, if you're looking for a slightly quieter route to Beijing, there's the Trans-Manchurian line, which turns south east of Mongolia.</element>
+
     </page>
 
 </book>

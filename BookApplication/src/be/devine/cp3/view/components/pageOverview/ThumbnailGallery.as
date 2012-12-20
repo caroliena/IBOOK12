@@ -10,15 +10,10 @@ import be.devine.cp3.model.AppModel;
 
 import flash.events.Event;
 
-import flash.events.Event;
-
 import starling.animation.Transitions;
-
 import starling.animation.Tween;
-
 import starling.core.Starling;
 import starling.display.DisplayObject;
-
 import starling.display.Image;
 import starling.display.Quad;
 import starling.display.Sprite;
@@ -28,12 +23,10 @@ import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 import starling.utils.Polygon;
 
-
 public class ThumbnailGallery extends Sprite{
 
     private var appModel:AppModel;
     private var thumbnailContainer:Sprite;
-
     private var background:Quad;
     private var pointer:Polygon;
 
@@ -42,7 +35,7 @@ public class ThumbnailGallery extends Sprite{
         this.appModel = AppModel.getInstance();
 
         background = new Quad(768,210,0x000000);
-        background.alpha = 0.8;
+        background.alpha = 0.75;
         addChild(background);
 
         thumbnailContainer = new Sprite();
@@ -58,13 +51,14 @@ public class ThumbnailGallery extends Sprite{
             thumbnailContainer.addChild(thumbnail);
             i++
         }
-        thumbnailContainer.x = ((768/2) - (thumbnail.width/2) - appModel.thumbnails[0].x);
-
-        pointer = new Polygon(20,3,appModel.themeColor);
+        pointer = new Polygon(14,3,0x000000);
         pointer.x = appModel.thumbnails[appModel.currentThumbnailIndex].x + (thumbnail.width/2);
-        pointer.y = 200;
-        pointer.rotation = -1.57079633;     //rotatie gebeurd in radialen in starling
+        pointer.y = 8;
+        pointer.rotation = 1.57079633;     //rotatie gebeurd in radialen in starling
+
+        thumbnailContainer.x = ((768/2) - (thumbnail.width/2) - appModel.thumbnails[0].x);
         thumbnailContainer.addChildAt(pointer,0);
+
         appModel.addEventListener(AppModel.OVERVIEW_CLICKED,overviewClickHandler);
     }
 
@@ -80,7 +74,7 @@ public class ThumbnailGallery extends Sprite{
     }
 
     private function mouseThumbnailHandler(event:TouchEvent):void {
-        var thumbnail = event.target as DisplayObject;
+        var thumbnail:DisplayObject = event.target as DisplayObject;
         var touch:Touch = event.getTouch(thumbnail);
 
             var tweenAlpha:Tween = new Tween(thumbnail, 0.2, Transitions.EASE_IN);
@@ -94,14 +88,11 @@ public class ThumbnailGallery extends Sprite{
 
                 if(!appModel.animating){
                     appModel.direction = appModel.thumbnails.indexOf(thumbnail) < appModel.pages.indexOf(appModel.currentPage) ? 'right':'left';
-                    trace(appModel.direction);
                     appModel.currentPage = appModel.pages[appModel.currentThumbnailIndex];
 
                     var tweenMoveContainer:Tween = new Tween( thumbnailContainer, 0.5, Transitions.EASE_IN);
                     tweenMoveContainer.animate("x", ((768/2) - (thumbnail.width/2) - thumbnail.x));
                     Starling.juggler.add(tweenMoveContainer);
-
-                    pointer.color = appModel.themeColor;
 
                     var tweenMoveArrow:Tween = new Tween( pointer, 0.5, Transitions.EASE_IN);
                     tweenMoveArrow.animate("x", appModel.thumbnails[appModel.currentThumbnailIndex].x + (thumbnail.width/2));

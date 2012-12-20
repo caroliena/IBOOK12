@@ -49,34 +49,35 @@ public class TextFactory extends flash.display.Sprite
         switch (config.textLayout){
             case 'title':
                 text = text.toUpperCase();
-                textField = new TextField(600,200,text, "Steelfish", 70, color,false);
+                textField = new TextField(600,200,text, "Steelfish", 80, color,false);
                 break;
             case 'author':
                 text = 'Written by ' + config.text;
-                textField = new TextField(698,50,text, "GeorgiaBold", 12, color,false);
+                textField = new TextField(698,50,text, "GeorgiaBold", 14, color,false);
                 break;
             case 'linkTitle':
                 color = config.color;
                 text = text.toUpperCase();
-                textField = new TextField(698,30,text, "EdmondSansMedium", 17, color,false);
+                textField = new TextField(260,30,text, "EdmondSansMedium", 16, color,false);
                 break;
             case 'linkDescription':
-                textField = new TextField(698,60,text, "Georgia", 14, color,false);
+                textField = new TextField(260,60,text, "Georgia", 14, color,false);
                 break;
             case 'linkPage':
                 text = 'page ' + config.text;
+                    trace(config.text);
                 color = config.color;
-                textField = new TextField(698,30,text, "GeorgiaBold", 14, color,false);
+                textField = new TextField(260,30,text, "GeorgiaBold", 14, color,false);
                 break;
             case 'pageInfo':
                 textField = new TextField(698,35,text, "EdmondSansMedium", 14, color,false);
                 break;
             case 'thmbPageTitle':
-                textField = new TextField(698,35,text, "GeorgiaBold", 17, color,false);
+                textField = new TextField(698,35,text, "GeorgiaBold", 18, color,false);
                 break;
             case 'thmbPageNumber':
                 text = text.toUpperCase();
-                textField = new TextField(698,35,text, "EdmondSansMedium", 13, color,false);
+                textField = new TextField(698,35,text, "EdmondSansMedium", 14, color,false);
                 break;
         }
             textField.hAlign = HAlign.LEFT;

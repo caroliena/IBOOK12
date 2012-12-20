@@ -87,7 +87,6 @@ import starling.events.Event;
             var i:int;
             
             // create vertices
-            trace(mColor);
             mVertexData = new VertexData(mNumEdges+1);
             mVertexData.setUniformColor(mColor);
             

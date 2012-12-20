@@ -41,7 +41,7 @@ public class AppModel extends EventDispatcher {
         _overviewFlag = false;
         _direction = 'left';
         _animating = false;
-        mouseCoords = new Point();
+        _mouseCoords = new Point();
     }
 
     public static function getInstance():AppModel
@@ -137,9 +137,10 @@ public class AppModel extends EventDispatcher {
         {
             _theme = value;
             switch(theme){
-                case 'travel gadgets': themeColor=0x36a845; break;
-                case 'hotels': themeColor=0x84bdc6; break;
-                case 'inspiration': themeColor=0xfdf74a; break;
+                case 'adventure travel': themeColor=0x6ba53a; break;
+                case 'budget travel': themeColor=0xe74c39; break;
+                case 'road trips': themeColor=0x67c9bb; break;
+                case 'world food': themeColor=0xfde300; break;
             }
             dispatchEvent(new Event(THEMECOLOR_CHANGED, true));
         }

@@ -25,7 +25,7 @@ public class Button extends starling.display.Button{
         this.appModel = AppModel.getInstance();
 
         var bmpData:BitmapData = new BitmapData(25, 1024, false, 0xFFFFFF);
-        var texture:Texture = Texture.fromBitmapData(bmpData,'',bmpData);
+        var texture:Texture = Texture.fromBitmapData(bmpData);
         upState = texture;
 
         super(upState, text, downState);

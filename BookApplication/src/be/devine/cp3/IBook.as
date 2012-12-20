@@ -36,16 +36,13 @@ public class IBook extends Sprite{
         pageService.load();
 
         this.addEventListener(TouchEvent.TOUCH, mousePositionHandler);
-
         Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
     }
 
     private function pagesCompleteHandler(evt:Event):void{
-
         thumbnailService = new ThumbnailService();
         thumbnailService.addEventListener(Event.COMPLETE, thumbnailsCompleteHandler);
         thumbnailService.load();
-
     }
 
     private function thumbnailsCompleteHandler(event:Event):void {
@@ -67,7 +64,6 @@ public class IBook extends Sprite{
     }
 
     private function mousePositionHandler(event:TouchEvent):void {
-
         var touch:Touch = event.getTouch(Starling.current.stage);
         if( touch != null ){
             var point:Point = new Point(touch.globalX,touch.globalY);
