@@ -5,7 +5,6 @@
  * Created with IntelliJ IDEA.
  */
 package be.devine.cp3.view {
-import be.devine.cp3.factory.text.TextFactory;
 import be.devine.cp3.model.AppModel;
 import be.devine.cp3.view.components.elements.Element;
 import be.devine.cp3.view.components.elements.ImageElement;
@@ -17,8 +16,6 @@ import be.devine.cp3.vo.LinkElementVO;
 import be.devine.cp3.vo.TextElementVO;
 
 import flash.events.Event;
-
-import starling.display.DisplayObject;
 
 import starling.display.Sprite;
 import starling.events.Event;
